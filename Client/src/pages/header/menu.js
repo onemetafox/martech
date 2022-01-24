@@ -24,42 +24,27 @@ export default function Pagemenu() {
     fontSize: '13px',
     paddingLeft: '10px',
     paddingRight: '10px',
-    color:blue[700],
+    color:'#3699FF',
     '&:hover': {
         color: grey[50],
         backgroundColor: blue[100],
     },
     marginRight:'10px',
     textTransform:'none',
-    fontWeight:'normal'
+    fontWeight:'normal',
+    fontFamily: 'Poppins, Helvetica, "sans-serif"'
     }));
   return (
     <div>
-
-
-
-
-
-        <ColorButton
-            id="basic-button"
-        >
-            Knoledge base
-        </ColorButton>
-
-        <ColorButton
-            id="basic-button"
-        >
-            Support
-        </ColorButton>
-        <ColorButton
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onMouseOver={handleClick}
-        onMouseOut={handleClose}
-        >
-        Platform
+        <ColorButton id="basic-button"> Knowledge base </ColorButton>
+        <ColorButton id="basic-button"> Support </ColorButton>
+        <ColorButton id="basic-button" 
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onMouseOver={handleClick}
+            onMouseOut={handleClose}>
+          Platform
         </ColorButton>
         <Menu
             id="basic-menu"

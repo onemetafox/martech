@@ -46,11 +46,11 @@ const header = () =>{
                     display: 'flex',
                     flexDirection: 'row',
                     bgcolor: 'background.flex',
-                    p:1,
                     backgroundColor:'#fff',
-                    borderBlockEnd:'solid 1px #ddd',
                     justifyContent:"space-between",
-                    alignItems:"stretch"
+                    alignItems:"stretch",
+                    height: "65px",
+                    lineHeight: "1.5",
                     }}
                 >
                     <Box
@@ -62,16 +62,17 @@ const header = () =>{
                         <Box
                             component="img"
                             sx={{
-                                height: '73px',
-                                width: '120px',
-                                paddingLeft:'20px'
+                                height: '27px',
+                                width: '100px',
+                                marginLeft:'25px',
+                                marginTop:'20px'
                             }}
                             src="/static/img/favicon.svg"
                         />
                         <Box
                             sx={{
-                                marginTop:'20px',
-                                marginLeft:'20px'
+                                marginTop:'16px',
+                                marginLeft:'27px'
                             }}
                         >
                             <Pagemenu />
@@ -87,6 +88,7 @@ const header = () =>{
                     flexDirection: 'row',
                     bgcolor: 'background.flex',
                     boxShadow:'0px 10px 30px 0px rgb(82 63 105 / 8%)',
+                    borderBlockStart:'solid 1px #EBEDF3',
                     p:2,
                     paddingLeft:'25px',
                     paddingRight:'25px',
