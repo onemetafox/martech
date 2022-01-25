@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, useEffect } from 'react';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -10,12 +10,23 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/system';
 import { MenuItem, FormControl, InputLabel, Select } from '@mui/material';
 
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DateTimePicker from '@mui/lab/DateTimePicker';
+import Stack from '@mui/material/Stack';
+
 export default function EventDialog(props) {
 
-  const [type, setType] = useState('');
-  const handleChange = (event) => {
-    setType(event.target.value);
-  };
+  useEffect(()=>{
+    setFormData({...formData, start: props.eventData.start, end: props.eventData.end});  
+  }, [props])
+  const [formData, setFormData] = useState({
+    title: '',
+    start: props.eventData.start,
+    end: props.eventData.end,
+    description: '',
+    type: ''
+  });
   const handleClose = () => {
     props.setOpen(false);
   };
@@ -35,6 +46,8 @@ export default function EventDialog(props) {
             type="text"
             fullWidth
             variant="standard"
+            value={formData.title}
+            onChange={evt => { setFormData(f => ({ ...f, title: evt.target.value})) }}
           />
           <TextField
             autoFocus
@@ -44,35 +57,34 @@ export default function EventDialog(props) {
             type="text"
             fullWidth
             variant="standard"
+            value={formData.description}
+            onChange={evt => { setFormData(f => ({ ...f, description: evt.target.value})) }}
           />
-          <Box sx={{ display: 'flex', flexDirection: 'row'}}>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="from"
-              label="From"
-              type="text"
-              fullWidth
-              variant="standard"
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="to"
-              label="To"
-              type="text"
-              fullWidth
-              variant="standard"
-            />
-           
+          <Box sx={{ display: 'flex', flexDirection: 'row', marginTop: '20px'}}>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <Stack spacing={3}>
+                <DateTimePicker
+                  label="Start"
+                  value={formData.start}
+                  onChange={evt => { setFormData(f => ({ ...f, start: evt.target.value})) }}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+                <DateTimePicker
+                  label="end"
+                  value={formData.end}
+                  onChange={evt => { setFormData(f => ({ ...f, end: evt.target.value})) }}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </Stack>
+            </LocalizationProvider>
           </Box>
           <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
               <InputLabel id="demo-simple-select-standard-label">Event Type</InputLabel>
               <Select
                 labelId="demo-simple-select-standard-label"
                 id="demo-simple-select-standard"
-                value={type}
-                onChange={handleChange}
+                value={formData.type}
+                onChange={evt => { setFormData(f => ({ ...f, type: evt.target.value})) }}
                 label="Type"
               >
                 <MenuItem value={'Holiday'}>Holiday</MenuItem>
@@ -81,8 +93,6 @@ export default function EventDialog(props) {
                 <MenuItem value={'Travel'}>Travel</MenuItem>
               </Select>
             </FormControl>
-         
-          
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Save</Button>

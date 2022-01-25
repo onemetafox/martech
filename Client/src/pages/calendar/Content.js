@@ -4,9 +4,9 @@ import Container from '@mui/material/Container';
 import {Box, Button} from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-
 import Calendar from './calendar';
 import EventDialog from './eventDialog';
+
 
 const ColorButton = styled(Button)(({ theme }) => ({
     backgroundColor: '#E1F0FF',
@@ -23,6 +23,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
 
 const Content = () =>{
     const [open, setOpen] = useState(false);
+    const [eventData, setEventData] = useState({start:'', end:''});
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -52,7 +53,7 @@ const Content = () =>{
                     <Calendar />
                 </Box>
             </Box>
-            <EventDialog open={open} setOpen={setOpen}/>
+            <EventDialog open={open} eventData = {eventData} setOpen={setOpen}/>
         </Container>
         
     );

@@ -11,11 +11,12 @@ const localizer = momentLocalizer(moment);
 
 export default function ReactBigCalendar() {
   const [eventsData, setEventsData] = useState(events);
+  const [eventData, setEventData] = useState({start:'', end:''});
   const [open, setOpen] = useState(false);
   const handleOpen = (events) => {
-    console.log(events.start);
-    console.log(events.end);
     setOpen(true);
+    setEventData(f=>({ ...f, start: events.start}));
+    setEventData(f=>({ ...f, end: events.end}))
   }
   const handleSelect = ({ start, end }) => {
     // const title = window.prompt("New Event name");
@@ -42,7 +43,7 @@ export default function ReactBigCalendar() {
         onSelectEvent={(event) => alert(event.title)}
         onSelectSlot={handleOpen}
       />
-      <EventDialog open = {open} setOpen = {setOpen} />
+      <EventDialog open = {open} eventData = {eventData}  setOpen = {setOpen} />
     </div>
   );
 }
