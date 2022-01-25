@@ -29,7 +29,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
     },
     }));
 
-const header = () =>{
+const header = (props) =>{
     var fontsize = {
         fontSize : '17px'
     };
@@ -100,7 +100,7 @@ const header = () =>{
                         <Link underline="hover" color="black" href="/" style={fontsize}>
                             Support
                         </Link>
-                        <Typography color="text.primary" style={fontsize}>Team Contact</Typography>
+                        <Typography color="text.primary" style={fontsize}>{props.title}</Typography>
                     </Breadcrumbs>
                     <ColorButton variant="contained"  >Add Contact</ColorButton>
                 </Box>

@@ -3,22 +3,30 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
-import { blue, grey } from '@mui/material/colors';
 import { useNavigate } from 'react-router-dom';
+
+import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 
 export default function Pagemenu() {
   const navigate = useNavigate();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const [platformState, setplatformState] = React.useState(Boolean);
+  const [supportState, setsupportState] = React.useState(Boolean);
+  const handlePlatformClick = (event) => {
+    setplatformState(true);
   };
 
-  const handleClose = (event) => {
-    setAnchorEl(null);
+  const handlePlatformClose = (event) => {
+    setplatformState(false);
   };
 
+  const handleSupportClick = (event) => {
+    setsupportState(true);
+  };
+
+  const handleSupportClose = (event) => {
+    setsupportState(false);
+  };
   const ColorButton = styled(Button)(({ theme }) => ({
     backgroundColor: 'rgba(77, 89, 149, 0.06)',
     fontSize: '13px',
@@ -26,31 +34,50 @@ export default function Pagemenu() {
     paddingRight: '10px',
     color:'#3699FF',
     '&:hover': {
-        color: grey[50],
-        backgroundColor: blue[100],
+        color: '#ffffff',
+        backgroundColor: '#3699FF',
     },
     marginRight:'10px',
     textTransform:'none',
     fontWeight:'normal',
-    fontFamily: 'Poppins, Helvetica, "sans-serif"'
+    fontFamily: 'Poppins, Helvetica, "sans-serif"',
+    boxShadow: 'none'
     }));
   return (
     <div>
         <ColorButton id="basic-button"> Knowledge base </ColorButton>
-        <ColorButton id="basic-button"> Support </ColorButton>
-        <ColorButton id="basic-button" 
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onMouseOver={handleClick}
-            onMouseOut={handleClose}>
-          Platform
-        </ColorButton>
+        <PopupState variant="popover" popupId="support-button">
+          {(popupState) => (
+            <React.Fragment>
+              <ColorButton variant="contained" {...bindTrigger(popupState)}>
+                Support
+              </ColorButton>
+              <Menu {...bindMenu(popupState)}>
+                <MenuItem onClick={() => { navigate('/platform/help'); popupState.close();}}>Help Desk</MenuItem>
+                <MenuItem onClick={() => { navigate('/contact'); popupState.close();}}>Team Contacts </MenuItem>
+                <MenuItem onClick={() => { navigate('/calendar'); popupState.close();}}>Team Calendar</MenuItem>
+              </Menu>
+            </React.Fragment>
+          )}
+        </PopupState>
+        
+        <PopupState variant="popover" popupId="platform-button">
+          {(popupState) => (
+            <React.Fragment>
+              <ColorButton variant="contained" {...bindTrigger(popupState)}>
+                Platform
+              </ColorButton>
+              <Menu {...bindMenu(popupState)}>
+                <MenuItem onClick={() => { navigate('/platform/budget'); popupState.close();}}>Budget</MenuItem>
+                <MenuItem onClick={() => { navigate('/platform/ec2summary'); popupState.close();}}>EC2 Instance</MenuItem>
+              </Menu>
+            </React.Fragment>
+          )}
+        </PopupState>
         <Menu
             id="basic-menu"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
+            platformState={platformState}
+            onClose={handlePlatformClose}
             MenuListProps={{
             'aria-labelledby': 'basic-button',
             }}

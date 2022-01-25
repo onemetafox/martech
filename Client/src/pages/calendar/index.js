@@ -11,19 +11,9 @@ const Calendar = () =>{
         setHeight(document.body.scrollHeight - 48);
     }, [])
     return(
-        // <div
-        //     style={{flexDirection: 'column', justifyContent:'space-between', alignItems:"stretch", flex: 1}}
-        // >
-        //     <div style={{flex: 1, height: winheight+'px'}}>
-        //         <Header />
-        //         <Content />
-        //     </div>
-        //     <div style={{flex: 1}}>
-        //         <Footer />
-        //     </div>
-        // </div>
+
         <div>
-            <Header />
+            <Header title={'Team Calendar'}/>
             <Content />
             <Footer />
         </div>

@@ -5,9 +5,7 @@ import {
     Box, 
 } from '@mui/material';
 
-
 import Calendar from './calendar';
-
 
 const Content = () =>{
     var i = 1;
