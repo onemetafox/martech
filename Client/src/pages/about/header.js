@@ -1,7 +1,7 @@
 import {React} from 'react';
 import {Box, AppBar, Link, CssBaseline, useScrollTrigger, Slide} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import Profile from '../pages/header/profile';
+import Profile from '../header/profile';
 import PropTypes  from 'prop-types';
 
 

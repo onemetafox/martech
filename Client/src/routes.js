@@ -5,12 +5,12 @@ import React from "react";
 // loaded asynchronously, to keep the initial JS bundle to a minimum size
 
 // Layouts
-import Landingpage from "./landingpage";
+import Landingpage from "./pages/landingpage";
 import Calendar from "./pages/calendar";
 import BudgetDashboard from "./pages/plateform/budget";
 import Summary from './pages/plateform/summary'
 import Contact from './pages/contact';
-import About from './about';
+import About from './pages/about';
 
 const routes = [
   {

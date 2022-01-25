@@ -1,4 +1,5 @@
-import * as React from 'react';
+import { React } from 'react';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -7,16 +8,17 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/system';
+import { MenuItem, FormControl, InputLabel, Select } from '@mui/material';
 
 export default function EventDialog(props) {
-   // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
 
+  const [type, setType] = useState('');
+  const handleChange = (event) => {
+    setType(event.target.value);
+  };
   const handleClose = () => {
     props.setOpen(false);
   };
-
   return (
     <div>
       <Dialog open={props.open} onClose={handleClose}>
@@ -62,7 +64,23 @@ export default function EventDialog(props) {
               fullWidth
               variant="standard"
             />
+           
           </Box>
+          <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-standard-label">Event Type</InputLabel>
+              <Select
+                labelId="demo-simple-select-standard-label"
+                id="demo-simple-select-standard"
+                value={type}
+                onChange={handleChange}
+                label="Type"
+              >
+                <MenuItem value={'Holiday'}>Holiday</MenuItem>
+                <MenuItem value={'Vacation'}>Vacation</MenuItem>
+                <MenuItem value={'Weekend'}>Weekend</MenuItem>
+                <MenuItem value={'Travel'}>Travel</MenuItem>
+              </Select>
+            </FormControl>
          
           
         </DialogContent>

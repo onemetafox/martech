@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles';
 import { blue, grey } from '@mui/material/colors';
 
 import { useMsal } from "@azure/msal-react";
-import { loginRequest } from "../authConfig";
+import { loginRequest } from "../../config/authConfig";
 
 const ColorButton = styled(Button)(({ theme }) => ({
   borderRadius:'40px',
