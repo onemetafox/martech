@@ -52,7 +52,7 @@ export default function Pagemenu() {
               <ColorButton variant="contained" {...bindTrigger(popupState)}>
                 Support
               </ColorButton>
-              <Menu {...bindMenu(popupState)}>
+              <Menu open={true} {...bindMenu(popupState)}>
                 <MenuItem onClick={() => { navigate('/platform/help'); popupState.close();}}>Help Desk</MenuItem>
                 <MenuItem onClick={() => { navigate('/contact'); popupState.close();}}>Team Contacts </MenuItem>
                 <MenuItem onClick={() => { navigate('/calendar'); popupState.close();}}>Team Calendar</MenuItem>
@@ -68,29 +68,13 @@ export default function Pagemenu() {
               <ColorButton variant="contained" {...bindTrigger(popupState)}>
                 Platform
               </ColorButton>
-              <Menu {...bindMenu(popupState)}>
+              <Menu open={true} {...bindMenu(popupState)}>
                 <MenuItem onClick={() => { navigate('/platform/budget'); popupState.close();}}>Budget</MenuItem>
                 <MenuItem onClick={() => { navigate('/platform/ec2summary'); popupState.close();}}>EC2 Instance</MenuItem>
               </Menu>
             </React.Fragment>
           )}
         </PopupState>
-        <Menu
-            id="basic-menu"
-            platformState={platformState}
-            onClose={handlePlatformClose}
-            MenuListProps={{
-            'aria-labelledby': 'basic-button',
-            }}
-            sx={{
-                paddingTop:'8px',
-                marginTop:'50px',
-                marginLeft:'330px'
-            }}
-        >
-        <MenuItem onClick={() => { navigate('/platform/budget');}}>Budget</MenuItem>
-        <MenuItem onClick={() => { navigate('/platform/ec2summary');}}>EC2 Intance</MenuItem>
-      </Menu>
     </div>
   );
 }

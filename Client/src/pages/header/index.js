@@ -7,27 +7,6 @@ import Box from '@mui/material/Box';
 import { blue, grey } from '@mui/material/colors';
 import Pagemenu from './menu';
 import Profile from './profile';
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'start',
-  color: theme.palette.text.primary,
-  backgroundColor:'#fff',
-  height:'50px',
-  borderBlockEnd:'solid 1px #ddd'
-}));
-
-const ColorButton = styled(Button)(({ theme }) => ({
-    backgroundColor: blue[100],
-    fontSize: '11px',
-    paddingLeft: '10px',
-    paddingRight: '10px',
-    color:blue[700],
-    '&:hover': {
-        color: grey[50],
-        backgroundColor: blue[100],
-    },
-    }));
 
 const header = (props) =>{
     var fontsize = {
