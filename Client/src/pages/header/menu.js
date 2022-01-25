@@ -56,6 +56,7 @@ export default function Pagemenu() {
                 <MenuItem onClick={() => { navigate('/platform/help'); popupState.close();}}>Help Desk</MenuItem>
                 <MenuItem onClick={() => { navigate('/contact'); popupState.close();}}>Team Contacts </MenuItem>
                 <MenuItem onClick={() => { navigate('/calendar'); popupState.close();}}>Team Calendar</MenuItem>
+                <MenuItem onClick={() => { navigate('/call-support'); popupState.close();}}>on-call support</MenuItem>
               </Menu>
             </React.Fragment>
           )}

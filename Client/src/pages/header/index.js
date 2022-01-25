@@ -102,7 +102,6 @@ const header = (props) =>{
                         </Link>
                         <Typography color="text.primary" style={fontsize}>{props.title}</Typography>
                     </Breadcrumbs>
-                    <ColorButton variant="contained"  >Add Contact</ColorButton>
                 </Box>
             </Stack>
         </div>
