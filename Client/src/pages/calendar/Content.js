@@ -45,9 +45,6 @@ const Content = () =>{
                     <Box sx={{ display: 'flex', flexDirection: 'row'}}>
                         <Box sx={{ marginTop:'25px', marginLeft:'27px', fontSize: '1.275rem' }}>Team Calendar</Box>
                     </Box>
-                    <Box sx={{marginTop:'20px', marginRight: '20px'}}>
-                        <ColorButton variant="contained" onClick={handleClickOpen}>Add Event</ColorButton>
-                    </Box>
                 </Box>
                 <Box sx={{padding:'2rem'}}>
                     <Calendar />
