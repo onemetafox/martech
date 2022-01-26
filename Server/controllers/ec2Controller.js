@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import Ec2count from '../models/ec2Model';
 import Ec2Instnace from '../models/ec2InstanceModel';
 

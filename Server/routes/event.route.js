@@ -8,4 +8,11 @@ import eventCtrl from '../controllers/eventsController';
 
 const router = express.Router();
 
+router.route('/addEvent')
+  // .post(validate(paramValidation.login), passport.authenticate('local', { session: false }), budgetCtrl.getM2dDataByMonth);
+  .post(eventCtrl.addEvent);
+
+router.route('/getAll')
+  .post(eventCtrl.getAll);
+  
 export default router;
