@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-const Schema = mongoose.Schema;
 // model definition
 const ec2Schema = new mongoose.Schema({
     Region : String,

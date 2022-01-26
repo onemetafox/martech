@@ -6,7 +6,7 @@
   "main": "node -r esm index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --experimental-specifier-resolution=node index.js"
+    "dev": "nodemon --experimental-specifier-resolution=node index.js"
   },
   "author": "James Coulter",
   "license": "ISC",

@@ -14,4 +14,4 @@ const ec2InstanceSchema = new mongoose.Schema({
 
 });
 
-export default mongoose.model('Ec2Instnace', ec2InstanceSchema);
+export default mongoose.model('Ec2Instnace', ec2InstanceSchema,'ec2instance');

@@ -7,4 +7,4 @@ const costByServiceSchema = new mongoose.Schema({
     unBlendedCost       : Number,
 });
 
-export default mongoose.model('ServiceCost', costByServiceSchema);
+export default mongoose.model('ServiceCost', costByServiceSchema, 'servicecost');

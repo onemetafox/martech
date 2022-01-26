@@ -6,4 +6,4 @@ const monthlyCostSchema =  new mongoose.Schema({
     cost     : Number,
 });
 
-export default mongoose.model('MonthlyCost', monthlyCostSchema);
+export default mongoose.model('MonthlyCost', monthlyCostSchema,'monthlycost');
