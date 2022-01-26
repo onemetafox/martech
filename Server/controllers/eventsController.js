@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
-require('../models/eventsModel');
+import mongoose from 'mongoose';
+
 import Events from '../models/eventsModel';
 import Response from '../services/response.service';
 
-const jwt = require('jwt-simple');
-const config = require('../config');
+import jwt from 'jwt-simple';
+import {timeSetting} from '../config/config';
 
 function getEvent(res, req){
 
@@ -22,7 +22,7 @@ function addEvent(res, req){
 
 }
 
-export default{
+export default {
     getEvent,
     updateEvent,
     delEvent,

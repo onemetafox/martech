@@ -1,13 +1,9 @@
-const mongoose = require('mongoose');
-
-require('../models/costByServiceModel');
-require('../models/monthlyCostModel');
-
-const CostByServiceModel = mongoose.model('ServiceCost');
-const MonthlyCostModel = mongoose.model('MonthlyCost');
-
-const jwt = require('jwt-simple');
-const config = require('../config');
+// import async from 'async';
+// import httpStatus from 'http-status';
+import ServiceCost from '../models/costByServiceModel';
+import MonthlyCost from '../models/monthlyCostModel';
+import jwt from 'jwt-simple';
+import {timeSetting} from '../config/config';
 
 function getMonthFromString(mon){
   return new Date(Date.parse(mon +" 1, 2012")).getMonth()+1
@@ -20,7 +16,7 @@ const getOnlyDate = (param) =>{
   var yyyy = today. getFullYear();
   return today = yyyy + '-' + mm + '-' + dd +'T00:00:00.000Z';
 }
-exports.getM2dDataByMonth = function(req, res, next){
+function getM2dDataByMonth(req, res, next){
     var currentDate = new Date();
     var year =  currentDate.getFullYear();
     var month = req.body.month;
@@ -40,36 +36,36 @@ exports.getM2dDataByMonth = function(req, res, next){
         cost: "$money"
      }}
     ];
-    CostByServiceModel.aggregate(pipeLine).exec( (e, r) => {
+    ServiceCost.aggregate(pipeLine).exec( (e, r) => {
         if(e) {
             console.log(e);
         }else{
-          var data = jwt.encode(r, config.secret);
+          var data = jwt.encode(r, timeSetting.secret);
           res.send(data);
         }
       });
 }
 
-exports.getY2mGetData = function(req, res, next){
+function getY2mGetData(req, res, next){
     var year =  req.body.year;
     var pipeLine = new Array();
 
     pipeLine = [
       {$match:{year:{$eq:year}}},
       ];
-    MonthlyCostModel.aggregate(pipeLine).exec((err, result) => {
+      MonthlyCost.aggregate(pipeLine).exec((err, result) => {
       if(err){
         console.log(err);
       }else{
         for( var i = 0; i < result.length; i++){
           result[i].month = getMonthFromString(result[i].month);
         }
-      var data = jwt.encode(result, config.secret);
+      var data = jwt.encode(result, timeSetting.secret);
       res.send(data);
       }
     })
 }
-exports.getLtsData = function(req, res, next){
+function getLtsData (req, res, next){
   var currentDate = new Date(getOnlyDate(1));
   var month = req.body.month;
   var date = new Date(getOnlyDate(3));
@@ -93,11 +89,12 @@ exports.getLtsData = function(req, res, next){
     }else{
 
     }
-
-  CostByServiceModel.aggregate(pipeLine).exec( (err, result) => {
+    console.log(pipeLine);
+    ServiceCost.aggregate(pipeLine).exec( (err, result) => {
       if(err) {
           console.log(err);
       }else{
+        console.log(result);
         var fDate = currentDate;
         var tDate = date;
         var returnData = [];
@@ -119,8 +116,14 @@ exports.getLtsData = function(req, res, next){
           item.total = total;
           returnData.push(item)
         }
-        var data = jwt.encode(returnData, config.secret);
+        var data = jwt.encode(returnData, timeSetting.secret);
         res.send(data);
       }
     });
+}
+
+export default {
+  getLtsData,
+  getY2mGetData,
+  getM2dDataByMonth
 }

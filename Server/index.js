@@ -1,12 +1,13 @@
 // Main starting point of the application
-const express = require('express');
-const http = require('http');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
+import express from 'express';
+import http from 'http';
+import bodyParser from 'body-parser';
+import morgan from 'morgan';
+import router from './routes';
+import mongoose from 'mongoose';
+import cors from 'cors';
+
 const app = express();
-const router = require('./router');
-const mongoose = require('mongoose');
-const cors = require('cors');
 
 // DB Setup
 mongoose.connect('mongodb://127.0.0.1:27017/marchtech');
@@ -17,14 +18,13 @@ app.use(bodyParser.json({ type: '*/*' }));
 
 // Allow cross-origin resource sharing
 app.use(cors());
+app.use(router);
 app.options('*', cors());
 
 // Application Routes
-router(app);
-
+// router(app);
 
 // Server Setup
 const port = process.env.PORT || 3090;
 const server = http.createServer(app);
 server.listen(port);
-console.log('Server listening on:', port);

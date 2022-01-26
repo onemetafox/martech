@@ -1,13 +1,14 @@
 {
-  "name": "",
+  "name": "Martech",
+  "type": "module",
   "version": "1.0.0",
   "description": "a node + express + mongoose server",
-  "main": "index.js",
+  "main": "node -r esm index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "node --experimental-specifier-resolution=node index.js"
   },
-  "author": "Adam EL-Gizawy",
+  "author": "James Coulter",
   "license": "ISC",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",

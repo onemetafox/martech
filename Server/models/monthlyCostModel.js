@@ -1,11 +1,9 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const config = require('../config');
+import mongoose from 'mongoose';
 // model definition
-const monthlyCostSchema = new Schema({
+const monthlyCostSchema =  new mongoose.Schema({
     year     : Number,
     month    : String,
     cost     : Number,
 });
 
-mongoose.model('MonthlyCost', monthlyCostSchema, 'monthlycost');
+export default mongoose.model('MonthlyCost', monthlyCostSchema);

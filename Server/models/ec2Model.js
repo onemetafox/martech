@@ -1,12 +1,12 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+
 const Schema = mongoose.Schema;
-const config = require('../config');
 // model definition
-const ec2Schema = new Schema({
+const ec2Schema = new mongoose.Schema({
     Region : String,
     Running: Number,
     Stopped: Number,
     createdAt:  Date
 });
 
-mongoose.model('Ec2count', ec2Schema, 'ec2count');
+export default mongoose.model('Ec2Count', ec2Schema, 'ec2count');

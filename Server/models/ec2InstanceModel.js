@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose'
 const Schema = mongoose.Schema;
-const config = require('../config');
 // model definition
-const ec2InstanceSchema = new Schema({
+const ec2InstanceSchema = new mongoose.Schema({
     availability_zone   :   String,
     ipv4                :   String,
     iamInstanceProfile  :   String,
@@ -15,4 +14,4 @@ const ec2InstanceSchema = new Schema({
 
 });
 
-mongoose.model('Ec2instnace', ec2InstanceSchema, 'ec2instance');
+export default mongoose.model('Ec2Instnace', ec2InstanceSchema);

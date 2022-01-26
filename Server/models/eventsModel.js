@@ -1,8 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const config = require('../config');
-// model definition
-const eventsSchema = new Schema({
+import mongoose from 'mongoose';
+const eventsSchema = new mongoose.Schema({
     user                : String,
     date                : Date,
     title               : String,
@@ -10,4 +7,4 @@ const eventsSchema = new Schema({
     type                : String
 });
 
-export default mongoose.model('Events', eventsSchemaSchema);
+export default mongoose.model('Events', eventsSchema);

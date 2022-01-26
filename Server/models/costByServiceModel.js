@@ -1,12 +1,10 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const config = require('../config');
-// model definition
-const costByServiceSchema = new Schema({
+import mongoose from 'mongoose'
+
+const costByServiceSchema = new mongoose.Schema({
     service             : String,
     date                :  Date,
     netAmortizedCost    : Number,
     unBlendedCost       : Number,
 });
 
-mongoose.model('ServiceCost', costByServiceSchema, 'servicecost');
+export default mongoose.model('ServiceCost', costByServiceSchema);

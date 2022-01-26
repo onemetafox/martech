@@ -1,29 +1,31 @@
-const mongoose = require('mongoose');
-require('../models/ec2Model');
-require('../models/ec2InstanceModel');
+import mongoose from 'mongoose';
+import Ec2count from '../models/ec2Model';
+import Ec2Instnace from '../models/ec2InstanceModel';
 
-const Ec2Model = mongoose.model('Ec2count');
-const Ec2InstanceModel = mongoose.model('Ec2instnace');
-const jwt = require('jwt-simple');
-const config = require('../config');
+import jwt from 'jwt-simple';
+import {timeSetting} from '../config/config';
 
-exports.getAllEc2Count = function(req, res, next){
-    Ec2Model.find({}, function(err, result){
+function getAllEc2Count(req, res, next){
+    Ec2count.find({}, function(err, result){
         if(err){
             return next(err); 
         }else{
-            var data = jwt.encode(result, config.secret);
+            var data = jwt.encode(result, timeSetting.secret);
             res.send(data);
         }
     })
 }
-exports.getAllEc2Instance = function(req, res, next){
-    Ec2InstanceModel.find({}, function(err, result){
+function getAllEc2Instance (req, res, next){
+    Ec2Instnace.find({}, function(err, result){
         if(err){
             return next(err); 
         }else{
-            var data = jwt.encode(result, config.secret);
+            var data = jwt.encode(result, timeSetting.secret);
             res.send(data);
         }
     })
+}
+export default {
+    getAllEc2Instance,
+    getAllEc2Count
 }
