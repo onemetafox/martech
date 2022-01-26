@@ -1,28 +1,30 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import {ROOT_URL} from '../config/const';
+
 const jwt_decode = require('jwt-decode');
 
-const ROOT_URL = 'http://localhost:3090';
+// const ROOT_URL = 'http://localhost:3090';
 
 export function getEc2Count(res) {
     var data;
-    axios.post(`${ROOT_URL}/plateform/getAllEc2Count`)
+    axios.post(`${ROOT_URL}/ec2/getAllEc2Count`)
+        .then(response => {
+            res({data: response});
+        })
+        .catch(() => {
+    });
+    return data;
+  }
+export function getEc2instance(res) {
+    var data;
+    axios.post(`${ROOT_URL}/ec2/getAllEc2Instance`)
     .then(response => {
         res({data: response});
     })
     .catch(() => {
     });
     return data;
-  }
-export function getEc2instance(res) {
-var data;
-axios.post(`${ROOT_URL}/plateform/getAllEc2Instance`)
-.then(response => {
-    res({data: response});
-})
-.catch(() => {
-});
-return data;
 }
 export function getM2dData(res, month){
     const d = new Date();
@@ -30,6 +32,7 @@ export function getM2dData(res, month){
     if(!month){
         month = d.getMonth()+1;
     }
+    console.log(ROOT_URL);
     axios.post(`${ROOT_URL}/budget/getM2dDataByMonth`,{month: month})
     .then(response => {
         res({data: response});

@@ -15,11 +15,19 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import Stack from '@mui/material/Stack';
 
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  addEvent
+} from '../../actions/eventAction';
+
 export default function EventDialog(props) {
+
+  const dispatch = useDispatch();
 
   useEffect(()=>{
     setFormData({...formData, start: props.eventData.start, end: props.eventData.end});  
   }, [props])
+
   const [formData, setFormData] = useState({
     title: '',
     start: props.eventData.start,
@@ -27,9 +35,13 @@ export default function EventDialog(props) {
     description: '',
     type: ''
   });
+
   const handleClose = () => {
     props.setOpen(false);
   };
+  const handleSave=()=>{
+    dispatch(addEvent(formData));
+  }
   return (
     <div>
       <Dialog open={props.open} onClose={handleClose}>
@@ -66,13 +78,13 @@ export default function EventDialog(props) {
                 <DateTimePicker
                   label="Start"
                   value={formData.start}
-                  onChange={evt => { setFormData(f => ({ ...f, start: evt.target.value})) }}
+                  onChange={evt => { setFormData(f => ({ ...f, start: evt})) }}
                   renderInput={(params) => <TextField {...params} />}
                 />
                 <DateTimePicker
                   label="end"
                   value={formData.end}
-                  onChange={evt => { setFormData(f => ({ ...f, end: evt.target.value})) }}
+                  onChange={evt => { setFormData(f => ({ ...f, end: evt})) }}
                   renderInput={(params) => <TextField {...params} />}
                 />
               </Stack>
@@ -95,7 +107,7 @@ export default function EventDialog(props) {
             </FormControl>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Save</Button>
+          <Button onClick={handleSave}>Save</Button>
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>

@@ -9,7 +9,7 @@ import { blue, grey } from '@mui/material/colors';
 import M2dchart from "./m2dChart";
 import Y2mchart from "./y2mChart";
 import Lts3days from './lts3days';
-import { getM2dData, getY2mData, getLtsData} from '../../../action';
+import { getM2dData, getY2mData, getLtsData} from '../../../actions/ec2Action';
 import jwt_decode from 'jwt-decode';
 import * as configs from '../../../config/config';
 

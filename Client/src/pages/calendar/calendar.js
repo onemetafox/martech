@@ -5,12 +5,17 @@ import events from "./events";
 import "../../style/calendar.css";
 
 import EventDialog from "./eventDialog";
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  addEvent,
+  selectState
+} from '../../actions/eventAction';
 
 moment.locale("en-GB");
 const localizer = momentLocalizer(moment);
 
 export default function ReactBigCalendar() {
-  const [eventsData, setEventsData] = useState(events);
+  const eventsData = useSelector(selectState);
   const [eventData, setEventData] = useState({start:'', end:''});
   const [open, setOpen] = useState(false);
   const handleOpen = (events) => {

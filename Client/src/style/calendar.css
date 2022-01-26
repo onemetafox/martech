@@ -154,14 +154,20 @@ button.rbc-input::-moz-focus-inner {
   border-color: #adadad;
 }
 .rbc-toolbar button:active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button.rbc-active:focus {
-  color: #373a3c;
+  /* color: #373a3c;
   background-color: #d4d4d4;
-  border-color: #8c8c8c;
+  border-color: #8c8c8c; */
+  background: #3699FF;
+  color: #FFFFFF;
+  border: 1px solid #3699FF;
 }
 .rbc-toolbar button:focus {
-  color: #373a3c;
+  /* color: #373a3c;
   background-color: #e6e6e6;
-  border-color: #adadad;
+  border-color: #adadad; */
+  background: #3699FF;
+  color: #FFFFFF;
+  border: 1px solid #3699FF;
 }
 .rbc-toolbar button:hover {
   color: #B5B5C3;
