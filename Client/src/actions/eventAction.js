@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+import { toast } from "react-toastify";
 import axios from 'axios';
 import { ROOT_URL} from '../config/const';
 
@@ -10,34 +10,38 @@ export const slice = createSlice({
   },
   reducers: {
     getAllData: (state, action) => {
-        console.log(state);
-        console.log(action);
       state.events = action.payload;
     },
+    setEventData: (state, action) => {
+        state.events = [...state.events, action.payload];
+    }
   },
 });
 
-export const { getAllData} = slice.actions;
+export const { getAllData, setEventData} = slice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched
 export const getAll = () => dispatch =>{
-    axios.post(`${ROOT_URL}/plateform/getAllEc2Count`)
+    axios.post(`${ROOT_URL}/event/getAll`)
         .then(response => {
-            dispatch(getAllData(response));
+            dispatch(getAllData(response.data.data));
         })
         .catch(() => {
     });
 }
 
 export const addEvent = (params) => dispatch => {
-    console.log(params);
-    axios.post(`${ROOT_URL}/plateform/getAllEc2Count`)
+    axios.post(`${ROOT_URL}/event/addEvent`,params)
     .then(response => {
-        console.log("success");
-        dispatch(getAllData(response));
+        if(response.data.status === "Success"){
+            dispatch(setEventData(response.data.data));
+            toast.success("success");
+        }else{
+            toast.warn("Error");
+        }
     })
     .catch(()=>{
         console.log("error");

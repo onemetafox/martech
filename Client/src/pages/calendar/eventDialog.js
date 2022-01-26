@@ -41,6 +41,7 @@ export default function EventDialog(props) {
   };
   const handleSave=()=>{
     dispatch(addEvent(formData));
+    props.setOpen(false);
   }
   return (
     <div>
@@ -52,6 +53,7 @@ export default function EventDialog(props) {
           </DialogContentText>
           <TextField
             autoFocus
+            required
             margin="dense"
             id="title"
             label="Event Title"
@@ -62,7 +64,7 @@ export default function EventDialog(props) {
             onChange={evt => { setFormData(f => ({ ...f, title: evt.target.value})) }}
           />
           <TextField
-            autoFocus
+            required
             margin="dense"
             id="description"
             label="Event Description"
@@ -93,6 +95,7 @@ export default function EventDialog(props) {
           <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
               <InputLabel id="demo-simple-select-standard-label">Event Type</InputLabel>
               <Select
+                required
                 labelId="demo-simple-select-standard-label"
                 id="demo-simple-select-standard"
                 value={formData.type}
