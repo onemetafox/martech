@@ -34,7 +34,7 @@ const Step = () =>{
                             fontFamily={'PT Serif, Georgia, serif'}
                             variant='h5'
                         >
-                        5-Minute Setup
+                        4 Steps to Personalize a message to Customer
                         </Typography>
                         
                         <Typography
@@ -43,7 +43,7 @@ const Step = () =>{
                             paddingTop={'10px'}
                             variant='h6'
                         >
-                        At vero eos et accusamus et iusto odio dignissimos ducimus.
+                        {/*At vero eos et accusamus et iusto odio dignissimos ducimus.*/}
                         </Typography>
                         <Box
                         sx={{marginTop:'40px'}}
@@ -57,10 +57,10 @@ const Step = () =>{
                                             Step 1
                                             </Typography>
                                             <Typography variant="h5" component="div" paddingTop={'10px'}>
-                                            Download
+                                                Understand who?
                                             </Typography>
                                             <Typography variant="h6" fontWeight={'light'} paddingTop={'10px'}>
-                                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                                Resolve marketing contact identity throughout their lifecycle at Comcast (agnostic of LOB/channel)
                                             </Typography>
                                         </CardContent>
                                     </Card>
@@ -72,10 +72,10 @@ const Step = () =>{
                                             Step 2
                                             </Typography>
                                             <Typography variant="h5" component="div" paddingTop={'10px'}>
-                                            Customize
+                                                Informs What?
                                             </Typography>
                                             <Typography variant="h6" fontWeight={'light'} paddingTop={'10px'}>
-                                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur mollit.
+                                                Levarage Contact Identity insights to inform strategy and develop profile. Levarage aggregate consumer data for high level analysis
                                             </Typography>
                                         </CardContent>
                                     </Card>
@@ -87,10 +87,10 @@ const Step = () =>{
                                             Step 3
                                             </Typography>
                                             <Typography variant="h5" component="div" paddingTop={'10px'}>
-                                            Upload
+                                                Improves How?
                                             </Typography>
                                             <Typography variant="h6" fontWeight={'light'} paddingTop={'10px'}>
-                                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                                Real time interaction data allows for dynamic audience assignment based on pre-determined conditions and business rules.Determine the best channel to engage the customer
                                             </Typography>
                                         </CardContent>
                                     </Card>
@@ -102,10 +102,10 @@ const Step = () =>{
                                             Step 4
                                             </Typography>
                                             <Typography variant="h5" color="white" component="div" paddingTop={'10px'}>
-                                            Done
+                                                Interact & Connect
                                             </Typography>
                                             <Typography variant="h6" color="white" fontWeight={'light'} paddingTop={'10px'}>
-                                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+                                                Deploy personalized messages and experiences and record the consumer interaction (as data) for futher analysis and strengthen recommendation engines and enhance predictive action
                                             </Typography>
                                         </CardContent>
                                     </Card>
@@ -120,7 +120,7 @@ const Step = () =>{
                             fontSize={'13px'}
                             color={'text.secondary'}
                         >
-                        If you need any help, make sure to <Link> book a demo.</Link>
+                        {/*If you need any help, make sure to <Link> book a demo.</Link>*/}
                         </Typography>
                     </Container>
             </Box>

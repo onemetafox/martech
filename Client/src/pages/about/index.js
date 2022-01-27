@@ -12,7 +12,7 @@ const About = () => {
             <TitleSection />
             <ServiceSection />
             <TimeLine />
-            {/* <Investors /> */}
+            
         </div>
     );
 }

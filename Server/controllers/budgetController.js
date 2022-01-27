@@ -71,30 +71,34 @@ function getLtsData (req, res, next){
   var date = new Date(getOnlyDate(3));
   var pipeLine = [];
   if(!month){
-        pipeLine = [{$match:{date:{$lte:currentDate, $gte:date}}}, 
+        pipeLine = [
           {
-          $group: {
-            "_id": "$service",
-            "cost" : {
-              $push:{
-                $cond:[{$eq:["$unBlendedCost", null]},0,"$unBlendedCost"]
+            $match:{
+              date:{
+                $lte:currentDate, $gte:date
+              }
+            }
+          }, 
+          // {$sort: { date: -1 } },
+          {
+            $group: {
+              "_id": "$service",
+              "cost" : {
+                $push:{
+                  $cond:[{$eq:["$unBlendedCost", null]},0,"$unBlendedCost"]
+                }
+              },
+              "date":{
+                $push:"$date"
               }
             },
-            "date":{
-              $push:"$date"
-            }
-          },
-        }
+          }
       ];
-    }else{
-
     }
-    console.log(pipeLine);
     ServiceCost.aggregate(pipeLine).exec( (err, result) => {
       if(err) {
           console.log(err);
       }else{
-        console.log(result);
         var fDate = currentDate;
         var tDate = date;
         var returnData = [];

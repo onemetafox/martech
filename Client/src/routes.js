@@ -7,8 +7,8 @@ import React from "react";
 // Layouts
 import Landingpage from "./pages/landingpage";
 import Calendar from "./pages/calendar";
-import BudgetDashboard from "./pages/plateform/budget";
-import Summary from './pages/plateform/summary'
+import BudgetDashboard from "./pages/platform/budget";
+import Summary from './pages/platform/summary'
 import Contact from './pages/contact';
 import About from './pages/about';
 

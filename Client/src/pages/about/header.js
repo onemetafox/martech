@@ -96,7 +96,7 @@ const Header = (props) =>{
                         
                     }}
                     >
-                        Plateform
+                        Platform
                     </Link>
                 </Box>
                 <Box sx={{marginTop:'20px', marginRight:'20px'}}>

@@ -14,7 +14,7 @@ function index(props) {
       <Header />
       <Banner />
       <Present />
-      <JoinTeam />
+      {/*<JoinTeam />*/}
       <Step />
     </div>
   );

@@ -115,7 +115,7 @@ const Header = (props) =>{
                         
                     }}
                     >
-                        Plateform
+                        Platform
                     </Link>
                     <Link
                     component="button"
@@ -162,10 +162,7 @@ const Header = (props) =>{
                     >
                         LogIn
                     </Link>
-                    <ColorButton
-                    >
-                        Sign Up
-                    </ColorButton>
+                    
                 </Box>
             </AppBar>
 

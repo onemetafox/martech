@@ -47,11 +47,11 @@ const Banner = () =>{
                         >
                             <Box>
                                 <Typography fontFamily={'PT Serif, Georgia, serif'} variant='h3' color={'white'} fontWeight={'900'}>
-                                    Martech Service
+                                    Martech Engagement Data Platform
                                 </Typography>   
                                 <Typography  variant='h6' color={'white'} fontWeight={'light'}>
-                                The EDP platform provides a robust single view of a marketing contact sourcing data from disparate systems and tying it back togather through a MDM process
-                                </Typography>
+                                    The journey of EDP was started with vision of centralized marketing data platform that provides, data availability via single source, common infrastructure, & Platform Integrations for customer (customer & potential-customer). With a set of capabilities for E2E Residential Marketing needs to help enable omni-channel 1:1
+                            </Typography>
                                 <ColorButton
                                 >
                                     Get Started

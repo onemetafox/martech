@@ -39,14 +39,14 @@ const TimeLine = () =>{
                                         paddingTop={'10px'}
                                         variant='h5'
                                     >
-                                        Research
+                                        Understand who?
                                     </Typography>
                                     <Typography
                                         fontFamily={'PT Serif, Georgia, serif'}
                                         paddingTop={'10px'}
                                         variant='h6'
                                     >
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
+                                       Resolve marketing contact identity throughout their lifecycle at Comcast (agnostic of LOB/channel)
                                     </Typography>
                                     </Grid>
                                     <Grid item xs={3} className="customtimeline">
@@ -55,14 +55,14 @@ const TimeLine = () =>{
                                         paddingTop={'10px'}
                                         variant='h5'
                                     >
-                                        Ideation
+                                        Informs What?
                                     </Typography>
                                     <Typography
                                         fontFamily={'PT Serif, Georgia, serif'}
                                         paddingTop={'10px'}
                                         variant='h6'
                                     >
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur mollit.
+                                    Levarage Contact Identity insights to inform strategy and develop profile. Levarage aggregate consumer data for high level analysis
                                     </Typography>
                                     </Grid>
                                     <Grid item xs={3} className="customtimeline">
@@ -71,14 +71,14 @@ const TimeLine = () =>{
                                         paddingTop={'10px'}
                                         variant='h5'
                                     >
-                                        Development
+                                        Improves How?
                                     </Typography>
                                     <Typography
                                         fontFamily={'PT Serif, Georgia, serif'}
                                         paddingTop={'10px'}
                                         variant='h6'
                                     >
-                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    Real time interaction data allows for dynamic audience assignment based on pre-determined conditions and business rules.Determine the best channel to engage the customer
                                     </Typography>
                                     </Grid>
                                     <Grid item xs={3} className="customtimeline">
@@ -87,14 +87,14 @@ const TimeLine = () =>{
                                         paddingTop={'10px'}
                                         variant='h5'
                                     >
-                                        Launch
+                                        Interact & Connect
                                     </Typography>
                                     <Typography
                                         fontFamily={'PT Serif, Georgia, serif'}
                                         paddingTop={'10px'}
                                         variant='h6'
                                     >
-                                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+                                        Deploy personalized messages and experiences and record the consumer interaction (as data) for futher analysis and strengthen recommendation engines and enhance predictive action
                                     </Typography>
                                     </Grid>
                                 </Grid>
