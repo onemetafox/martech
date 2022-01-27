@@ -79,7 +79,7 @@ function getLtsData (req, res, next){
               }
             }
           }, 
-          // {$sort: { date: -1 } },
+          {$sort: { date: -1 } },
           {
             $group: {
               "_id": "$service",
