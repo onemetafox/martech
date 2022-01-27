@@ -73,7 +73,7 @@ export default function Ec2Table(props) {
   useEffect(() => {
     var data = countData.ec2countdata;
     for(var i = 0; i < data.length; i++){
-      rows.push(createData(data[i]._id, data[i].Region, data[i].Running, data[i].Stopped));
+      rows.push(createData(data[i].doc._id, data[i].doc.Region, data[i].doc.Running, data[i].doc.Stopped));
     }
     setTableRows(rows);
   },[countData.ec2countdata]);

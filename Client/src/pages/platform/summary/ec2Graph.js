@@ -103,9 +103,9 @@ const Ec2Graph = () =>{
       var stopped = [];
           var data = ec2countdata.ec2countdata;
           for (var i = 0; i < data.length; i++){
-            label.push(data[i].Region);
-            runnig.push(data[i].Running);
-            stopped.push(data[i].Stopped);
+            label.push(data[i].doc.Region);
+            runnig.push(data[i].doc.Running);
+            stopped.push(data[i].doc.Stopped);
           }
 
           const statedata = {

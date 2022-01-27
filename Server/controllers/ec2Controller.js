@@ -5,17 +5,46 @@ import jwt from 'jwt-simple';
 import {timeSetting} from '../config/config';
 
 function getAllEc2Count(req, res, next){
-    Ec2count.find({}, function(err, result){
+    const pipeLine = [
+        {$sort: { createdAt: -1 } },
+        {
+          $group: {
+            "_id": "$Region",
+            "createdAt": {
+                "$max": "$createdAt"
+            },
+            "doc": {
+                "$first": "$$ROOT"
+            }
+          },
+        }
+    ];
+    Ec2count.aggregate(pipeLine).exec( (err, result) => {
         if(err){
             return next(err); 
         }else{
+            console.log(result);
             var data = jwt.encode(result, timeSetting.secret);
             res.send(data);
         }
     })
 }
 function getAllEc2Instance (req, res, next){
-    Ec2Instnace.find({}, function(err, result){
+    const pipeLine = [
+        {$sort: { createdAt: -1 } },
+        {
+          $group: {
+            "_id": "$Region",
+            "createdAt": {
+                "$max": "$createdAt"
+            },
+            "doc": {
+                "$first": "$$ROOT"
+            }
+          },
+        }
+    ];
+    Ec2Instnace.aggregate(pipeLine).exec( (err, result) => {
         if(err){
             return next(err); 
         }else{
