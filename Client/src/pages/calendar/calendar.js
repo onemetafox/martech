@@ -30,7 +30,31 @@ export default function ReactBigCalendar() {
         end: new Date(Date.parse(end)),
       ...rest
   }));
+  const eventStyleGetter = (event, start, end, isSelected) => {
+    var backgroundColor;
+    if (event.type == "Holiday"){
+      backgroundColor= '#F64E60';
+    }else if(event.type == "Vacation"){
+      backgroundColor= '#8950FC';
+    }else if(event.type == "Weekend"){
+      backgroundColor= '#FFA800';
+    }else{
+      backgroundColor= '#1BC5BD';
+    }
+    
+    var style = {
+        backgroundColor: backgroundColor,
+        borderRadius: '0px',
+        opacity: 0.8,
+        color: 'white',
+        border: '0px',
+        display: 'block'
+    };
+    return {
+        style: style
+    };
 
+  }
   const handleOpen = (events) => {
     setOpen(true);
     setEventData(f=>({ ...f, start: events.start}));
@@ -48,6 +72,7 @@ export default function ReactBigCalendar() {
         style={{ height: "100vh" }}
         onSelectEvent={(event) => alert(event.title)}
         onSelectSlot={handleOpen}
+        eventPropGetter={eventStyleGetter}
       />
       <EventDialog open = {open} eventData = {eventData}  setOpen = {setOpen} />
       <ToastContainer autoClose={2000} />

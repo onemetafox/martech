@@ -33,6 +33,7 @@ function addEvent(req, res){
         description: req.body.description,
         start: req.body.start,
         end: req.body.end,
+        type: req.body.type,
         createAt: moment().tz(timeSetting.timeZone).format(timeSetting.momentFormat)
     });
     eventData.save(function(err, result){
