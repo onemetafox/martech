@@ -14,8 +14,14 @@ function updateEvent(res, req){
 
 }
 
-function delEvent(res, req){
-
+function delEvent(req, res){
+    Events.remove({_id: req.body.id}, function(err, result){
+        if(err){
+            res.json(Response.failure(err));
+        }else{
+            res.json(Response.success(result));
+        }
+    })
 }
 
 function getAll(req, res){

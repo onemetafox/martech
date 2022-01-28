@@ -33,6 +33,20 @@ export const getAll = () => dispatch =>{
     });
 }
 
+export const delEvent= (id) => dispatch=> {
+    axios.post(`${ROOT_URL}/event/delEvent`, {id : id})
+        .then(response => {
+            if(response.data.status === "Success"){
+                dispatch(getAll());
+                toast.success("success");
+            }else{
+                toast.warn("Error");
+            }
+        })
+        .catch(() => {
+    });
+}
+
 export const addEvent = (params) => dispatch => {
     axios.post(`${ROOT_URL}/event/addEvent`,params)
     .then(response => {

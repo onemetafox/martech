@@ -17,6 +17,7 @@ import "../../style/calendar.css";
 
 import {
   getAll,
+  delEvent,
   selectState
 } from '../../actions/eventAction';
 import { Button } from "@mui/material";
@@ -87,7 +88,8 @@ export default function ReactBigCalendar() {
     setModalOpen(false);
   }
   const deleteEvent=()=>{
-    console.log(eventData);
+    dispatch(delEvent(eventData._id));
+    setModalOpen(false);
   }
   return (
     <div className="App">

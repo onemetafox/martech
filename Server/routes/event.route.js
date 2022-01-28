@@ -15,4 +15,7 @@ router.route('/addEvent')
 router.route('/getAll')
   .post(eventCtrl.getAll);
   
+router.route('/delEvent')
+  .post(eventCtrl.delEvent);
+  
 export default router;
