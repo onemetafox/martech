@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Container from '@mui/material/Container';
 import {Box, Button} from '@mui/material';
 import { styled } from '@mui/material/styles';
-
+import '../../style/App.css';
 import Calendar from './calendar';
 import EventDialog from './eventDialog';
 
@@ -44,6 +44,12 @@ const Content = () =>{
                 >
                     <Box sx={{ display: 'flex', flexDirection: 'row'}}>
                         <Box sx={{ marginTop:'25px', marginLeft:'27px', fontSize: '1.275rem' }}>Team Calendar</Box>
+                    </Box>
+                    <Box sx={{ display: 'flex', flexDirection: 'row'}}>
+                        <Button className='detail-btn' sx={{background:'#F64E60' }}> Holiday</Button>
+                        <Button className='detail-btn' sx={{background:'#3699FF' }}> Vecation</Button>
+                        <Button className='detail-btn' sx={{background:'#FFA800' }}> Weekend</Button>
+                        <Button className='detail-btn' sx={{background:'#1BC5BD' }}> Travel</Button>
                     </Box>
                 </Box>
                 <Box sx={{padding:'2rem'}}>

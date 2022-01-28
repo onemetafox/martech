@@ -23,7 +23,13 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+.detail-btn{
+    height: 40px;
+    margin-top: 15px !important;
+    color: white !important;
+    border-radius: 0px !important;
+    margin-right: 5px !important;
+}
 .App-link {
   color: #61dafb;
 }
