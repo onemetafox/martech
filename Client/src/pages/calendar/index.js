@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../header';
 import Footer from '../footer';
-import Content from './Content';
+import Content from './content';
 import Box from '@mui/material/Box';
 
 const Calendar = () =>{
