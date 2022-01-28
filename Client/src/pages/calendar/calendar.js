@@ -35,7 +35,7 @@ export default function ReactBigCalendar() {
     if (event.type == "Holiday"){
       backgroundColor= '#F64E60';
     }else if(event.type == "Vacation"){
-      backgroundColor= '#8950FC';
+      backgroundColor= '#3699FF';
     }else if(event.type == "Weekend"){
       backgroundColor= '#FFA800';
     }else{
