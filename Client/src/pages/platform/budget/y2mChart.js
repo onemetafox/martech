@@ -98,7 +98,7 @@ const Y2mchart = (props) =>{
           datasets: [
             {
               data: rowData,
-              label: year,
+              label: props.year,
               backgroundColor: '#EC932F',
               borderColor: 'rgba(255,99,132,1)',
               borderWidth: 1,
@@ -132,7 +132,6 @@ const Y2mchart = (props) =>{
                 </Avatar>
                 }
                 title={<Typography variant='h5'>Year to Month Spend by Service</Typography>}
-                
             />
             <CardContent>
                 <Grid 
