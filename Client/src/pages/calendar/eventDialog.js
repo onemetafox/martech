@@ -14,6 +14,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import Stack from '@mui/material/Stack';
+import { toast, ToastContainer } from "react-toastify";
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -40,8 +41,14 @@ export default function EventDialog(props) {
     props.setOpen(false);
   };
   const handleSave=()=>{
-    dispatch(addEvent(formData));
-    props.setOpen(false);
+    if(formData.title == ""){
+      toast.error("Title Required!");
+    }else if(formData.type == ""){
+      toast.error("Type Required!");
+    }else{
+      dispatch(addEvent(formData));
+      props.setOpen(false);
+    }
   }
   return (
     <div>
@@ -80,12 +87,14 @@ export default function EventDialog(props) {
                 <DateTimePicker
                   label="Start"
                   value={formData.start}
+                  disabled
                   onChange={evt => { setFormData(f => ({ ...f, start: evt})) }}
                   renderInput={(params) => <TextField {...params} />}
                 />
                 <DateTimePicker
                   label="end"
                   value={formData.end}
+                  disabled
                   onChange={evt => { setFormData(f => ({ ...f, end: evt})) }}
                   renderInput={(params) => <TextField {...params} />}
                 />
@@ -114,6 +123,7 @@ export default function EventDialog(props) {
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>
+      <ToastContainer autoClose={2000} />
     </div>
   );
 }
