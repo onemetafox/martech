@@ -2,16 +2,18 @@ import React, {useState, useEffect, useContext} from "react";
 import { Bar} from "react-chartjs-2";
 import {
     Card,
+    CardActions ,
     CardHeader,
     Avatar,
-    IconButton,
+    Button,
     Typography,
     CardContent,
     Grid,
     Slider,
     Box
 } from '@mui/material';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import {red,} from '@mui/material/colors';
 import { ArcElement} from 'chart.js';
 import Chart from 'chart.js/auto'
@@ -37,14 +39,19 @@ const origindata = {
     return `$${value}`;
   }
 
-const M2dchart = () =>{
+const Y2mchart = (props) =>{
     
     const[chatdata, setChartData] = useState(origindata);
     const [value, setValue] = React.useState([20, 100]);
     const [max, setMax] = useState(0);
     const budgetData = useContext(BudgetDataContext);
-    const [year, setYear] = useState(new Date().getFullYear());
-
+    const [year, setYear] = useState(props.year);
+    const handleIncreaseYear = () => {
+      props.setYear(props.year+1);
+    }
+    const handleDecreaseYear=()=>{
+      props.setYear(props.year-1);
+    }
     const handleChange = (event, newValue) => {
         var filterdata = [];
         origindata.datasets[0].data.forEach((value, index)=>{
@@ -110,16 +117,19 @@ const M2dchart = () =>{
     return (
         
         <Card sx={{maxHeight:500, height:'500px', boxShadow:'0px 0px 30px 10px rgb(82 63 105 / 15%)'}}>
+            <CardActions sx={{ justifyContent:"right"}}>
+              <Button size="nomoral" color="primary" onClick={handleDecreaseYear}>
+                BACK
+              </Button>
+              <Button size="nomoral" color="primary"  onClick={handleIncreaseYear}>
+                NEXT
+              </Button>
+            </CardActions>
             <CardHeader
                 avatar={
                 <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
                     <BarChartIcon/>
                 </Avatar>
-                }
-                action={
-                <IconButton aria-label="settings">
-                    <MoreVertIcon />
-                </IconButton>
                 }
                 title={<Typography variant='h5'>Year to Month Spend by Service</Typography>}
                 
@@ -152,4 +162,4 @@ const M2dchart = () =>{
     );
   }
 
-export default M2dchart;
+export default Y2mchart;

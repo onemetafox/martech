@@ -9,7 +9,6 @@ function getMonthFromString(mon){
   return new Date(Date.parse(mon +" 1, 2012")).getMonth()+1
 }
 const getOnlyDate = (param) =>{
-
   var today = new Date();
   var dd = String(today. getDate() - param). padStart(2, '0');
   var mm = String(today. getMonth() + 1). padStart(2, '0'); //January is 0!
@@ -52,8 +51,8 @@ function getY2mGetData(req, res, next){
 
     pipeLine = [
       {$match:{year:{$eq:year}}},
-      ];
-      MonthlyCost.aggregate(pipeLine).exec((err, result) => {
+    ];
+    MonthlyCost.aggregate(pipeLine).exec((err, result) => {
       if(err){
         console.log(err);
       }else{

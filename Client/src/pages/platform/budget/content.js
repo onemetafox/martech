@@ -34,15 +34,20 @@ const Content = () =>{
   const [m2dChartData, setm2dChartData] = useState([]);
   const [y2mChartData, sety2mChartData] = useState([]);
   const [ltsData, setLtsData]           = useState([]);
+  const [year, setYear] = useState(new Date().getFullYear());
   useEffect(()=>{
     getM2dData( (res) => {
       var data = jwt_decode(res.data.data, configs.secret);
       setm2dChartData(data);
     });
+  },[]);
+  useEffect(()=>{
     getY2mData( (res) => {
       var data = jwt_decode(res.data.data, configs.secret);
       sety2mChartData(data);
-    });
+    }, year);
+  },[year]);
+  useEffect(()=>{
     getLtsData( (res) => {
       var data = jwt_decode(res.data.data, configs.secret);
       setLtsData(data);
@@ -59,7 +64,7 @@ const Content = () =>{
                   <M2dchart />
                 </Grid>
                 <Grid item xs={12} lg={7}>
-                  <Y2mchart />
+                  <Y2mchart year = {year} setYear={setYear}/>
                 </Grid>
               </Grid>
               <Grid container spacing={12}>

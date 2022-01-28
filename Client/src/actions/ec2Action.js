@@ -41,6 +41,7 @@ export function getM2dData(res, month){
     });
 }
 export function getY2mData(res, year){
+    console.log(year);
     const d = new Date();
     if(!year){
         year = d.getFullYear();
