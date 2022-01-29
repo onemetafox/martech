@@ -33,18 +33,38 @@ function getAll(req, res){
 
 function addEvent(req, res){
     
-    const eventData = new Events({
-        user: '',
-        title:req.body.title,
-        description: req.body.description,
-        start: req.body.start,
-        end: req.body.end,
-        type: req.body.type,
-        createAt: moment().tz(timeSetting.timeZone).format(timeSetting.momentFormat)
-    });
-    eventData.save(function(err, result){
-        res.json(Response.success(result));
-    })
+    if(req.body._id){
+        const updateData = {
+            user: '',
+            title:req.body.title,
+            description: req.body.description,
+            start: req.body.start,
+            end: req.body.end,
+            type: req.body.type,
+            createAt: moment().tz(timeSetting.timeZone).format(timeSetting.momentFormat)
+        }
+        Events.findOneAndUpdate({_id: req.body._id}, updateData)
+        .then((result)=>{
+            res.json(Response.success(result));
+        })
+        .catch((err) => {
+            res.json(Response.failure(err));
+        })
+    }else{
+        const eventData = new Events({
+            user: '',
+            title:req.body.title,
+            description: req.body.description,
+            start: req.body.start,
+            end: req.body.end,
+            type: req.body.type,
+            createAt: moment().tz(timeSetting.timeZone).format(timeSetting.momentFormat)
+        });
+        eventData.save(function(err, result){
+            res.json(Response.success(result));
+        })
+    }
+    
 }
 
 export default {
