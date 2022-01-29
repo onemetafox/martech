@@ -7,130 +7,110 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Box } from '@mui/system';
-import { MenuItem, FormControl, InputLabel, Select } from '@mui/material';
-
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DateTimePicker from '@mui/lab/DateTimePicker';
-
-import Stack from '@mui/material/Stack';
 
 import { toast, ToastContainer } from "react-toastify";
 
-import { useSelector, useDispatch } from 'react-redux';
+import {useDispatch } from 'react-redux';
 import {
-  addEvent
+  addContact
 } from '../../actions/contactAction';
 
 export default function ContactDialog(props) {
 
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    setFormData({...formData, 
-      title: props.eventData.title, 
-      description:props.eventData.description, 
-      start: props.eventData.start, 
-      end: props.eventData.end,
-      type: props.eventData.type,
-      _id :props.eventData._id
-    });  
-  }, [props])
+  const [formData, setFormData] = useState(props.data);
 
-  const [formData, setFormData] = useState({
-    title: props.eventData.title,
-    start: props.eventData.start,
-    end: props.eventData.end,
-    description: props.eventData.description,
-    type: props.eventData.type,
-    _id: props.eventData._id
-  });
 
-  const handleClose = () => {
-    props.setOpen(false);
-  };
   const handleSave=()=>{
     if(formData.title == ""){
       toast.error("Title Required!");
     }else if(formData.type == ""){
       toast.error("Type Required!");
     }else{
-      dispatch(addEvent(formData));
+      dispatch(addContact(formData));
       props.setOpen(false);
     }
   }
   return (
     <div>
-      <Dialog open={props.open} onClose={handleClose}>
-        <DialogTitle>Add Event</DialogTitle>
+      <Dialog open={props.open} onClose={()=>{props.setOpen(false)}}>
+        <DialogTitle>Add Contact</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Add You event. You can add the event title, description and duration
+            Add You contact. You can add the contact detail
           </DialogContentText>
           <TextField
             autoFocus
             required
             margin="dense"
-            id="title"
-            label="Event Title"
+            id="name"
+            label="User Name"
             type="text"
             fullWidth
             variant="standard"
-            value={formData.title}
-            onChange={evt => { setFormData(f => ({ ...f, title: evt.target.value})) }}
+            value={formData.name}
+            onChange={evt => { setFormData(f => ({ ...f, name: evt.target.value})) }}
           />
           <TextField
             required
             margin="dense"
-            id="description"
-            label="Event Description"
+            id="email"
+            label="Email"
+            type="email"
+            fullWidth
+            variant="standard"
+            value={formData.email}
+            onChange={evt => { setFormData(f => ({ ...f, email: evt.target.value})) }}
+          />
+          <TextField
+            required
+            margin="dense"
+            id="ntid"
+            label="NTID"
             type="text"
             fullWidth
             variant="standard"
-            value={formData.description}
-            onChange={evt => { setFormData(f => ({ ...f, description: evt.target.value})) }}
+            value={formData.ntid}
+            onChange={evt => { setFormData(f => ({ ...f, ntid: evt.target.value})) }}
           />
-          <Box sx={{ display: 'flex', flexDirection: 'row', marginTop: '20px'}}>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <Stack spacing={3}>
-                <DateTimePicker
-                  label="Start"
-                  value={formData.start}
-                  disabled
-                  onChange={evt => { setFormData(f => ({ ...f, start: evt})) }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-                <DateTimePicker
-                  label="end"
-                  value={formData.end}
-                  disabled
-                  onChange={evt => { setFormData(f => ({ ...f, end: evt})) }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </Stack>
-            </LocalizationProvider>
-          </Box>
-          <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-standard-label">Event Type</InputLabel>
-              <Select
-                required
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={formData.type}
-                onChange={evt => { setFormData(f => ({ ...f, type: evt.target.value})) }}
-                label="Type"
-              >
-                <MenuItem value={'Holiday'}>Holiday</MenuItem>
-                <MenuItem value={'Vacation'}>Vacation</MenuItem>
-                <MenuItem value={'Weekend'}>Weekend</MenuItem>
-                <MenuItem value={'Travel'}>Travel</MenuItem>
-              </Select>
-            </FormControl>
+          <TextField
+            required
+            margin="dense"
+            id="phone"
+            label="Phone Number"
+            type="number"
+            fullWidth
+            variant="standard"
+            value={formData.phone}
+            onChange={evt => { setFormData(f => ({ ...f, phone: evt.target.value})) }}
+          />
+          <TextField
+            required
+            margin="dense"
+            id="timezone"
+            label="Time Zone"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={formData.timezone}
+            onChange={evt => { setFormData(f => ({ ...f, timezone: evt.target.value})) }}
+          />
+          <TextField
+            required
+            margin="dense"
+            id="localhost"
+            label="Location"
+            type="location"
+            fullWidth
+            variant="standard"
+            value={formData.locatopm}
+            onChange={evt => { setFormData(f => ({ ...f, location: evt.target.value})) }}
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleSave}>Save</Button>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={()=>{props.setOpen(false)}}>Cancel</Button>
         </DialogActions>
       </Dialog>
       <ToastContainer autoClose={2000} />

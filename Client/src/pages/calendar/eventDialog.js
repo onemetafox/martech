@@ -38,18 +38,8 @@ export default function EventDialog(props) {
     });  
   }, [props])
 
-  const [formData, setFormData] = useState({
-    title: props.eventData.title,
-    start: props.eventData.start,
-    end: props.eventData.end,
-    description: props.eventData.description,
-    type: props.eventData.type,
-    _id: props.eventData._id
-  });
+  const [formData, setFormData] = useState(props.eventData);
 
-  const handleClose = () => {
-    props.setOpen(false);
-  };
   const handleSave=()=>{
     if(formData.title == ""){
       toast.error("Title Required!");
@@ -62,7 +52,7 @@ export default function EventDialog(props) {
   }
   return (
     <div>
-      <Dialog open={props.open} onClose={handleClose}>
+      <Dialog open={props.open} onClose={()=> {props.setOpen(false)}}>
         <DialogTitle>Add Event</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -130,7 +120,7 @@ export default function EventDialog(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleSave}>Save</Button>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={()=> {props.setOpen(false)}}>Cancel</Button>
         </DialogActions>
       </Dialog>
       <ToastContainer autoClose={2000} />

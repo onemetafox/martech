@@ -13,6 +13,8 @@ import Typography from '@mui/material/Typography';
 
 import EventDialog from "./eventDialog";
 
+import {eventStructure} from '../../config/const';
+
 import "../../style/calendar.css";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -36,14 +38,7 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-const eventStructure = {
-  title: '',
-  description: '',
-  start: '',
-  end: '',
-  type: '',
-  _id: ''
-}
+
 export default function ReactBigCalendar() {
   const dispatch = useDispatch();
   useEffect(()=>{

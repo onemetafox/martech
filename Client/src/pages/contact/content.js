@@ -14,6 +14,9 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorSharpIcon from '@mui/icons-material/BorderColorSharp';
 
+import ContactDialog from './contactDialog';
+
+import { contactStructure } from '../../config/const';
 
 // import '../../style/App.css';
 
@@ -134,7 +137,8 @@ const theme = createMuiTheme({
 });
 
 const Content = () =>{
-        
+    const [open, setOpen] = useState(false);
+    const [contactData, setContactData] = useState(contactStructure);
     const options = {
         // responsive: '',
         fixedHeader: false,
@@ -145,7 +149,7 @@ const Content = () =>{
         download:false,
         customToolbar: () => {
             return (
-                <ColorButton>
+                <ColorButton onClick={()=>{setOpen(true)}}>
                     Add Contact
                 </ColorButton>
             );
@@ -163,6 +167,7 @@ const Content = () =>{
                     />
                 </ThemeProvider>
             </Box>
+            <ContactDialog open={open} setOpen={setOpen} data = {contactData}/>
         </Container>
     );
 }
