@@ -2,17 +2,8 @@ import Events from '../models/eventsModel';
 import Response from '../services/response.service';
 import moment from 'moment-timezone';
 
-import jwt from 'jwt-simple';
-
 import {timeSetting} from '../config/config';
 
-function getEvent(res, req){
-    
-}
-
-function updateEvent(res, req){
-
-}
 
 function delEvent(req, res){
     Events.remove({_id: req.body.id}, function(err, result){
@@ -32,7 +23,6 @@ function getAll(req, res){
 }
 
 function addEvent(req, res){
-    
     if(req.body._id){
         const updateData = {
             user: '',
@@ -68,8 +58,6 @@ function addEvent(req, res){
 }
 
 export default {
-    getEvent,
-    updateEvent,
     delEvent,
     addEvent,
     getAll
