@@ -1,4 +1,4 @@
-import {React, StrictMode} from 'react';
+import {React} from 'react';
 import { useState } from 'react';
 import Container from '@mui/material/Container';
 import {Box, Button} from '@mui/material';

@@ -1,4 +1,4 @@
-import React, { StrictMode, useState, useEffect, createContext } from 'react';
+import React, {  useState, useEffect, createContext } from 'react';
 import {
    Grid, Container, Box
 } from '@mui/material';
@@ -34,19 +34,17 @@ const Content = () =>{
       <Ec2CountDataContext.Provider value={{ec2countdata, ec2instancedata}}>
         <Container maxWidth="lg"  sx={{marginTop:'30px', marginBottom:'30px'}}>
           <Box>
-            <StrictMode>
-              <Grid container spacing={12}>
-                <Grid item xs={12} lg={12}>
-                  <Ec2Graph />
-                </Grid>
-                <Grid item xs={12} lg={12}>
-                  <Ec2Table />
-                </Grid>
-                <Grid item xs={12} lg={12}>
-                <Ec2Detail prop = {ec2instancedata} />
-                </Grid>
+            <Grid container spacing={12}>
+              <Grid item xs={12} lg={12}>
+                <Ec2Graph />
               </Grid>
-            </StrictMode>
+              <Grid item xs={12} lg={12}>
+                <Ec2Table />
+              </Grid>
+              <Grid item xs={12} lg={12}>
+              <Ec2Detail prop = {ec2instancedata} />
+              </Grid>
+            </Grid>
           </Box>
         </Container>
       </Ec2CountDataContext.Provider>

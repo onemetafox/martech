@@ -16,11 +16,9 @@ const msalInstance = new PublicClientApplication(msalConfig);
 
 ReactDOM.render(
     <Provider store={store}>
-        <React.StrictMode>
-            <MsalProvider instance={msalInstance}>
-                <App />
-            </MsalProvider>
-        </React.StrictMode>
+        <MsalProvider instance={msalInstance}>
+            <App />
+        </MsalProvider>
     </Provider>,
   document.getElementById('root')
 );

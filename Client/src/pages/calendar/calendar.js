@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Calendar, momentLocalizer } from "react-big-calendar";
+import { ToastContainer } from "react-toastify";
+
 import moment from "moment";
 
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import EventDialog from "./eventDialog";
 
 import "../../style/calendar.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import {
   getAll,

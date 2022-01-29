@@ -12,8 +12,6 @@ import {
     Slider,
     Box
 } from '@mui/material';
-import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
-import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import {red,} from '@mui/material/colors';
 import { ArcElement} from 'chart.js';
 import Chart from 'chart.js/auto'
