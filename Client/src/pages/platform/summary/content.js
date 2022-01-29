@@ -24,7 +24,6 @@ const Content = () =>{
     });
     getEc2instance( res => {
       var data = jwt_decode(res.data.data, configs.secret);
-      console.log(data);
       setEc2instancedata(data);
     });
 

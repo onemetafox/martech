@@ -101,7 +101,6 @@ export default function ReactBigCalendar() {
     setModalOpen(false);
   }
   const editEvent = () =>{
-    console.log(eventData);
     setOpen(true);
     setModalOpen(false);
   }
