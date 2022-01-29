@@ -85,9 +85,10 @@ export default function ReactBigCalendar() {
 
   }
   const handleOpen = (events) => {
-    setOpen(true);
+    setEventData(eventStructure);
     setEventData(f=>({ ...f, start: events.start}));
     setEventData(f=>({ ...f, end: events.end}))
+    setOpen(true);
   }
   const showEvent = (event) => {
     setEventData(event);

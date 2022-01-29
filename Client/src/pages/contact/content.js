@@ -2,8 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import Container from '@mui/material/Container';
 import MUIDataTable from 'mui-datatables';
-import { ThemeProvider, withStyles } from '@mui/styles';
+import { ThemeProvider } from '@mui/styles';
 import { createMuiTheme } from '@material-ui/core';
+import { styled } from '@mui/material/styles';
 import { 
     Box, 
     IconButton,
@@ -19,6 +20,19 @@ import BorderColorSharpIcon from '@mui/icons-material/BorderColorSharp';
 function createData(name, ntid, email, phonenumber, timezone, location) {
     return { name, ntid, email, phonenumber, timezone, location };
 }
+const ColorButton = styled(Button)(({ theme }) => ({
+    backgroundColor: '#E1F0FF',
+    fontSize: '11px',
+    paddingLeft: '10px',
+    paddingRight: '10px',
+    marginLeft: '15px',
+    color:'#3699FF',
+    '&:hover': {
+        color: '#FFFFFF',
+        backgroundColor: '#3699FF',
+    },
+    boxShadow: 'none'
+}));
 const editContact =(value) =>{
     console.log(value);
 }
@@ -131,9 +145,9 @@ const Content = () =>{
         download:false,
         customToolbar: () => {
             return (
-                <Button>
+                <ColorButton>
                     Add Contact
-                </Button>
+                </ColorButton>
             );
         },
       };
