@@ -26,15 +26,23 @@ export default function EventDialog(props) {
   const dispatch = useDispatch();
 
   useEffect(()=>{
-    setFormData({...formData, start: props.eventData.start, end: props.eventData.end});  
+    setFormData({...formData, 
+      title: props.eventData.title, 
+      description:props.eventData.description, 
+      start: props.eventData.start, 
+      end: props.eventData.end,
+      type: props.eventData.type,
+      _id :props.eventData._id
+    });  
   }, [props])
 
   const [formData, setFormData] = useState({
-    title: '',
+    title: props.eventData.title,
     start: props.eventData.start,
     end: props.eventData.end,
-    description: '',
-    type: ''
+    description: props.eventData.description,
+    type: props.eventData.type,
+    _id: props.eventData._id
   });
 
   const handleClose = () => {

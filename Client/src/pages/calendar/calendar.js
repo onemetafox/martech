@@ -35,13 +35,21 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+const eventStructure = {
+  title: '',
+  description: '',
+  start: '',
+  end: '',
+  type: '',
+  _id: ''
+}
 export default function ReactBigCalendar() {
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(getAll());
   }, [])
   const eventsData = useSelector(selectState);
-  const [eventData, setEventData] = useState({start:'', end:''});
+  const [eventData, setEventData] = useState(eventStructure);
   const [open, setOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const eventList = eventsData.map(({start, end, ...rest}) =>
@@ -91,6 +99,11 @@ export default function ReactBigCalendar() {
     dispatch(delEvent(eventData._id));
     setModalOpen(false);
   }
+  const editEvent = () =>{
+    console.log(eventData);
+    setOpen(true);
+    setModalOpen(false);
+  }
   return (
     <div className="App">
       <Calendar
@@ -127,6 +140,7 @@ export default function ReactBigCalendar() {
             Event Type : {eventData.type}
           </Typography>
           <Box sx= {{display: "flex", justifyContent: "right", marginTop: "15px", color: "#ffff",  paddingTop: "15px", borderTop: "solid 1px #dddd"}}>
+            <Button onClick={editEvent} sx={{background: "#3699FF", color: "#ffff", marginRight:"20px",'&:hover': { background: "#3699FF",}}}>Edit</Button>
             <Button onClick={deleteEvent} sx={{background: "#F64E60", color: "#ffff", marginRight:"20px",'&:hover': { background: "#F64E60",}}}>Delete</Button>
             <Button onClick={handleClose}>Cancel</Button>
           </Box>
