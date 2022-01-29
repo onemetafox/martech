@@ -1,5 +1,6 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Container from '@mui/material/Container';
 import MUIDataTable from 'mui-datatables';
 import { ThemeProvider } from '@mui/styles';
@@ -17,6 +18,13 @@ import BorderColorSharpIcon from '@mui/icons-material/BorderColorSharp';
 import ContactDialog from './contactDialog';
 
 import { contactStructure } from '../../config/const';
+
+import {
+    getAll,
+    delContact,
+    selectState,
+    setContactData
+  } from '../../actions/contactAction';
 
 // import '../../style/App.css';
 
@@ -37,9 +45,10 @@ const ColorButton = styled(Button)(({ theme }) => ({
     boxShadow: 'none'
 }));
 const editContact =(value) =>{
-    console.log(value);
+    // setContactData(value);
+    // setOpen(true);
 }
-const delContact =(value) =>{
+const deleteContact =(value) =>{
     console.log(value);
 }
 export const contactColumn = [
@@ -57,7 +66,7 @@ export const contactColumn = [
         align: 'center',
     },
     {
-        name: 'phonenumber',
+        name: 'phone',
         label: 'PHONE NUMBER',
         align: 'center',
     },
@@ -80,7 +89,7 @@ export const contactColumn = [
                 return (
                     <Box sx={{display:'flex', justifyContent:'left'}}>
                         <IconButton onClick = {()=>{editContact(tableMeta)}} color="primary"><DeleteIcon/></IconButton>
-                        <IconButton onClick = {()=>{delContact(tableMeta)}} color="primary"><BorderColorSharpIcon/></IconButton>
+                        <IconButton onClick = {()=>{deleteContact(tableMeta)}} color="primary"><BorderColorSharpIcon/></IconButton>
                     </Box>
                 );
             },
@@ -89,12 +98,6 @@ export const contactColumn = [
        
         
     },
-];
-const rows = [
-    createData('Pizza', '0000-00-00', 'pizza@gmail.com', '01-222-5555', 'UTC+8', 'Arkansas'),
-    createData('Sandwitch', '1236-05-00', 'sandwitch@gmail.com', '01-222-5555', 'UTC+8', 'Arkansas'),
-    createData('Toast', '1234-00-00', 'toast@gmail.com', '01-222-5555', 'UTC+8', 'Arkansas'),
-
 ];
 
 const theme = createMuiTheme({
@@ -137,6 +140,11 @@ const theme = createMuiTheme({
 });
 
 const Content = () =>{
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(getAll());
+    }, [])
+    const contactsList = useSelector(selectState);
     const [open, setOpen] = useState(false);
     const [contactData, setContactData] = useState(contactStructure);
     const options = {
@@ -160,7 +168,7 @@ const Content = () =>{
             <Box sx={{ bgcolor: '#fff', height: '100%',width:'100%', marginTop:'30px',marginBottom:'30px', boxShadow:'0px 0px 30px 0px rgb(82 63 105 / 5%)'}}>
                 <ThemeProvider theme={theme}>
                     <MUIDataTable sx={{bgcolor: '#fff'}}
-                        data={rows}
+                        data={contactsList}
                         columns={contactColumn}
                         options={options}
                         title={"Team Contact"}
