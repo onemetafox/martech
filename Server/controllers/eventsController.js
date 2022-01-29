@@ -1,18 +1,14 @@
 import Events from '../models/eventsModel';
 import Response from '../services/response.service';
-import moment from 'moment-timezone';
-
-import {timeSetting} from '../config/config';
-
 
 function delEvent(req, res){
-    Events.remove({_id: req.body.id}, function(err, result){
-        if(err){
-            res.json(Response.failure(err));
-        }else{
-            res.json(Response.success(result));
-        }
+    Events.remove({_id: req.body.id})
+    .then((result)=>{
+        res.json(Response.success(result));
     })
+    .catch((err)=>{
+        res.json(Response.failure(err));
+    });
 }
 
 function getAll(req, res){
@@ -24,17 +20,9 @@ function getAll(req, res){
 
 function addEvent(req, res){
     if(req.body._id){
-        const updateData = {
-            user: '',
-            title:req.body.title,
-            description: req.body.description,
-            start: req.body.start,
-            end: req.body.end,
-            type: req.body.type,
-            createAt: moment().tz(timeSetting.timeZone).format(timeSetting.momentFormat)
-        }
-        Events.findOneAndUpdate({_id: req.body._id}, updateData)
+        Events.findOneAndUpdate({_id: req.body._id}, req.body)
         .then((result)=>{
+            console.log(result);
             res.json(Response.success(result));
         })
         .catch((err) => {
@@ -48,11 +36,14 @@ function addEvent(req, res){
             start: req.body.start,
             end: req.body.end,
             type: req.body.type,
-            createAt: moment().tz(timeSetting.timeZone).format(timeSetting.momentFormat)
         });
-        eventData.save(function(err, result){
+        eventData.save()
+        .then((result)=>{
             res.json(Response.success(result));
         })
+        .catch((err)=>{
+            res.json(Response.failure(err));
+        });
     }
     
 }

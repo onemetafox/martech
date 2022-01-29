@@ -51,7 +51,7 @@ export const addEvent = (params) => dispatch => {
     axios.post(`${ROOT_URL}/event/addEvent`,params)
     .then(response => {
         if(response.data.status === "Success"){
-            dispatch(setEventData(response.data.data));
+            dispatch(getAll());
             toast.success("success");
         }else{
             toast.warn("Error");

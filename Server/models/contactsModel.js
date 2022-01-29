@@ -6,7 +6,11 @@ const contactsSchema = new mongoose.Schema({
     phone               : String,
     timezone            : String,
     location            : String,
-    createdAt           : Date
+    createdAt           : {
+      type: Date,
+      default: Date.now,
+      required: 'Must have start date - default value is the created date'
+    }
 });
 
 export default mongoose.model('Contacts', contactsSchema, 'contacts');

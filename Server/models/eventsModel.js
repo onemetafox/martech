@@ -6,7 +6,11 @@ const eventsSchema = new mongoose.Schema({
     type                : String,
     start               : String,
     end                 : String,
-    createdAt           : Date
+    createdAt           : {
+		type: Date,
+		default: Date.now,
+		required: 'Must have start date - default value is the created date'
+	}
 });
 
 export default mongoose.model('Events', eventsSchema, 'events');
