@@ -32,7 +32,6 @@ export function getM2dData(res, month){
     if(!month){
         month = d.getMonth()+1;
     }
-    console.log(ROOT_URL);
     axios.post(`${ROOT_URL}/budget/getM2dDataByMonth`,{month: month})
     .then(response => {
         res({data: response});
@@ -41,7 +40,6 @@ export function getM2dData(res, month){
     });
 }
 export function getY2mData(res, year){
-    console.log(year);
     const d = new Date();
     if(!year){
         year = d.getFullYear();
