@@ -21,12 +21,19 @@ export default function ContactDialog(props) {
 
   const [formData, setFormData] = useState(props.data);
 
-
+  useEffect(()=>{
+    setFormData(props.data)
+  }, [props])
   const handleSave=()=>{
-    if(formData.title == ""){
-      toast.error("Title Required!");
-    }else if(formData.type == ""){
-      toast.error("Type Required!");
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if(formData.name == ""){
+      toast.error("Name Required!");
+    }else if(formData.email == ""){
+      toast.error("Email Required!");
+    }else if(!formData.email.match(validRegex)) {
+      toast.error("Invalid email address!");
+    }else if(formData.ntid == ""){
+      toast.error("NTID Required!");
     }else{
       dispatch(addContact(formData));
       props.setOpen(false);
@@ -104,7 +111,7 @@ export default function ContactDialog(props) {
             type="location"
             fullWidth
             variant="standard"
-            value={formData.locatopm}
+            value={formData.location}
             onChange={evt => { setFormData(f => ({ ...f, location: evt.target.value})) }}
           />
         </DialogContent>

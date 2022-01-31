@@ -24,9 +24,6 @@ const ColorButton = styled(Button)(({ theme }) => ({
 const Content = () =>{
     const [open, setOpen] = useState(false);
     const [eventData, setEventData] = useState({start:'', end:''});
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
     return(
         <Container maxWidth="lg">
             <Box sx={{ bgcolor: '#fff', height: '100%',width:'100%', marginTop:'30px', marginBottom:'30px', boxShadow:'0px 0px 30px 0px rgb(82 63 105 / 5%)'}}>

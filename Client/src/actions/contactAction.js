@@ -54,7 +54,7 @@ export const addContact = (params) => dispatch => {
             dispatch(getAll());
             toast.success("success");
         }else{
-            toast.warn("Error");
+            toast.error(response.data.data);
         }
     })
     .catch(()=>{

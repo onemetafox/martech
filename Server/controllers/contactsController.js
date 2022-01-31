@@ -22,7 +22,7 @@ function getAll(req, res){
 
 function addContact(req, res){
     if(req.body._id){
-        Contacts.findOneAndUpdate({_id: req.body._id}, updateData)
+        Contacts.findOneAndUpdate({_id: req.body._id}, req.body)
         .then((result)=>{
             res.json(Response.success(result));
         })
@@ -30,21 +30,33 @@ function addContact(req, res){
             res.json(Response.failure(err));
         })
     }else{
-        const contactData = new Contacts({
-            name: req.body.name,
-            ntid: req.body.ntid,
-            email: req.body.email.toLowerCase(),
-            phone: req.body.phone,
-            timezone: req.body.timezone,
-            location: req.body.location
-          });
-        contactData.save()
-        .then((result)=>{
-            res.json(Response.success(result));
+        Contacts.find({email:req.body.email})
+        .then((result) =>{
+            console.log(result);
+            if(result.length != 0){
+                res.json(Response.failure("Contact already exist!"));
+            }else{
+                const contactData = new Contacts({
+                    name: req.body.name,
+                    ntid: req.body.ntid,
+                    email: req.body.email.toLowerCase(),
+                    phone: req.body.phone,
+                    timezone: req.body.timezone,
+                    location: req.body.location
+                  });
+                contactData.save()
+                .then((result)=>{
+                    res.json(Response.success(result));
+                })
+                .catch((err)=>{
+                    res.json(Response.failure(err));
+                });
+            }
         })
         .catch((err)=>{
             res.json(Response.failure(err));
-        });
+        })
+        
     }
     
 }

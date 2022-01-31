@@ -9,7 +9,13 @@ import { styled } from '@mui/material/styles';
 import { 
     Box, 
     IconButton,
-    Button
+    Button,
+    Dialog,
+    DialogContent,
+    DialogActions,
+    DialogContentText,
+    DialogTitle,
+    Slide 
 } from '@mui/material';
 
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -19,18 +25,12 @@ import ContactDialog from './contactDialog';
 
 import { contactStructure } from '../../config/const';
 
-import {
-    getAll,
-    delContact,
-    selectState,
-    setContactData
-  } from '../../actions/contactAction';
+import {getAll, delContact, selectState} from '../../actions/contactAction';
 
-// import '../../style/App.css';
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
 
-function createData(name, ntid, email, phonenumber, timezone, location) {
-    return { name, ntid, email, phonenumber, timezone, location };
-}
 const ColorButton = styled(Button)(({ theme }) => ({
     backgroundColor: '#E1F0FF',
     fontSize: '11px',
@@ -44,61 +44,6 @@ const ColorButton = styled(Button)(({ theme }) => ({
     },
     boxShadow: 'none'
 }));
-const editContact =(value) =>{
-    // setContactData(value);
-    // setOpen(true);
-}
-const deleteContact =(value) =>{
-    console.log(value);
-}
-export const contactColumn = [
-    { 
-        name: 'name',
-        label: 'NAME',
-        align: 'center',},
-    { 
-        name: 'ntid',
-        label: 'NTID',
-        align: 'center',},
-    {
-        name: 'email',
-        label: 'EMAIL',
-        align: 'center',
-    },
-    {
-        name: 'phone',
-        label: 'PHONE NUMBER',
-        align: 'center',
-    },
-    {
-        name: 'timezone',
-        label: 'TIME ZONE',
-        align: 'center',
-    },
-    {
-        name: 'location',
-        label: 'LOCATION',
-        align: 'center',
-    },
-    {
-        name: 'action',
-        label: 'ACTION',
-        align: 'center',
-        options: {
-            customBodyRender: (value, tableMeta, updateValue)  => {
-                return (
-                    <Box sx={{display:'flex', justifyContent:'left'}}>
-                        <IconButton onClick = {()=>{editContact(tableMeta)}} color="primary"><DeleteIcon/></IconButton>
-                        <IconButton onClick = {()=>{deleteContact(tableMeta)}} color="primary"><BorderColorSharpIcon/></IconButton>
-                    </Box>
-                );
-            },
-            filter: false
-        },
-       
-        
-    },
-];
 
 const theme = createMuiTheme({
     Overrides: {
@@ -147,6 +92,89 @@ const Content = () =>{
     const contactsList = useSelector(selectState);
     const [open, setOpen] = useState(false);
     const [contactData, setContactData] = useState(contactStructure);
+    const [dialogOpen, setDialogOpen] = useState(false);
+    const editContactData=(value)=>{
+        var data = value.rowData;
+        setContactData({...contactData, 
+            _id: data[0],
+            name: data[1],
+            ntid: data[2],
+            email: data[3],
+            phone: data[4],
+            timezone: data[5],
+            location: data[6]
+        })
+        setOpen(true)
+    }
+    const deleteContact =(value) =>{
+        var data = value.rowData;
+        setContactData({...contactData, 
+            _id: data[0],
+            name: data[1],
+            ntid: data[2],
+            email: data[3],
+            phone: data[4],
+            timezone: data[5],
+            location: data[6]
+        })
+        setDialogOpen(true);
+    }
+    const contactColumn = [
+        { 
+            name: '_id',
+            options: {
+                filter: false,
+                display: false,
+                viewColumns: false,
+                sort: false
+            }
+        },{ 
+            name: 'name',
+            label: 'NAME',
+            align: 'center',},
+        { 
+            name: 'ntid',
+            label: 'NTID',
+            align: 'center',},
+        {
+            name: 'email',
+            label: 'EMAIL',
+            align: 'center',
+        },
+        {
+            name: 'phone',
+            label: 'PHONE NUMBER',
+            align: 'center',
+        },
+        {
+            name: 'timezone',
+            label: 'TIME ZONE',
+            align: 'center',
+        },
+        {
+            name: 'location',
+            label: 'LOCATION',
+            align: 'center',
+        },
+        {
+            name: 'action',
+            label: 'ACTION',
+            align: 'center',
+            options: {
+                customBodyRender: (value, tableMeta, updateValue)  => {
+                    return (
+                        <Box sx={{display:'flex', justifyContent:'left'}}>
+                            <IconButton onClick = {()=>{editContactData(tableMeta); setOpen(true)}} color="primary"><BorderColorSharpIcon/></IconButton>
+                            <IconButton onClick = {()=>{deleteContact(tableMeta)}} color="primary"><DeleteIcon/></IconButton>
+                        </Box>
+                    );
+                },
+                filter: false
+            },
+           
+            
+        },
+    ];
     const options = {
         // responsive: '',
         fixedHeader: false,
@@ -176,6 +204,25 @@ const Content = () =>{
                 </ThemeProvider>
             </Box>
             <ContactDialog open={open} setOpen={setOpen} data = {contactData}/>
+            <Dialog
+                open={dialogOpen}
+                TransitionComponent={Transition}
+                keepMounted
+                onClose={()=> {setDialogOpen(false)}}
+                aria-describedby="alert-dialog-slide-description"
+            >
+                <DialogTitle>Confirm Dialog</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-slide-description">
+                        Do you want to delete it? Once you delete it, you can't recovery again
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button  sx={{background: "#F64E60", color: "#ffff", marginRight:"20px",'&:hover': { background: "#F64E60",}}} onClick={()=>{dispatch(delContact(contactData._id)); setDialogOpen(false)}}>Agree</Button>
+                    <Button onClick={()=>{setDialogOpen(false)}}>Disagree</Button>
+                    
+                </DialogActions>
+            </Dialog>
         </Container>
     );
 }
