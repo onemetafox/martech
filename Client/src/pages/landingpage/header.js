@@ -6,6 +6,9 @@ import { styled } from '@mui/material/styles';
 import { blue, grey } from '@mui/material/colors';
 
 import { useMsal } from "@azure/msal-react";
+
+import { useIsAuthenticated } from "@azure/msal-react";
+
 import { loginRequest } from "../../config/authConfig";
 
 const ColorButton = styled(Button)(({ theme }) => ({
@@ -92,7 +95,7 @@ const Header = (props) =>{
                     variant="body3"
                     underline='none'
                     onClick={() => {
-                        navigate('/Home');
+                        navigate('/');
                     }}
                     color={'white'}
                     sx={{
@@ -107,7 +110,7 @@ const Header = (props) =>{
                     variant="body3"
                     underline='none'
                     onClick={() => {
-                        navigate('/plateform');
+                        navigate('/platform/budget');
                     }}
                     color={'white'}
                     sx={{
@@ -122,7 +125,7 @@ const Header = (props) =>{
                     variant="body3"
                     underline='none'
                     onClick={() => {
-                        navigate('/support');
+                        navigate('/calendar');
                     }}
                     color={'white'}
                     sx={{
