@@ -185,7 +185,7 @@ const Content = () =>{
         download:false,
         customToolbar: () => {
             return (
-                <ColorButton onClick={()=>{setOpen(true)}}>
+                <ColorButton onClick={()=>{setContactData(contactStructure); setOpen(true)}}>
                     Add Contact
                 </ColorButton>
             );
