@@ -11,6 +11,7 @@ import BudgetDashboard from "./pages/platform/budget";
 import Summary from './pages/platform/summary'
 import Contact from './pages/contact';
 import About from './pages/about';
+import Calls from './pages/calls';
 
 const routes = [
   {
@@ -32,6 +33,10 @@ const routes = [
   {
     path: "/calendar",
     element: <Calendar />,
+  },
+  {
+    path: "/calls",
+    element: <Calls />,
   },
   {
     path: "/about",

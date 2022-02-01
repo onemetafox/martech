@@ -16,3 +16,12 @@ export const contactStructure = {
     location:'',
     _id: ''
 }
+export const callStructure = {
+    contact : [],
+    description: '',
+    type : '',
+    start: '',
+    end  : '',
+    status: '',
+    _id: ''
+}

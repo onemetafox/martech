@@ -6,23 +6,22 @@ import { ToastContainer } from "react-toastify";
 
 import moment from "moment";
 
-
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-import EventDialog from "./eventDialog";
+import CallDialog from "./callDialog";
 
-import {eventStructure} from '../../config/const';
+import {callStructure} from '../../config/const';
 
 import "../../style/calendar.css";
 import "react-toastify/dist/ReactToastify.css";
 
 import {
   getAll,
-  delEvent,
-  selectEvent
-} from '../../actions/eventAction';
+  delCall,
+  selectCall
+} from '../../actions/callAction';
 import { Button } from "@mui/material";
 
 moment.locale("en-GB");
@@ -44,28 +43,23 @@ export default function ReactBigCalendar() {
   useEffect(()=>{
     dispatch(getAll());
   }, [])
-  const eventsData = useSelector(selectEvent);
-  const [eventData, setEventData] = useState(eventStructure);
+  const callsData = useSelector(selectCall);
+  const [callData, setCallData] = useState(callStructure);
   const [open, setOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const eventList = eventsData.map(({start, end, ...rest}) =>
+  const callList = callsData.map(({start, end, ...rest}) =>
   ({
         start: new Date(Date.parse(start)),
         end: new Date(Date.parse(end)),
       ...rest
   }));
-  const eventStyleGetter = (event, start, end, isSelected) => {
+  const callStyleGetter = (call, start, end, isSelected) => {
     var backgroundColor;
-    if (event.type == "Holiday"){
+    if (call.type == "on-site"){
       backgroundColor= '#F64E60';
-    }else if(event.type == "Vacation"){
+    }else if(call.type == "on-shore"){
       backgroundColor= '#3699FF';
-    }else if(event.type == "Weekend"){
-      backgroundColor= '#FFA800';
-    }else{
-      backgroundColor= '#1BC5BD';
     }
-    
     var style = {
         backgroundColor: backgroundColor,
         borderRadius: '0px',
@@ -79,24 +73,24 @@ export default function ReactBigCalendar() {
     };
 
   }
-  const handleOpen = (events) => {
-    setEventData(eventStructure);
-    setEventData(f=>({ ...f, start: events.start}));
-    setEventData(f=>({ ...f, end: events.end}))
+  const handleOpen = (calls) => {
+    setCallData(callStructure);
+    setCallData(f=>({ ...f, start: calls.start}));
+    setCallData(f=>({ ...f, end: calls.end}))
     setOpen(true);
   }
-  const showEvent = (event) => {
-    setEventData(event);
+  const showCall = (call) => {
+    setCallData(call);
     setModalOpen(true);
   }
   const handleClose = () => {
     setModalOpen(false);
   }
-  const deleteEvent=()=>{
-    dispatch(delEvent(eventData._id));
+  const deleteCall=()=>{
+    dispatch(delCall(callData._id));
     setModalOpen(false);
   }
-  const editEvent = () =>{
+  const editCall = () =>{
     setOpen(true);
     setModalOpen(false);
   }
@@ -108,13 +102,13 @@ export default function ReactBigCalendar() {
         localizer={localizer}
         defaultDate={new Date()}
         defaultView="month"
-        events={eventList}
+        calls={callList}
         style={{ height: "100vh" }}
-        onSelectEvent={showEvent}
+        onSelectCall={showCall}
         onSelectSlot={handleOpen}
-        eventPropGetter={eventStyleGetter}
+        callPropGetter={callStyleGetter}
       />
-      <EventDialog open = {open} eventData = {eventData}  setOpen = {setOpen} />
+      <CallDialog open = {open} callData = {callData}  setOpen = {setOpen} />
       <ToastContainer autoClose={2000} />
       <Modal
         open={modalOpen}
@@ -124,20 +118,20 @@ export default function ReactBigCalendar() {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            {eventData.title}
+            {callData.title}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Description : {eventData.description}
+            Description : {callData.description}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duration : {new Date(Date.parse(eventData.start)).toDateString()} ~ {new Date(Date.parse(eventData.end)).toDateString()}
+            Duration : {new Date(Date.parse(callData.start)).toDateString()} ~ {new Date(Date.parse(callData.end)).toDateString()}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Event Type : {eventData.type}
+            Call Type : {callData.type}
           </Typography>
           <Box sx= {{display: "flex", justifyContent: "right", marginTop: "15px", color: "#ffff",  paddingTop: "15px", borderTop: "solid 1px #dddd"}}>
-            <Button onClick={editEvent} sx={{background: "#3699FF", color: "#ffff", marginRight:"20px",'&:hover': { background: "#3699FF",}}}>Edit</Button>
-            <Button onClick={deleteEvent} sx={{background: "#F64E60", color: "#ffff", marginRight:"20px",'&:hover': { background: "#F64E60",}}}>Delete</Button>
+            <Button onClick={editCall} sx={{background: "#3699FF", color: "#ffff", marginRight:"20px",'&:hover': { background: "#3699FF",}}}>Edit</Button>
+            <Button onClick={deleteCall} sx={{background: "#F64E60", color: "#ffff", marginRight:"20px",'&:hover': { background: "#F64E60",}}}>Delete</Button>
             <Button onClick={handleClose}>Cancel</Button>
           </Box>
         </Box>

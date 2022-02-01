@@ -1,9 +1,7 @@
 import {React} from 'react';
 import Container from '@mui/material/Container';
 import {Box, Button} from '@mui/material';
-import '../../style/App.css';
 import Calendar from './calendar';
-
 const Content = () =>{
     return(
         <Container maxWidth="lg">
@@ -21,13 +19,11 @@ const Content = () =>{
                     }}
                 >
                     <Box sx={{ display: 'flex', flexDirection: 'row'}}>
-                        <Box sx={{ marginTop:'25px', marginLeft:'27px', fontSize: '1.275rem' }}>Team Calendar</Box>
+                        <Box sx={{ marginTop:'25px', marginLeft:'27px', fontSize: '1.275rem' }}>On-Call Support</Box>
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'row'}}>
-                        <Button className='detail-btn' sx={{background:'#F64E60' }}> Holiday</Button>
-                        <Button className='detail-btn' sx={{background:'#3699FF' }}> Vecation</Button>
-                        <Button className='detail-btn' sx={{background:'#FFA800' }}> Weekend</Button>
-                        <Button className='detail-btn' sx={{background:'#1BC5BD' }}> Travel</Button>
+                        <Button className='detail-btn' sx={{background:'#F64E60' }}> On-Site</Button>
+                        <Button className='detail-btn' sx={{background:'#3699FF' }}> Off-Shore</Button>
                     </Box>
                 </Box>
                 <Box sx={{padding:'2rem'}}>

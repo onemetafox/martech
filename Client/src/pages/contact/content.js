@@ -25,7 +25,7 @@ import ContactDialog from './contactDialog';
 
 import { contactStructure } from '../../config/const';
 
-import {getAll, delContact, selectState} from '../../actions/contactAction';
+import {getAll, delContact, selectContact} from '../../actions/contactAction';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -89,7 +89,7 @@ const Content = () =>{
     useEffect(()=>{
         dispatch(getAll());
     }, [])
-    const contactsList = useSelector(selectState);
+    const contactsList = useSelector(selectContact);
     const [open, setOpen] = useState(false);
     const [contactData, setContactData] = useState(contactStructure);
     const [dialogOpen, setDialogOpen] = useState(false);
