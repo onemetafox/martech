@@ -7,7 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Box } from '@mui/system';
+import { Box, display } from '@mui/system';
 import { MenuItem, FormControl, InputLabel, Select } from '@mui/material';
 
 import Autocomplete from '@mui/material/Autocomplete';
@@ -23,15 +23,13 @@ import { toast, ToastContainer } from "react-toastify";
 import { useSelector, useDispatch } from 'react-redux';
 
 import { addCall } from '../../actions/callAction';
-import { selectContact } from '../../actions/contactAction';
+import { getAll, selectContact } from '../../actions/contactAction';
 
 export default function CallDialog(props) {
 
   const dispatch = useDispatch();
-
   useEffect(()=>{
     // dispatch(getAll());
-    // setContactData(useSelector('selectState'));
     setFormData({...formData, 
       description:props.callData.description, 
       start: props.callData.start, 
@@ -43,15 +41,17 @@ export default function CallDialog(props) {
   }, [props])
   const contacts = useSelector(selectContact);
   const [formData, setFormData] = useState(props.callData);
+  const [inputValue, setInputValue] = useState('');
   const handleSave=()=>{
-    if(formData.title == ""){
-      toast.error("Title Required!");
-    }else if(formData.type == ""){
-      toast.error("Type Required!");
-    }else{
-      dispatch(addCall(formData));
-      props.setOpen(false);
-    }
+    console.log(formData);
+    // if(formData.title == ""){
+    //   toast.error("Title Required!");
+    // }else if(formData.type == ""){
+    //   toast.error("Type Required!");
+    // }else{
+    //   dispatch(addCall(formData));
+    //   props.setOpen(false);
+    // }
   }
   return (
     <div>
@@ -61,54 +61,58 @@ export default function CallDialog(props) {
           <DialogContentText>
             Add You call. You can add the call user, description and duration
           </DialogContentText>
-          <Autocomplete
-            value={formData.contact}
-            onChange={(event, newValue) => {
-              console.log(newValue);
-              // setFormData(f => ({ ...f, contact: newValue}))
-            }}
-            inputValue={formData.contact}
-            onInputChange={(event, newInputValue) => {
-              console.log(newInputValue);
-              // setInputValue(newInputValue);
-            }}
-            id="controllable-states-demo"
-            options={contacts}
-            sx={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="Controllable" />}
-          />
-          <TextField
-            required
-            margin="dense"
-            id="description"
-            label="Call Description"
-            type="text"
-            fullWidth
-            variant="standard"
-            value={formData.description}
-            onChange={evt => { setFormData(f => ({ ...f, description: evt.target.value})) }}
-          />
-          <Box sx={{ display: 'flex', flexDirection: 'row', marginTop: '20px'}}>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <Stack spacing={3}>
-                <DateTimePicker
-                  label="Start"
-                  value={formData.start}
-                  disabled
-                  onChange={evt => { setFormData(f => ({ ...f, start: evt})) }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-                <DateTimePicker
-                  label="end"
-                  value={formData.end}
-                  disabled
-                  onChange={evt => { setFormData(f => ({ ...f, end: evt})) }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </Stack>
-            </LocalizationProvider>
-          </Box>
-          <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+          <Stack spacing={1}>
+            <Autocomplete
+              value={formData.contact}
+              inputValue={inputValue}
+              getOptionLabel={(option) => option.name ? option.name : ""}
+              disableClearable
+              onChange={(event, newValue) => {
+                setFormData(f => ({ ...f, contact: newValue._id}))
+                setInputValue(newValue.name);
+              }}
+              onInputChange={(event, newInputValue) => {
+                setInputValue(newInputValue);
+              }}
+              id="controllable-states-demo"
+              options={contacts}
+              sx={{ width: '100%', marginTop:'15px' }}
+              renderInput={(params) => <TextField {...params} label="Select Contact User" variant="standard"/>}
+            />
+            <TextField
+              required
+              margin="dense"
+              id="description"
+              label="Call Description"
+              type="text"
+              fullWidth
+              variant="standard"
+              value={formData.description}
+              onChange={evt => { setFormData(f => ({ ...f, description: evt.target.value})) }}
+            />
+          </Stack>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <Stack spacing={1} sx={{marginTop: "20px"}}>
+              <DateTimePicker
+                label="Start"
+                value={formData.start}
+                disabled
+                sx= {{width:'100%'}}
+                onChange={evt => { setFormData(f => ({ ...f, start: evt})) }}
+                renderInput={(params) => <TextField {...params} variant="standard"/>}
+              />
+              <DateTimePicker
+                label="end"
+                value={formData.end}
+                disabled
+                sx= {{width:'100%'}}
+                onChange={evt => { setFormData(f => ({ ...f, end: evt})) }}
+                renderInput={(params) => <TextField {...params} variant="standard"/>}
+              />
+            </Stack>
+          </LocalizationProvider>
+          <Box sx={{display: 'flex', justifyContent: 'between'}}>
+            <FormControl variant="standard" sx={{ m: 1, width: '50%' }}>
               <InputLabel id="demo-simple-select-standard-label">Call Type</InputLabel>
               <Select
                 required
@@ -117,24 +121,28 @@ export default function CallDialog(props) {
                 value={formData.type}
                 onChange={evt => { setFormData(f => ({ ...f, type: evt.target.value})) }}
                 label="Type"
+                variant="standard"
               >
                 <MenuItem value={'on-site'}>On Site</MenuItem>
                 <MenuItem value={'off-shore'}>Off Shore</MenuItem>
               </Select>
-
+            </FormControl>
+            <FormControl variant="standard" sx={{ m: 1, width: '50%' }}>
               <InputLabel id="demo-simple-select-standard-label">Call Status</InputLabel>
               <Select
                 required
                 labelId="demo-simple-select-standard-label"
                 id="demo-simple-select-standard"
                 value={formData.status}
-                onChange={evt => { setFormData(f => ({ ...f, type: evt.target.value})) }}
-                label="Type"
+                onChange={evt => { setFormData(f => ({ ...f, status: evt.target.value})) }}
+                label="Status"
+                variant="standard"
               >
                 <MenuItem value={'primary'}>Primary</MenuItem>
                 <MenuItem value={'secondary'}>Secondary</MenuItem>
               </Select>
             </FormControl>
+          </Box>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleSave}>Save</Button>

@@ -17,7 +17,7 @@ export const contactStructure = {
     _id: ''
 }
 export const callStructure = {
-    contact : [],
+    contact : '',
     description: '',
     type : '',
     start: '',

@@ -81,27 +81,27 @@ export default function EventDialog(props) {
             value={formData.description}
             onChange={evt => { setFormData(f => ({ ...f, description: evt.target.value})) }}
           />
-          <Box sx={{ display: 'flex', flexDirection: 'row', marginTop: '20px'}}>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <Stack spacing={3}>
-                <DateTimePicker
-                  label="Start"
-                  value={formData.start}
-                  disabled
-                  onChange={evt => { setFormData(f => ({ ...f, start: evt})) }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-                <DateTimePicker
-                  label="end"
-                  value={formData.end}
-                  disabled
-                  onChange={evt => { setFormData(f => ({ ...f, end: evt})) }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </Stack>
-            </LocalizationProvider>
-          </Box>
-          <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <Stack spacing={1}>
+              <DateTimePicker
+                label="Start"
+                value={formData.start}
+                disabled
+                sx= {{width:'100%'}}
+                onChange={evt => { setFormData(f => ({ ...f, start: evt})) }}
+                renderInput={(params) => <TextField {...params} variant="standard"/>}
+              />
+              <DateTimePicker
+                label="end"
+                value={formData.end}
+                disabled
+                sx= {{width:'100%'}}
+                onChange={evt => { setFormData(f => ({ ...f, end: evt})) }}
+                renderInput={(params) => <TextField {...params} variant="standard"/>}
+              />
+            </Stack>
+          </LocalizationProvider>
+          <FormControl variant="standard" sx={{ m: 1,width: '100%'  }}>
               <InputLabel id="demo-simple-select-standard-label">Event Type</InputLabel>
               <Select
                 required
@@ -110,6 +110,7 @@ export default function EventDialog(props) {
                 value={formData.type}
                 onChange={evt => { setFormData(f => ({ ...f, type: evt.target.value})) }}
                 label="Type"
+                variant="standard"
               >
                 <MenuItem value={'Holiday'}>Holiday</MenuItem>
                 <MenuItem value={'Vacation'}>Vacation</MenuItem>
