@@ -80,6 +80,7 @@ export default function ReactBigCalendar() {
     setOpen(true);
   }
   const showCall = (call) => {
+    console.log(call);
     setCallData(call);
     setModalOpen(true);
   }
@@ -102,11 +103,12 @@ export default function ReactBigCalendar() {
         localizer={localizer}
         defaultDate={new Date()}
         defaultView="month"
-        calls={callList}
+        events={callList}
         style={{ height: "100vh" }}
-        onSelectCall={showCall}
+        onSelectEvent={showCall}
         onSelectSlot={handleOpen}
-        callPropGetter={callStyleGetter}
+        eventPropGetter={callStyleGetter}
+        titleAccessor = {(event)=>event.contact.name}
       />
       <CallDialog open = {open} callData = {callData}  setOpen = {setOpen} />
       <ToastContainer autoClose={2000} />
@@ -118,7 +120,7 @@ export default function ReactBigCalendar() {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            {callData.title}
+            Name : {callData.contact.name}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Description : {callData.description}
@@ -128,6 +130,9 @@ export default function ReactBigCalendar() {
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Call Type : {callData.type}
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Call Status : {callData.status}
           </Typography>
           <Box sx= {{display: "flex", justifyContent: "right", marginTop: "15px", color: "#ffff",  paddingTop: "15px", borderTop: "solid 1px #dddd"}}>
             <Button onClick={editCall} sx={{background: "#3699FF", color: "#ffff", marginRight:"20px",'&:hover': { background: "#3699FF",}}}>Edit</Button>

@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 const eventsSchema = new mongoose.Schema({
     contact : {
-      type : mongoose.Schema.Types.ObjectId,
-      ref: 'contact',
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Contacts',
       required: true
     },
     description         : String,

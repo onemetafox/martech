@@ -1,4 +1,5 @@
 import Calls from '../models/callsModel';
+import Contacts from '../models/contactsModel';
 import Response from '../services/response.service';
 
 function delCall(req, res){
@@ -13,6 +14,7 @@ function delCall(req, res){
 
 function getAll(req, res){
     Calls.find()
+    .populate('contact')
     .then((data)=>{
         res.json(Response.success(data));
     })
@@ -30,12 +32,12 @@ function addCall(req, res){
         })
     }else{
         const callData = new Calls({
-            user: '',
-            title:req.body.title,
+            contact: req.body.contact,
             description: req.body.description,
             start: req.body.start,
             end: req.body.end,
             type: req.body.type,
+            status: req.body.status,
         });
         callData.save()
         .then((result)=>{

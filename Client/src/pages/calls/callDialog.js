@@ -29,13 +29,19 @@ export default function CallDialog(props) {
 
   const dispatch = useDispatch();
   useEffect(()=>{
-    // dispatch(getAll());
+    console.log(props.callData.contact);
+    if(props.callData.contact == ''){
+      console.log("empty contact");
+    }else{
+      console.log("contact");
+    }
     setFormData({...formData, 
+      contact: props.callData.contact,
       description:props.callData.description, 
       start: props.callData.start, 
       end: props.callData.end,
       type: props.callData.type,
-      type: props.callData.status,
+      status: props.callData.status,
       _id :props.callData._id
     });  
   }, [props])
@@ -44,14 +50,14 @@ export default function CallDialog(props) {
   const [inputValue, setInputValue] = useState('');
   const handleSave=()=>{
     console.log(formData);
-    // if(formData.title == ""){
-    //   toast.error("Title Required!");
-    // }else if(formData.type == ""){
-    //   toast.error("Type Required!");
-    // }else{
-    //   dispatch(addCall(formData));
-    //   props.setOpen(false);
-    // }
+    if(formData.contact == ""){
+      toast.error("Contact User Required!");
+    }else if(formData.type == ""){
+      toast.error("Type Required!");
+    }else{
+      dispatch(addCall(formData));
+      props.setOpen(false);
+    }
   }
   return (
     <div>
@@ -69,9 +75,11 @@ export default function CallDialog(props) {
               disableClearable
               onChange={(event, newValue) => {
                 setFormData(f => ({ ...f, contact: newValue._id}))
-                setInputValue(newValue.name);
+                // setInputValue(newValue.name);
               }}
+              isOptionEqualToValue={(option, value) => option.id === value._id}
               onInputChange={(event, newInputValue) => {
+                // console.log(newInputValue);
                 setInputValue(newInputValue);
               }}
               id="controllable-states-demo"
