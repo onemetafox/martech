@@ -37,7 +37,6 @@ const Header = (props) =>{
     const isAuthenticated = useIsAuthenticated();
 
     const { instance, accounts } = useMsal();
-    const [graphData, setGraphData] = useState(null);
 
     useEffect(()=>{
         var data = sessionStorage.getItem("auth");
@@ -48,17 +47,22 @@ const Header = (props) =>{
         }
     },[])
     const handleLogin = () => {
-        const request = {
-            ...loginRequest,
-            account: accounts[0]
-        };
-
         instance.loginPopup(loginRequest)
         .then((res)=>{
-            setIsLoggedin(true);
-            sessionStorage.setItem("auth", res);
-            toast.success("SignIn Successed!");
-            callMsGroup(res.accessToken).then((response) => {console.log(response); setGraphData(response);});
+            callMsGroup(res.accessToken).then((response) => {
+                setGraphData(response);
+                response.values.forEach(element => {
+                    if(element.displayName === "CHQ - martech-edp-developers"){
+                        res.account.developer = true;
+                    }
+                    if(element.displayName === "CHQ - martech-edp-admins"){
+                        res.account.admin = true;
+                    }
+                });
+                sessionStorage.setItem("auth", res.account);
+                setIsLoggedin(true);
+                toast.success("SignIn Successed!");
+            });
         }).catch(e => {
             console.log(e);
             toast.error("SignIn Failed!");
@@ -157,7 +161,7 @@ const Header = (props) =>{
                             </Link>
                         </Box>
                         <Box sx={{marginTop:'20px', marginRight:'20px'}}>
-                            { isAuthenticated ?  <Link
+                            { isLoggedin ?  <Link
                                 component="button"
                                 variant="body3"
                                 underline='none'
