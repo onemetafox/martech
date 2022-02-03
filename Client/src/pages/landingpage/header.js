@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMsal } from "@azure/msal-react";
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
-import { callMsGraph } from "../../config/graph";
+import { callMsGraph, callMsGroup } from "../../config/graph";
 import { useIsAuthenticated } from "@azure/msal-react"
 
 import { loginRequest } from "../../config/authConfig";
@@ -53,24 +53,16 @@ const Header = (props) =>{
             account: accounts[0]
         };
 
-        // Silently acquires an access token which is then attached to a request for Microsoft Graph data
-        instance.acquireTokenSilent(request).then((response) => {
-            callMsGraph(response.accessToken).then(response => setGraphData(response));
-        }).catch((e) => {
-            instance.acquireTokenPopup(request).then((response) => {
-                callMsGraph(response.accessToken).then(response => setGraphData(response));
-            });
+        instance.loginPopup(loginRequest)
+        .then((res)=>{
+            setIsLoggedin(true);
+            sessionStorage.setItem("auth", res);
+            toast.success("SignIn Successed!");
+            callMsGroup(res.accessToken).then((response) => {console.log(response); setGraphData(response);});
+        }).catch(e => {
+            console.log(e);
+            toast.error("SignIn Failed!");
         });
-
-        // instance.loginPopup(loginRequest)
-        // .then((res)=>{
-        //     setIsLoggedin(true);
-        //     sessionStorage.setItem("auth", res);
-        //     toast.success("SignIn Successed!");
-        // }).catch(e => {
-        //     console.log(e);
-        //     toast.error("SignIn Failed!");
-        // });
     }
     const handleLogout = () => {
         instance.loginPopup()
