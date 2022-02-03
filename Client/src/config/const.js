@@ -1,4 +1,5 @@
 export const ROOT_URL = 'http://localhost:3090';
+export const SECRET_KEY = 'martech';
 export const eventStructure = {
     title: '',
     description: '',

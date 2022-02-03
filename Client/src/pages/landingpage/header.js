@@ -1,42 +1,20 @@
-import {React} from 'react';
+import {React, useEffect, useState } from 'react';
 import PropTypes  from 'prop-types';
 import {Box, AppBar, Link, Button, Stack, CssBaseline, useScrollTrigger, Slide} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { styled } from '@mui/material/styles';
-import { blue, grey } from '@mui/material/colors';
-
 import { useMsal } from "@azure/msal-react";
-
-import { useIsAuthenticated } from "@azure/msal-react";
+import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
+import { callMsGraph } from "../../config/graph";
+import { useIsAuthenticated } from "@azure/msal-react"
 
 import { loginRequest } from "../../config/authConfig";
 
-const ColorButton = styled(Button)(({ theme }) => ({
-  borderRadius:'40px',
-  backgroundColor: 'rgba(77, 89, 149, 0.06)',
-  fontSize: '13px',
-  paddingLeft: '10px',
-  paddingRight: '10px',
-  color:blue[700],
-  '&:hover': {
-      color: grey[50],
-      backgroundColor: blue[100],
-  },
-  marginRight:'10px',
-  marginLeft:'20px',
-  textTransform:'none',
-  fontWeight:'normal'
-  }));
-
 function HideOnScroll(props) {
     const { children, window } = props;
-    // Note that you normally won't need to set the window ref as useScrollTrigger
-    // will default to window.
-    // This is only being set here because the demo is in an iframe.
     const trigger = useScrollTrigger({
         target: window ? window() : undefined,
     });
-
     return (
         <Slide appear={false} direction="down" in={!trigger}>
         {children}
@@ -55,121 +33,159 @@ HideOnScroll.propTypes = {
   };
 const Header = (props) =>{
     const navigate = useNavigate();
+    const [isLoggedin, setIsLoggedin] = useState(false);
+    const isAuthenticated = useIsAuthenticated();
 
-    const { instance } = useMsal();
+    const { instance, accounts } = useMsal();
+    const [graphData, setGraphData] = useState(null);
 
-    const handleLogin = (loginType) => {
-        if (loginType === "popup") {
-            instance.loginPopup(loginRequest).catch(e => {
-                console.log(e);
-            });
-        } else if (loginType === "redirect") {
-            instance.loginRedirect(loginRequest).catch(e => {
-                console.log(e);
-            });
+    useEffect(()=>{
+        var data = sessionStorage.getItem("auth");
+        if(data){
+            setIsLoggedin(true);
+        }else{
+            setIsLoggedin(false);
         }
-    }
+    },[])
+    const handleLogin = () => {
+        const request = {
+            ...loginRequest,
+            account: accounts[0]
+        };
 
+        // Silently acquires an access token which is then attached to a request for Microsoft Graph data
+        instance.acquireTokenSilent(request).then((response) => {
+            callMsGraph(response.accessToken).then(response => setGraphData(response));
+        }).catch((e) => {
+            instance.acquireTokenPopup(request).then((response) => {
+                callMsGraph(response.accessToken).then(response => setGraphData(response));
+            });
+        });
+
+        // instance.loginPopup(loginRequest)
+        // .then((res)=>{
+        //     setIsLoggedin(true);
+        //     sessionStorage.setItem("auth", res);
+        //     toast.success("SignIn Successed!");
+        // }).catch(e => {
+        //     console.log(e);
+        //     toast.error("SignIn Failed!");
+        // });
+    }
+    const handleLogout = () => {
+        instance.loginPopup()
+        .then((res)=>{
+            setIsLoggedin(false);
+            sessionStorage.removeItem("auth");
+            toast.success("SignOut Successed!");
+        }).catch(e => {
+            console.log(e);
+            toast.error("SignOut Failed!");
+        });
+    }
     return(
         <div>
             <CssBaseline />
-            <HideOnScroll {...props}>
-            <AppBar sx={{
-                background:'none',
-                boxShadow:'none',
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent:'space-between'}}>
-                <Box>
-                    <Box
-                        component="img"
-                        sx={{
-                            height: '88px',
-                            width: '128px',
-                            paddingLeft: '29px',
-                        }}
-                        src="/static/img/favicon.svg"
-                    />
-                    <Link
-                    component="button"
-                    variant="body3"
-                    underline='none'
-                    onClick={() => {
-                        navigate('/');
-                    }}
-                    color={'white'}
-                    sx={{
-                        paddingLeft:"35px"
+                <HideOnScroll {...props}>
+                    <AppBar sx={{
+                        background:'none',
+                        boxShadow:'none',
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent:'space-between'}}>
+                        <Box>
+                            <Box
+                                component="img"
+                                sx={{
+                                    height: '88px',
+                                    width: '128px',
+                                    paddingLeft: '29px',
+                                }}
+                                src="/static/img/favicon.svg"
+                            />
+                            <Link
+                            component="button"
+                            variant="body3"
+                            underline='none'
+                            onClick={() => {
+                                navigate('/');
+                            }}
+                            color={'white'}
+                            sx={{
+                                paddingLeft:"35px"
 
-                    }}
-                    >
-                        Home
-                    </Link>
-                    <Link
-                    component="button"
-                    variant="body3"
-                    underline='none'
-                    onClick={() => {
-                        navigate('/platform/budget');
-                    }}
-                    color={'white'}
-                    sx={{
-                        paddingLeft:"35px"
-                        
-                    }}
-                    >
-                        Platform
-                    </Link>
-                    <Link
-                    component="button"
-                    variant="body3"
-                    underline='none'
-                    onClick={() => {
-                        navigate('/calendar');
-                    }}
-                    color={'white'}
-                    sx={{
-                        paddingLeft:"35px"
-                        
-                    }}
-                    >
-                        Support
-                    </Link>
-                    <Link
-                    component="button"
-                    variant="body3"
-                    underline='none'
-                    onClick={() => {
-                        navigate('/about');
-                    }}
-                    color={'white'}
-                    sx={{
-                        paddingLeft:"35px"
-                        
-                    }}
-                    >
-                        About
-                    </Link>
-                </Box>
-                <Box sx={{marginTop:'20px', marginRight:'20px'}}>
-                <Link
-                    component="button"
-                    variant="body3"
-                    underline='none'
-                    onClick={() => handleLogin("popup")}
-                    color={'white'}
-                    sx={{
-                        paddingLeft:"35px"
-                        
-                    }}
-                    >
-                        LogIn
-                    </Link>
-                    
-                </Box>
-            </AppBar>
-
-            </HideOnScroll>
+                            }}
+                            >
+                                Home
+                            </Link>
+                            <Link
+                            component="button"
+                            variant="body3"
+                            underline='none'
+                            onClick={() => {
+                                navigate('/platform/budget');
+                            }}
+                            color={'white'}
+                            sx={{
+                                paddingLeft:"35px"
+                                
+                            }}
+                            >
+                                Platform
+                            </Link>
+                            <Link
+                            component="button"
+                            variant="body3"
+                            underline='none'
+                            onClick={() => {
+                                navigate('/calendar');
+                            }}
+                            color={'white'}
+                            sx={{
+                                paddingLeft:"35px"
+                                
+                            }}
+                            >
+                                Support
+                            </Link>
+                            <Link
+                            component="button"
+                            variant="body3"
+                            underline='none'
+                            onClick={() => {
+                                navigate('/about');
+                            }}
+                            color={'white'}
+                            sx={{
+                                paddingLeft:"35px"
+                                
+                            }}
+                            >
+                                About
+                            </Link>
+                        </Box>
+                        <Box sx={{marginTop:'20px', marginRight:'20px'}}>
+                            { isAuthenticated ?  <Link
+                                component="button"
+                                variant="body3"
+                                underline='none'
+                                onClick={() => handleLogout()}
+                                color={'white'}
+                                sx={{paddingLeft:"35px"}}>
+                                Sign Out
+                            </Link> :<Link
+                                component="button"
+                                variant="body3"
+                                underline='none'
+                                onClick={() => handleLogin()}
+                                color={'white'}
+                                sx={{paddingLeft:"35px"}}>
+                                Sign In
+                            </Link> }
+                        </Box>
+                    </AppBar>
+                </HideOnScroll>
+            <ToastContainer autoClose={2000} />
         </div>
     );
 

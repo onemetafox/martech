@@ -4,7 +4,10 @@
  */
 
 import { LogLevel } from "@azure/msal-browser";
-
+/*
+clientId : 152227d5-8abe-4f73-a068-efbfeeb0e723
+secret : fJw7Q~odQS2vShaTeAbM30X59pvmHVlZs~r6W
+*/
 /**
  * Configuration object to be passed to MSAL instance on creation. 
  * For a full list of MSAL.js configuration parameters, visit:
@@ -12,9 +15,9 @@ import { LogLevel } from "@azure/msal-browser";
  */
 export const msalConfig = {
     auth: {
-        clientId: "d3d1f9dc-58d2-4bfa-a99c-4e43d7d1ca79",
+        clientId: "152227d5-8abe-4f73-a068-efbfeeb0e723",
         authority: "https://login.microsoftonline.com/906aefe9-76a7-4f65-b82d-5ec20775d5aa",
-        redirectUri: "http://localhost:3000",
+        redirectUri: "http://localhost:3000/calendar",
     },
     cache: {
         cacheLocation: "sessionStorage", // This configures where your cache will be stored
@@ -60,5 +63,5 @@ export const loginRequest = {
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/resources-and-scopes.md
  */
 export const graphConfig = {
-    graphMeEndpoint: "https://developer.microsoft.com/graph/graph-explorer"
+    graphMeEndpoint: "https://graph.microsoft.com/v1.0/me/"
 };
