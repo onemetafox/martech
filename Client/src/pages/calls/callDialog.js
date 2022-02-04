@@ -29,12 +29,6 @@ export default function CallDialog(props) {
 
   const dispatch = useDispatch();
   useEffect(()=>{
-    console.log(props.callData.contact);
-    if(props.callData.contact == ''){
-      console.log("empty contact");
-    }else{
-      console.log("contact");
-    }
     setFormData({...formData, 
       contact: props.callData.contact,
       description:props.callData.description, 
@@ -49,7 +43,6 @@ export default function CallDialog(props) {
   const [formData, setFormData] = useState(props.callData);
   const [inputValue, setInputValue] = useState('');
   const handleSave=()=>{
-    console.log(formData);
     if(formData.contact == ""){
       toast.error("Contact User Required!");
     }else if(formData.type == ""){

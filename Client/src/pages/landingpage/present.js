@@ -1,9 +1,6 @@
 import {React} from 'react';
 import {Box, Container, Typography,} from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-
 const Present = () =>{
-
     return(
         <div>
             <Box sx={{
@@ -11,12 +8,11 @@ const Present = () =>{
                 paddingTop:'50px',
                 justifyContent:"space-between",
                 alignItems:"stretch" }} >
-                    <Container xl>
+                    <Container>
                         <Typography
                             textAlign={'center'}
                             fontWeight={'light'}
                             fontFamily={'PT Serif, Georgia, serif'}
-
                             variant='h5'
                         >
                             Present Your Product

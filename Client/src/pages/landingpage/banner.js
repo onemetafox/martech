@@ -20,7 +20,6 @@ const ColorButton = styled(Button)(({ theme }) => ({
     }));
 
 const Banner = () =>{
-
     return(
         <div>
             <Box sx={{
@@ -29,12 +28,7 @@ const Banner = () =>{
                 }}
                 id="bannerBox">
                 <Container maxWidth='sl'>
-                    <Box
-                    sx={{
-                        marginTop:'150px',
-                        height:'1000px'
-                    }}
-                    >
+                    <Box sx={{ marginTop:'150px', height:'1000px' }}>
                         <Box
                         sx={{
                             display: 'grid',

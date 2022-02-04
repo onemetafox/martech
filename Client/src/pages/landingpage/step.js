@@ -2,24 +2,7 @@ import {React} from 'react';
 import {Box, Container, Typography, Grid, Link} from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-
-const timeClass = {
-    dot:{
-            '&::before':{
-            borderRadius: '50%',
-            background: '#575bde',
-            border: '4px solid #fff',
-            content: "",
-            height: '1rem',
-            left: '-3px',
-            position: 'absolute',
-            top: '-33px',
-            width: '1rem'
-        }
-    }
-}
 const Step = () =>{
-
     return(
         <div>
             <Box sx={{
@@ -28,7 +11,7 @@ const Step = () =>{
                 paddingTop:'80px',
                 justifyContent:"space-between",
                 alignItems:"stretch" }} >
-                    <Container xl>
+                    <Container>
                         <Typography
                             textAlign={'center'}
                             fontFamily={'PT Serif, Georgia, serif'}

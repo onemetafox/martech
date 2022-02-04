@@ -80,7 +80,6 @@ export default function ReactBigCalendar() {
     setOpen(true);
   }
   const showCall = (call) => {
-    console.log(call);
     setCallData(call);
     setModalOpen(true);
   }

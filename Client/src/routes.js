@@ -17,7 +17,6 @@ const account = JSON.parse(sessionStorage.getItem("auth"));
 var routes =[];
 
 if(account){
-  console.log("true");
   routes = [
     {
       path: "/",
@@ -49,7 +48,6 @@ if(account){
     },
   ];
 }else{
-  console.log("false");
   routes = [
     {
       path: "*",
