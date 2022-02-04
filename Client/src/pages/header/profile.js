@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {React, useEffect, useState} from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -7,7 +7,7 @@ import { blue, grey, green } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 
 export default function Profile() {
-
+  const auth = JSON.parse(sessionStorage.getItem('auth'));
   const ColorButton = styled(Button)(({ theme }) => ({
     backgroundColor:'none',
     fontSize: '14px',
@@ -24,12 +24,8 @@ export default function Profile() {
     }));
   return (
     <div>
-        <ColorButton
-            id="basic-button"
-            startIcon={'Hi'}
-            endIcon={<Box sx={{backgroundColor: '#C9F7F5', borderRadius:2, color:'#1BC5BD', paddingLeft:'10px', paddingRight:'10px'}}>s</Box>}
-        >
-            Sean
+        <ColorButton id="basic-button" startIcon={'Hi'} >
+            {auth? auth.name: '' }
         </ColorButton>
     </div>
   );

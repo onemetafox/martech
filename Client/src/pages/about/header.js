@@ -1,9 +1,8 @@
 import {React} from 'react';
 import {Box, AppBar, Link, CssBaseline, useScrollTrigger, Slide} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import Profile from '../header/profile';
 import PropTypes  from 'prop-types';
-
+import AuthComponent from '../components/authComponent';
 
 function HideOnScroll(props) {
     const { children, window } = props;
@@ -99,9 +98,7 @@ const Header = (props) =>{
                         Platform
                     </Link>
                 </Box>
-                <Box sx={{marginTop:'20px', marginRight:'20px'}}>
-                    <Profile />
-                </Box>
+                <AuthComponent/>
             </AppBar>
             </HideOnScroll>
         </div>
