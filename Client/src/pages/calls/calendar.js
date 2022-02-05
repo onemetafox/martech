@@ -107,7 +107,7 @@ export default function ReactBigCalendar() {
         onSelectEvent={showCall}
         onSelectSlot={handleOpen}
         eventPropGetter={callStyleGetter}
-        titleAccessor = {(event)=>event.contact.name}
+        titleAccessor = {(event)=>event.contact.name + ":" + event.status}
       />
       <CallDialog open = {open} callData = {callData}  setOpen = {setOpen} />
       <ToastContainer autoClose={2000} />
