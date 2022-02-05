@@ -1,10 +1,7 @@
-import {React, useEffect, useState} from 'react';
+import {React} from 'react';
 import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
-import { blue, grey, green } from '@mui/material/colors';
-import Box from '@mui/material/Box';
+import { grey } from '@mui/material/colors';
 
 export default function Profile() {
   const auth = JSON.parse(sessionStorage.getItem('auth'));

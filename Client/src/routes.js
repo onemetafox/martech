@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-import { Link, Routes, Route } from "react-router-dom";
-
+import React from "react";
 // All pages that rely on 3rd party components (other than Material-UI) are
 // loaded asynchronously, to keep the initial JS bundle to a minimum size
 

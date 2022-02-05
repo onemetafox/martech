@@ -1,11 +1,10 @@
 import * as React from 'react';
-import {Box, AppBar, Link, CssBaseline, useScrollTrigger, Slide} from '@mui/material';
+import {Box, Link, useScrollTrigger, Slide} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import PropTypes  from 'prop-types';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
-import AuthComponent from '../components/authComponent';
 
 function HideOnScroll(props) {
     const { children, window } = props;

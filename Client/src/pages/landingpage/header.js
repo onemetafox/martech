@@ -1,7 +1,6 @@
 import { React } from 'react';
 import PropTypes  from 'prop-types';
-import {Box, AppBar, Link, CssBaseline, useScrollTrigger, Slide} from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import {Box, AppBar, CssBaseline, useScrollTrigger, Slide} from '@mui/material';
 import { ToastContainer } from "react-toastify";
 import AuthComponent from '../components/authComponent';
 import MenuComponent from '../components/menuComponent';
@@ -26,7 +25,6 @@ HideOnScroll.propTypes = {
     window: PropTypes.func,
   };
 const Header = (props) =>{
-    const navigate = useNavigate();
     return(
         <div>
             <CssBaseline />
