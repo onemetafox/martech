@@ -47,11 +47,11 @@ const columns = [
   { id: 'ipAddress', label: 'IP Address', minWidth: 100 },
   { id: 'keyName', label: 'Key Name', minWidth: 100 },
   { id: 'iamInstanceProfile', label: 'Iam Instance Profile', minWidth: 170 },
-  { id: 'availability_Zone ', label: 'Availability Zone', minWidth: 100 },
+  { id: 'availability_Zone', label: 'Availability Zone', minWidth: 100 },
 ];
 
-function createData(instanceId, instanceType, ipAddress, keyName, lamInstanceProfile, abilityZone) {
-  return {instanceId, instanceType, ipAddress, keyName, lamInstanceProfile, abilityZone};
+function createData(instanceId, instanceType, ipAddress, keyName, iamInstanceProfile, availability_Zone) {
+  return {instanceId, instanceType, ipAddress, keyName, iamInstanceProfile, availability_Zone};
 }
 
 
@@ -65,7 +65,7 @@ export default function Ec2Detail(prop) {
   useEffect( () => {
     var data = instanceData.ec2instancedata;
     for(var i = 0; i < data.length; i++){
-      rows.push(createData(data[i].instanceId, data[i].instance_type, data[i].ipv4, data[i].keyName, data[i].iamInstanceProfile, data[i].availability_zone));
+      rows.push(createData(data[i].instanceId, data[i].instance_type, data[i].ipv4, data[i].keyName, data[i].iamInstanceProfile, data[i].availability_Zone));
     }
     setEc2Data(rows);
   },[instanceData.ec2instancedata]);
