@@ -46,7 +46,7 @@ const columns = [
   { id: 'instanceType', label: 'Instance Type', minWidth: 100 },
   { id: 'ipAddress', label: 'IP Address', minWidth: 100 },
   { id: 'keyName', label: 'Key Name', minWidth: 100 },
-  { id: 'lamInstanceProfile', label: 'Iam Instance Profile', minWidth: 170 },
+  { id: 'iamInstanceProfile', label: 'Iam Instance Profile', minWidth: 170 },
   { id: 'availability_Zone ', label: 'Availability Zone', minWidth: 100 },
 ];
 
