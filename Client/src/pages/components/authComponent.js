@@ -14,7 +14,7 @@ const AuthComponent = (props) =>{
     const { instance } = useMsal();
 
     useEffect(()=>{
-        var data = sessionStorage.getItem("auth");
+        var data = JSON.parse(sessionStorage.getItem("auth"));
         if(data){
             setIsLoggedin(true);
         }else{
