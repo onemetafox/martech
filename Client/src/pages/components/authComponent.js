@@ -25,7 +25,7 @@ const AuthComponent = (props) =>{
         instance.loginPopup(loginRequest)
         .then((res)=>{
             callMsGroup(res.accessToken).then((response) => {
-                response.values.forEach(element => {
+                response.value.forEach(element => {
                     if(element.displayName === "CHQ - martech-edp-developers"){
                         res.account.developer = true;
                     }
