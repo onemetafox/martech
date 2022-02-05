@@ -7,6 +7,8 @@ import { callMsGraph, callMsGroup } from "../../config/graph";
 
 import { loginRequest } from "../../config/authConfig";
 const AuthComponent = (props) =>{
+    const navigate = useNavigate();
+
     const [isLoggedin, setIsLoggedin] = useState(false);
 
     const { instance } = useMsal();
@@ -33,6 +35,7 @@ const AuthComponent = (props) =>{
                 });
                 sessionStorage.setItem("auth", JSON.stringify(res.account));
                 setIsLoggedin(true);
+                navigate('/about')
                 toast.success("SignIn Successed!");
             });
         }).catch(e => {
@@ -59,7 +62,7 @@ const AuthComponent = (props) =>{
                     variant="body3"
                     underline='none'
                     onClick={() => handleLogout()}
-                    color={'white'}
+                    color={props.color}
                     sx={{paddingLeft:"35px"}}>
                     Sign Out
                 </Link> :<Link
@@ -67,7 +70,7 @@ const AuthComponent = (props) =>{
                     variant="body3"
                     underline='none'
                     onClick={() => handleLogin()}
-                    color={'white'}
+                    color={props.color}
                     sx={{paddingLeft:"35px"}}>
                     Sign In
                 </Link> }

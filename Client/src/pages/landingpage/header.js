@@ -1,11 +1,10 @@
-import {React, useEffect, useState } from 'react';
+import { React } from 'react';
 import PropTypes  from 'prop-types';
-import {Box, AppBar, Link, Button, Stack, CssBaseline, useScrollTrigger, Slide} from '@mui/material';
+import {Box, AppBar, Link, CssBaseline, useScrollTrigger, Slide} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-
 import { ToastContainer } from "react-toastify";
 import AuthComponent from '../components/authComponent';
-
+import MenuComponent from '../components/menuComponent';
 function HideOnScroll(props) {
     const { children, window } = props;
     const trigger = useScrollTrigger({
@@ -39,77 +38,9 @@ const Header = (props) =>{
                         flexDirection: 'row',
                         justifyContent:'space-between'}}>
                         <Box>
-                            <Box
-                                component="img"
-                                sx={{
-                                    height: '88px',
-                                    width: '128px',
-                                    paddingLeft: '29px',
-                                }}
-                                src="/static/img/favicon.svg"
-                            />
-                            <Link
-                            component="button"
-                            variant="body3"
-                            underline='none'
-                            onClick={() => {
-                                navigate('/');
-                            }}
-                            color={'white'}
-                            sx={{
-                                paddingLeft:"35px"
-
-                            }}
-                            >
-                                Home
-                            </Link>
-                            <Link
-                            component="button"
-                            variant="body3"
-                            underline='none'
-                            onClick={() => {
-                                navigate('/platform/budget');
-                            }}
-                            color={'white'}
-                            sx={{
-                                paddingLeft:"35px"
-                                
-                            }}
-                            >
-                                Platform
-                            </Link>
-                            <Link
-                            component="button"
-                            variant="body3"
-                            underline='none'
-                            onClick={() => {
-                                navigate('/calendar');
-                            }}
-                            color={'white'}
-                            sx={{
-                                paddingLeft:"35px"
-                                
-                            }}
-                            >
-                                Support
-                            </Link>
-                            <Link
-                            component="button"
-                            variant="body3"
-                            underline='none'
-                            onClick={() => {
-                                navigate('/about');
-                            }}
-                            color={'white'}
-                            sx={{
-                                paddingLeft:"35px"
-                                
-                            }}
-                            >
-                                About
-                            </Link>
+                            <MenuComponent color="white"/>
                         </Box>
-                        <AuthComponent/>
+                        <AuthComponent color="white"/>
                     </AppBar>
                 </HideOnScroll>
             <ToastContainer autoClose={2000} />
