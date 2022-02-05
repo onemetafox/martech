@@ -12,7 +12,7 @@ const Header = () =>{
                 paddingTop:'156px',
                 justifyContent:"space-between",
                 alignItems:"stretch" }} >
-                    <Container xl>
+                    <Container>
                         <Typography
                             textAlign={'center'}
                             fontWeight={'light'}

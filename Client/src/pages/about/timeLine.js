@@ -11,7 +11,7 @@ const TimeLine = () =>{
                 paddingTop:'80px',
                 justifyContent:"space-between",
                 alignItems:"stretch" }} >
-                    <Container xl>
+                    <Container>
                         <Typography
                             textAlign={'center'}
                             fontFamily={'PT Serif, Georgia, serif'}
