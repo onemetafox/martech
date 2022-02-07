@@ -34,7 +34,7 @@ const Header = (props) =>{
                             sx={{ height: '27px',  width: '100px',  marginLeft:'25px',  marginTop:'20px' }}
                             src="/static/img/favicon.svg"
                             onClick={() => {
-                                navigate('/');
+                                navigate('/about');
                             }}
                         />
                         <Box sx={{ marginTop:'16px', marginLeft:'27px'}}>

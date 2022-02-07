@@ -31,7 +31,7 @@ const MenuComponent = (props) =>{
     const navigate = useNavigate();
     return(
         <div>
-            <Box component="img" onClick={() => { navigate('/'); }} sx={{ height: '88px', width: '128px', paddingLeft: '29px', }} src="/static/img/favicon.svg" />
+            <Box component="img" onClick={() => { navigate('/about'); }} sx={{ height: '88px', width: '128px', paddingLeft: '29px', }} src="/static/img/favicon.svg" />
             <Link component="button" variant="body3" underline='none' color={props.color} sx={{ paddingLeft:"35px" }}>
                 Knowledge base
             </Link>
