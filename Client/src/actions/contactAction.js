@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { toast } from "react-toastify";
 import axios from 'axios';
 import { ROOT_URL} from '../config/const';
-
+import jwt_decode from 'jwt-decode';
+import * as configs from '../config/config';
 export const slice = createSlice({
   name: 'contactData',
   initialState: {
@@ -27,7 +28,8 @@ export const { getAllData, setContactData} = slice.actions;
 export const getAll = () => dispatch =>{
     axios.post(`${ROOT_URL}/contact/getAll`)
         .then(response => {
-            dispatch(getAllData(response.data.data));
+            var data = jwt_decode(response.data.data, configs.secret);
+            dispatch(getAllData(data));
         })
         .catch(() => {
     });
@@ -54,7 +56,8 @@ export const addContact = (params) => dispatch => {
             dispatch(getAll());
             toast.success("success");
         }else{
-            toast.error(response.data.data);
+            var data = jwt_decode(response.data.data, configs.secret);
+            toast.error(data);
         }
     })
     .catch(()=>{

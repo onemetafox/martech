@@ -1,11 +1,11 @@
 import Calls from '../models/callsModel';
-import Contacts from '../models/contactsModel';
 import Response from '../services/response.service';
-
+import jwt from 'jwt-simple';
+import {timeSetting} from '../config/config';
 function delCall(req, res){
     Calls.remove({_id: req.body.id})
     .then((result)=>{
-        res.json(Response.success(result));
+        res.json(Response.success(jwt.encode(result, timeSetting.secret)));
     })
     .catch((err)=>{
         res.json(Response.failure(err));
@@ -16,7 +16,7 @@ function getAll(req, res){
     Calls.find()
     .populate('contact')
     .then((data)=>{
-        res.json(Response.success(data));
+        res.json(Response.success(jwt.encode(data, timeSetting.secret)));
     })
 }
 
@@ -24,8 +24,7 @@ function addCall(req, res){
     if(req.body._id){
         Calls.findOneAndUpdate({_id: req.body._id}, req.body)
         .then((result)=>{
-            console.log(result);
-            res.json(Response.success(result));
+            res.json(Response.success(jwt.encode(result, timeSetting.secret)));
         })
         .catch((err) => {
             res.json(Response.failure(err));
@@ -41,7 +40,7 @@ function addCall(req, res){
         });
         callData.save()
         .then((result)=>{
-            res.json(Response.success(result));
+            res.json(Response.success(jwt.encode(result, timeSetting.secret)));
         })
         .catch((err)=>{
             res.json(Response.failure(err));

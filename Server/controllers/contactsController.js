@@ -1,10 +1,11 @@
 import Contacts from '../models/contactsModel';
 import Response from '../services/response.service';
-
+import jwt from 'jwt-simple';
+import {timeSetting} from '../config/config';
 function delContact(req, res){
     Contacts.remove({_id: req.body.id})
     .then((result)=>{
-        res.json(Response.success(result));
+        res.json(Response.success(jwt.encode(result, timeSetting.secret)));
     })
     .catch((err)=>{
         res.json(Response.failure(err));
@@ -14,7 +15,7 @@ function delContact(req, res){
 function getAll(req, res){
     Contacts.find()
     .then((data)=>{
-        res.json(Response.success(data));
+        res.json(Response.success(jwt.encode(data, timeSetting.secret)));
     }).catch((e)=>{
         res,json(Response.failure(e));
     })
@@ -24,7 +25,7 @@ function addContact(req, res){
     if(req.body._id){
         Contacts.findOneAndUpdate({_id: req.body._id}, req.body)
         .then((result)=>{
-            res.json(Response.success(result));
+            res.json(Response.success(jwt.encode(result, timeSetting.secret)));
         })
         .catch((err) => {
             res.json(Response.failure(err));
@@ -34,7 +35,7 @@ function addContact(req, res){
         .then((result) =>{
             console.log(result);
             if(result.length != 0){
-                res.json(Response.failure("Contact already exist!"));
+                res.json(Response.failure(jwt.encode("Contact already exist!", timeSetting.secret)));
             }else{
                 const contactData = new Contacts({
                     name: req.body.name,
@@ -46,7 +47,7 @@ function addContact(req, res){
                   });
                 contactData.save()
                 .then((result)=>{
-                    res.json(Response.success(result));
+                    res.json(Response.success(jwt.encode(result, timeSetting.secret)));
                 })
                 .catch((err)=>{
                     res.json(Response.failure(err));

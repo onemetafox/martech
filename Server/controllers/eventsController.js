@@ -1,10 +1,11 @@
 import Events from '../models/eventsModel';
 import Response from '../services/response.service';
-
+import jwt from 'jwt-simple';
+import {timeSetting} from '../config/config';
 function delEvent(req, res){
     Events.remove({_id: req.body.id})
     .then((result)=>{
-        res.json(Response.success(result));
+        res.json(Response.success(jwt.encode(result, timeSetting.secret)));
     })
     .catch((err)=>{
         res.json(Response.failure(err));
@@ -14,7 +15,7 @@ function delEvent(req, res){
 function getAll(req, res){
     Events.find()
     .then((data)=>{
-        res.json(Response.success(data));
+        res.json(Response.success(jwt.encode(data, timeSetting.secret)));
     })
 }
 
@@ -23,7 +24,7 @@ function addEvent(req, res){
         Events.findOneAndUpdate({_id: req.body._id}, req.body)
         .then((result)=>{
             console.log(result);
-            res.json(Response.success(result));
+            res.json(Response.success(jwt.encode(result, timeSetting.secret)));
         })
         .catch((err) => {
             res.json(Response.failure(err));
@@ -39,7 +40,7 @@ function addEvent(req, res){
         });
         eventData.save()
         .then((result)=>{
-            res.json(Response.success(result));
+            res.json(Response.success(jwt.encode(result, timeSetting.secret)));
         })
         .catch((err)=>{
             res.json(Response.failure(err));
