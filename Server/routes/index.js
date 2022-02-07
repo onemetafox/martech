@@ -2,17 +2,25 @@ import express from 'express';
 const router = express.Router();
 
 // import authRoutes from './auth.route'
-import budgetRoutes from './budget.route';
-import ec2Routes from './ec2.route';
 import eventRoutes from './event.route';
 import contactRoutes from './contact.route';
 import callRoutes from './call.route';
+import ec2countRoutes from './ec2count.route';
+import ec2instanceRoutes from './ec2instance.route';
+import m2dRoutes from './m2d.route';
+import y2dRoutes from './y2date.route';
+import serviceRoutes from './service.route'
 
 // router.use('/auth', authRoutes);
 
-router.use('/budget', budgetRoutes);
+router.use('/y2data', y2dRoutes);
+router.use('/m2data', m2dRoutes);
+router.use('/service', serviceRoutes);
 
-router.use('/ec2', ec2Routes);
+
+router.use('/ec2count', ec2countRoutes);
+router.use('/ec2instance', ec2instanceRoutes);
+
 
 router.use('/event', eventRoutes);
 

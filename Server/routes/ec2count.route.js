@@ -4,16 +4,12 @@ import express from 'express';
 // import authCtrl from '../controllers/auth.controller';
 // import authorization from '../services/authorization.service';
 // import auth from '../services/Permissions/index';
-import ec2Ctrl from '../controllers/ec2Controller'
+import ec2countCtrl from '../controllers/ec2countController'
 
 const router = express.Router();
 
 router.route('/getAllEc2Count')
   // .post(validate(paramValidation.login), passport.authenticate('local', { session: false }), budgetCtrl.getM2dDataByMonth);
-  .post(ec2Ctrl.getAllEc2Count);
-
-router.route('/getAllEc2Instance')
-  // .post(validate(paramValidation.login), passport.authenticate('local', { session: false }), budgetCtrl.getM2dDataByMonth);
-  .post(ec2Ctrl.getAllEc2Instance);
+  .post(ec2countCtrl.getAllEc2Count);
 
 export default router;

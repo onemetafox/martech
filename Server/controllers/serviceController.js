@@ -1,68 +1,16 @@
 // import async from 'async';
 // import httpStatus from 'http-status';
 import ServiceCost from '../models/costByServiceModel';
-import MonthlyCost from '../models/monthlyCostModel';
 import jwt from 'jwt-simple';
 import {timeSetting} from '../config/config';
 
-function getMonthFromString(mon){
-  return new Date(Date.parse(mon +" 1, 2012")).getMonth()+1
-}
+
 const getOnlyDate = (param) =>{
   var today = new Date();
   var dd = String(today. getDate() - param). padStart(2, '0');
   var mm = String(today. getMonth() + 1). padStart(2, '0'); //January is 0!
   var yyyy = today. getFullYear();
   return today = yyyy + '-' + mm + '-' + dd +'T00:00:00.000Z';
-}
-function getM2dDataByMonth(req, res, next){
-    var currentDate = new Date();
-    var year =  currentDate.getFullYear();
-    var month = req.body.month;
-
-    var date = new Date("1/"+month+"/"+year);
-    
-    var pipeLine = [{$match:{date:{$gte:date}}}, {
-        $group: {
-          "_id": "$service",
-          "money": {
-            "$sum": "$unBlendedCost"
-          }
-        }
-      }, { $project: {  
-        _id: 0,
-        service: "$_id",
-        cost: "$money"
-     }}
-    ];
-    ServiceCost.aggregate(pipeLine).exec( (e, r) => {
-        if(e) {
-            console.log(e);
-        }else{
-          var data = jwt.encode(r, timeSetting.secret);
-          res.send(data);
-        }
-      });
-}
-
-function getY2mGetData(req, res, next){
-    var year =  req.body.year;
-    var pipeLine = new Array();
-
-    pipeLine = [
-      {$match:{year:{$eq:year}}},
-    ];
-    MonthlyCost.aggregate(pipeLine).exec((err, result) => {
-      if(err){
-        console.log(err);
-      }else{
-        for( var i = 0; i < result.length; i++){
-          result[i].month = getMonthFromString(result[i].month);
-        }
-      var data = jwt.encode(result, timeSetting.secret);
-      res.send(data);
-      }
-    })
 }
 function getLtsData (req, res, next){
   var currentDate = new Date(getOnlyDate(1));
@@ -126,7 +74,5 @@ function getLtsData (req, res, next){
 }
 
 export default {
-  getLtsData,
-  getY2mGetData,
-  getM2dDataByMonth
+  getLtsData
 }
