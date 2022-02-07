@@ -6,7 +6,9 @@ import {
 import M2dchart from "./m2dChart";
 import Y2mchart from "./y2mChart";
 import Lts3days from './lts3days';
-import { getM2dData, getY2mData, getLtsData} from '../../../actions/ec2Action';
+import { getM2dData} from '../../../actions/m2dAction';
+import { getY2mData } from '../../../actions/y2dAction';
+import { getLtsData} from '../../../actions/serviceAction';
 import jwt_decode from 'jwt-decode';
 import * as configs from '../../../config/config';
 

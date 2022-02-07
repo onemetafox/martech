@@ -5,7 +5,8 @@ import {
 import Ec2Graph from "./ec2Graph";
 import Ec2Detail from './ec2Detail';
 import Ec2Table from './ec2Table';
-import { getEc2Count, getEc2instance } from '../../../actions/ec2Action';
+import { getEc2Count } from '../../../actions/ec2countAction';
+import { getEc2instance } from '../../../actions/ec2instanceAction';
 import jwt_decode from 'jwt-decode';
 import * as configs from '../../../config/config';
 
