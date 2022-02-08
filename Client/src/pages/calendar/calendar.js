@@ -113,6 +113,7 @@ export default function ReactBigCalendar() {
         onSelectEvent={showEvent}
         onSelectSlot={handleOpen}
         eventPropGetter={eventStyleGetter}
+        titleAccessor = {(event)=>event.contact.name + ":" + event.team}
       />
       <EventDialog open = {open} eventData = {eventData}  setOpen = {setOpen} />
       <ToastContainer autoClose={2000} />
@@ -124,10 +125,10 @@ export default function ReactBigCalendar() {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            {eventData.title}
+            Name : {eventData.contact.name}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Description : {eventData.description}
+            Team : {eventData.team}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Duration : {new Date(Date.parse(eventData.start)).toDateString()} ~ {new Date(Date.parse(eventData.end)).toDateString()}

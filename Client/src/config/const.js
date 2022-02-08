@@ -1,8 +1,10 @@
 import { secret } from "./config";
 export const ROOT_URL = 'http://localhost:3090';
 export const eventStructure = {
-    title: '',
-    description: '',
+    contact : {
+        _id : ''
+    },
+    team: '',
     start: '',
     end: '',
     type: '',

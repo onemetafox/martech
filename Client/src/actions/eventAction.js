@@ -30,6 +30,7 @@ export const getAll = () => dispatch =>{
     axios.post(`${ROOT_URL}/event/getAll`)
         .then(response => {
             var data = jwt_decode(response.data.data, configs.secret);
+            console.log(data);
             dispatch(getAllData(data));
         })
         .catch(() => {

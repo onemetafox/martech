@@ -14,6 +14,7 @@ function delEvent(req, res){
 
 function getAll(req, res){
     Events.find()
+    .populate('contact')
     .then((data)=>{
         res.json(Response.success(jwt.encode(data, timeSetting.secret)));
     })
@@ -31,9 +32,8 @@ function addEvent(req, res){
         })
     }else{
         const eventData = new Events({
-            user: '',
-            title:req.body.title,
-            description: req.body.description,
+            contact: req.body.contact,
+            team: req.body.team,
             start: req.body.start,
             end: req.body.end,
             type: req.body.type,

@@ -23,7 +23,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useSelector, useDispatch } from 'react-redux';
 
 import { addCall } from '../../actions/callAction';
-import { getAll, selectContact } from '../../actions/contactAction';
+import { selectContact } from '../../actions/contactAction';
 
 export default function CallDialog(props) {
 

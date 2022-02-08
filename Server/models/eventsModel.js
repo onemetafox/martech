@@ -1,8 +1,11 @@
 import mongoose from 'mongoose';
 const eventsSchema = new mongoose.Schema({
-    user                : String,
-    title               : String,
-    description         : String,
+    contact : {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Contacts',
+      required: true
+    },
+    team         : String,
     type                : String,
     start               : String,
     end                 : String,
