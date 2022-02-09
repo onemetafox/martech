@@ -6,6 +6,8 @@ import Card from '@mui/material/Card';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import {stateToHTML} from 'draft-js-export-html'; 
+import { convertFromRaw } from 'draft-js';
 import {getAll, delFaq, selectFaq} from '../../actions/faqAction';
 import { 
   CardHeader,
@@ -28,7 +30,9 @@ import FaqDialog from './faqDialog';
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-
+const convertCommentFromJSONToHTML = (text) => {
+  return stateToHTML(convertFromRaw(JSON.parse(text))) 
+}
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -54,7 +58,7 @@ const Faq = (props) => {
     setFaq(props.faqData);
   },[props])
   return (
-    <Card sx={{ width: "100%" }}>
+    <Card sx={{ width: "100%", marginTop: "15px"}}>
       <CardHeader
         title={faq.title}
       />
@@ -77,7 +81,7 @@ const Faq = (props) => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>{faq.description}</Typography>
+          <div dangerouslySetInnerHTML={{ __html: convertCommentFromJSONToHTML(faq.description) }} />
         </CardContent>
       </Collapse>
       <FaqDialog expanded = {expanded} setExpanded={setExpanded} open = {open} faqData = {faq}  setOpen = {setOpen}/>

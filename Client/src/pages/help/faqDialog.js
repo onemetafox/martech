@@ -7,9 +7,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-
+import { EditorState, convertFromRaw, convertToRaw  } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import {stateToHTML} from 'draft-js-export-html'; 
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { toast, ToastContainer } from "react-toastify";
-import TextareaAutosize from '@mui/material/TextareaAutosize';
 import {useDispatch } from 'react-redux';
 import {
   addFaq
@@ -20,9 +22,16 @@ export default function FaqDialog(props) {
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState(props.faqData);
-  const [expand, setExpanded] = useState(props.expanded)
+  const [expanded, setExpanded] = useState(props.expanded)
+  const [editorState, setEditorState] = useState();
   useEffect(()=>{
     setFormData(props.faqData)
+    if(props.faqData.description != ""){
+      setEditorState(EditorState.createWithContent(convertFromRaw(JSON.parse(props.faqData.description))));
+    }else{
+      setEditorState(EditorState.createEmpty());
+    }
+    
   }, [props])
   const handleSave=()=>{
     if(formData.title == ""){
@@ -35,6 +44,11 @@ export default function FaqDialog(props) {
       props.setExpanded(true)
     }
   }
+  const onEditContent=(data)=>{
+    setEditorState(data);
+    setFormData(f=>({...f, description: JSON.stringify(convertToRaw(data.getCurrentContent()))}))
+  }
+  
   return (
     <div>
       <Dialog fullWidth open={props.open} onClose={()=>{props.setOpen(false)}}>
@@ -55,7 +69,21 @@ export default function FaqDialog(props) {
             value={formData.title}
             onChange={evt => { setFormData(f => ({ ...f, title: evt.target.value})) }}
           />
-          <TextareaAutosize
+          <Editor
+            editorState={editorState}
+            wrapperClassName="demo-wrapper"
+            editorClassName="demo-editor"
+            toolbar={{
+              inline: { inDropdown: true },
+              list: { inDropdown: true },
+              textAlign: { inDropdown: true },
+              link: { inDropdown: true },
+              history: { inDropdown: true },
+              // image: { uploadCallback: uploadImageCallBack, alt: { present: true, mandatory: true } },
+            }}
+            onEditorStateChange={onEditContent}
+          />
+          {/* <TextareaAutosize
             aria-label="empty textarea"
             placeholder="Empty"
             id="description"
@@ -64,7 +92,7 @@ export default function FaqDialog(props) {
             variant="standard"
             onChange={evt => { setFormData(f => ({ ...f, description: evt.target.value})) }}
             value={formData.description}
-          />
+          /> */}
           {/* <TextField
             required
             margin="dense"

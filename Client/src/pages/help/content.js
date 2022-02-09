@@ -41,6 +41,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
 }));
 
 const Content = () =>{
+    const [expanded, setExpanded] = useState(false);
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     const [faqData, setFaqData] = useState(faqStructure);
@@ -79,12 +80,12 @@ const Content = () =>{
                 <Box sx={{padding:'2rem'}}>
                     {faqsData.map((faq, index)=>{
                         if(faq){
-                            return(<Faq isAdmin = {isAdmin} key={index} faqData = {faq}/>);
+                            return(<Faq sx={{marginTop:"15px"}} isAdmin = {isAdmin} key={index} faqData = {faq}/>);
                         }
                     })}
                 </Box>
             </Box>
-            <FaqDialog open = {open} faqData = {faqData}  setOpen = {setOpen}/>
+            <FaqDialog expanded = {expanded} setExpanded={setExpanded}  open = {open} faqData = {faqData}  setOpen = {setOpen}/>
         </Container>
     );
 }
