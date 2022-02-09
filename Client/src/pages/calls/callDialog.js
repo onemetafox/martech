@@ -42,6 +42,7 @@ export default function CallDialog(props) {
   const contacts = useSelector(selectContact);
   const [formData, setFormData] = useState(props.callData);
   const [inputValue, setInputValue] = useState('');
+  const [value, setValue] = useState(props.callData.contact);
   const handleSave=()=>{
     if(formData.contact == ""){
       toast.error("Contact User Required!");
@@ -62,17 +63,18 @@ export default function CallDialog(props) {
           </DialogContentText>
           <Stack spacing={1}>
             <Autocomplete
-              value={formData.contact}
-              inputValue={inputValue}
+              value={value}
+              
               getOptionLabel={(option) => option.name ? option.name : ""}
               disableClearable
+              
+              isOptionEqualToValue={(option, value) => option.id === value._id}
               onChange={(event, newValue) => {
                 setFormData(f => ({ ...f, contact: newValue._id}))
-                // setInputValue(newValue.name);
+                setValue(newValue);
               }}
-              isOptionEqualToValue={(option, value) => option.id === value._id}
+              inputValue={inputValue}
               onInputChange={(event, newInputValue) => {
-                // console.log(newInputValue);
                 setInputValue(newInputValue);
               }}
               id="controllable-states-demo"

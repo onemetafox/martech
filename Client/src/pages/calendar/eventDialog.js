@@ -10,6 +10,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/system';
 import { MenuItem, FormControl, InputLabel, Select } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
+// import Autocomplete from "@material-ui/lab/Autocomplete";
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
@@ -25,7 +26,10 @@ import { selectContact } from '../../actions/contactAction';
 export default function EventDialog(props) {
 
   const dispatch = useDispatch();
-
+  const [formData, setFormData] = useState(props.eventData);
+  const contacts = useSelector(selectContact);
+  const [inputValue, setInputValue] = useState('');
+  const [value, setValue] = useState(props.eventData.contact)
   useEffect(()=>{
     setFormData({...formData, 
       contact: props.eventData.contact,
@@ -37,14 +41,12 @@ export default function EventDialog(props) {
     });  
   }, [props])
 
-  const [formData, setFormData] = useState(props.eventData);
-  const contacts = useSelector(selectContact);
-  const [inputValue, setInputValue] = useState('');
+  
   const handleSave=()=>{
-    if(formData.title == ""){
-      toast.error("Title Required!");
-    }else if(formData.type == ""){
-      toast.error("Type Required!");
+    if(formData.contact == ""){
+      toast.error("Contact User Required!");
+    }else if(formData.team == ""){
+      toast.error("Team Required!");
     }else{
       dispatch(addEvent(formData));
       props.setOpen(false);
@@ -60,31 +62,35 @@ export default function EventDialog(props) {
           </DialogContentText>
           <FormControl variant="standard" sx={{ m: 1,width: '100%'  }}>
             <Autocomplete
-              value={formData.contact}
-              inputValue={inputValue}
+              value={value}
+              
               getOptionLabel={(option) => option.name ? option.name : ""}
               disableClearable
               onChange={(event, newValue) => {
+                console.log(newValue._id);
                 setFormData(f => ({ ...f, contact: newValue._id}))
-                // setInputValue(newValue.name);
+                setValue(newValue);
               }}
-              isOptionEqualToValue={(option, value) => option.id === value._id}
+              inputValue={inputValue}
               onInputChange={(event, newInputValue) => {
-                // console.log(newInputValue);
+                console.log(newInputValue);
                 setInputValue(newInputValue);
               }}
-              id="controllable-states-demo"
+              
+              isOptionEqualToValue={(option, value) => option.id == value._id}
+              
+              id="combo-box-demo"
               options={contacts}
               sx={{ width: '100%', marginTop:'15px' }}
               renderInput={(params) => <TextField {...params} label="Select Contact User" variant="standard"/>}
             />
           </FormControl>
           <FormControl variant="standard" sx={{ m: 1,width: '100%'  }}>
-            <InputLabel id="demo-simple-select-standard-label">Event Team</InputLabel>
+            <InputLabel id="team-standard-label">Event Team</InputLabel>
             <Select
               required
-              labelId="demo-simple-select-standard-label"
-              id="demo-simple-select-standard"
+              labelId="team-standard-label"
+              id="team-standard"
               value={formData.team}
               onChange={evt => { setFormData(f => ({ ...f, team: evt.target.value})) }}
               label="Team"
@@ -120,11 +126,11 @@ export default function EventDialog(props) {
             </Stack>
           </LocalizationProvider>
           <FormControl variant="standard" sx={{ m: 1,width: '100%'  }}>
-            <InputLabel id="demo-simple-select-standard-label">Event Type</InputLabel>
+            <InputLabel id="type-standard-label">Event Type</InputLabel>
             <Select
               required
-              labelId="demo-simple-select-standard-label"
-              id="demo-simple-select-standard"
+              labelId="type-standard-label"
+              id="type-standard"
               value={formData.type}
               onChange={evt => { setFormData(f => ({ ...f, type: evt.target.value})) }}
               label="Type"
