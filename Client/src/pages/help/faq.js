@@ -60,11 +60,11 @@ const Faq = (props) => {
       />
       <CardActions disableSpacing>
         
-        <IconButton aria-label="share">
-          {admin?<EditIcon onClick = {()=>setOpen(true)}/>:""}
+        <IconButton onClick = {(evt)=>setOpen(true)} aria-label="share">
+          {admin?<EditIcon />:""}
         </IconButton>
-        <IconButton aria-label="share">
-          {admin?<DeleteIcon onClick = {()=>setDialogOpen(true)}/>:""}
+        <IconButton onClick = {(evt)=>setDialogOpen(true)} aria-label="share">
+          {admin?<DeleteIcon />:""}
         </IconButton>
         <ExpandMore
           expand={expanded}

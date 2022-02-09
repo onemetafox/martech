@@ -9,7 +9,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 import { toast, ToastContainer } from "react-toastify";
-
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 import {useDispatch } from 'react-redux';
 import {
   addFaq
@@ -36,7 +36,7 @@ export default function FaqDialog(props) {
   }
   return (
     <div>
-      <Dialog open={props.open} onClose={()=>{props.setOpen(false)}}>
+      <Dialog fullWidth open={props.open} onClose={()=>{props.setOpen(false)}}>
         <DialogTitle>Add Faq</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -47,14 +47,24 @@ export default function FaqDialog(props) {
             required
             margin="dense"
             id="title"
-            label="Title Name"
+            label="Title"
             type="text"
             fullWidth
             variant="standard"
             value={formData.title}
             onChange={evt => { setFormData(f => ({ ...f, title: evt.target.value})) }}
           />
-          <TextField
+          <TextareaAutosize
+            aria-label="empty textarea"
+            placeholder="Empty"
+            id="description"
+            minRows={5}
+            style={{ width: '100%' }}
+            variant="standard"
+            onChange={evt => { setFormData(f => ({ ...f, description: evt.target.value})) }}
+            value={formData.description}
+          />
+          {/* <TextField
             required
             margin="dense"
             id="description"
@@ -64,7 +74,7 @@ export default function FaqDialog(props) {
             variant="standard"
             value={formData.description}
             onChange={evt => { setFormData(f => ({ ...f, description: evt.target.value})) }}
-          />
+          /> */}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleSave}>Save</Button>
