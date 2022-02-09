@@ -46,6 +46,7 @@ const Content = () =>{
     const dispatch = useDispatch();
     const [faqData, setFaqData] = useState(faqStructure);
     const [isAdmin, setIsAdmin]= useState(false);
+    
     useEffect(()=>{
         dispatch(getAll());
         var auth = JSON.parse(sessionStorage.getItem("auth"));

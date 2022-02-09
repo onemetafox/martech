@@ -4,7 +4,7 @@
  */
 import queryString from 'query-string'
 import { LogLevel } from "@azure/msal-browser";
-import { CODE_CHALLENGE_METHOD, CODE_CHALLENGE } from './PCKEConfigs';
+// import { CODE_CHALLENGE_METHOD, CODE_CHALLENGE } from './PCKEConfigs';
 /*
 clientId : 152227d5-8abe-4f73-a068-efbfeeb0e723
 secret : fJw7Q~odQS2vShaTeAbM30X59pvmHVlZs~r6W

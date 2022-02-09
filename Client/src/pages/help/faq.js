@@ -56,6 +56,7 @@ const Faq = (props) => {
  
   useEffect(()=>{
     setFaq(props.faqData);
+    setAdmin(props.isAdmin);
   },[props])
   return (
     <Card sx={{ width: "100%", marginTop: "15px"}}>

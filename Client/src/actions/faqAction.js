@@ -26,13 +26,20 @@ export const { getAllData, setFaqData} = slice.actions;
 // will faq the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched
 export const getAll = () => dispatch =>{
-    axios.post(`${ROOT_URL}/faq/getAll`)
-        .then(response => {
-            var data = jwt_decode(response.data.data, configs.secret);
-            dispatch(getAllData(data));
-        })
-        .catch(() => {
-    });
+
+    // axios.get(`${ROOT_URL}/getCSRFToken`)
+    // .then((res)=>{
+    //     console.log(res.data.CSRFToken);
+    //     axios.defaults.headers.post['CSRF-Token'] = res.data.CSRFToken;
+    //     axios.defaults.headers.post['X-CSRF-Token'] = res.data.CSRFToken;
+        axios.post(`${ROOT_URL}/faq/getAll`)
+            .then(response => {
+                var data = jwt_decode(response.data.data, configs.secret);
+                dispatch(getAllData(data));
+            })
+            .catch(() => {
+        });
+    // })
 }
 
 export const delFaq= (id) => dispatch=> {
