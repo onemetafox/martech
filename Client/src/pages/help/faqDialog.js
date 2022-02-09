@@ -20,7 +20,7 @@ export default function FaqDialog(props) {
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState(props.faqData);
-
+  const [expand, setExpanded] = useState(props.expanded)
   useEffect(()=>{
     setFormData(props.faqData)
   }, [props])
@@ -32,6 +32,7 @@ export default function FaqDialog(props) {
     }else{
       dispatch(addFaq(formData));
       props.setOpen(false);
+      props.setExpanded(true)
     }
   }
   return (

@@ -80,7 +80,7 @@ const Faq = (props) => {
           <Typography paragraph>{faq.description}</Typography>
         </CardContent>
       </Collapse>
-      <FaqDialog open = {open} faqData = {faq}  setOpen = {setOpen}/>
+      <FaqDialog expanded = {expanded} setExpanded={setExpanded} open = {open} faqData = {faq}  setOpen = {setOpen}/>
       <Dialog
           open={dialogOpen}
           TransitionComponent={Transition}
@@ -97,7 +97,6 @@ const Faq = (props) => {
           <DialogActions>
               <Button  sx={{background: "#F64E60", color: "#ffff", marginRight:"20px",'&:hover': { background: "#F64E60",}}} onClick={()=>{dispatch(delFaq(faq._id)); setDialogOpen(false)}}>Agree</Button>
               <Button onClick={()=>{setDialogOpen(false)}}>Disagree</Button>
-              
           </DialogActions>
       </Dialog>
     </Card>
