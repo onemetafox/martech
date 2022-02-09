@@ -38,3 +38,9 @@ export const headerConf = {
         "expires": new Date()
     }
 }
+export const faqStructure = {
+    title : "",
+    createdAt: "",
+    description: "",
+    _id: ""
+}

@@ -9,4 +9,4 @@ const faqsSchema = new mongoose.Schema({
     }
 });
 
-export default mongoose.model('Faqs', eventsSchema, 'faqs');
+export default mongoose.model('Faqs', faqsSchema, 'faqs');

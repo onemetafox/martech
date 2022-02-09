@@ -2,13 +2,9 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Container from '@mui/material/Container';
-import MUIDataTable from 'mui-datatables';
-import { ThemeProvider } from '@mui/styles';
-import { createMuiTheme } from '@material-ui/core';
 import { styled } from '@mui/material/styles';
 import { 
     Box, 
-    IconButton,
     Button,
     Dialog,
     DialogContent,
@@ -18,14 +14,13 @@ import {
     Slide,
     Typography
 } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorSharpIcon from '@mui/icons-material/BorderColorSharp';
 
 import FaqDialog from './faqDialog';
 
-import { contactStructure } from '../../config/const';
+import { contactStructure, faqStructure } from '../../config/const';
 
-import {getAll, delContact, selectContact} from '../../actions/contactAction';
+import {getAll, delFaq, selectFaq} from '../../actions/faqAction';
 
 import Faq from './faq';
 
@@ -46,7 +41,18 @@ const ColorButton = styled(Button)(({ theme }) => ({
 }));
 
 const Content = () =>{
-    
+    const [open, setOpen] = useState(false);
+    const dispatch = useDispatch();
+    const [faqData, setFaqData] = useState(faqStructure);
+    const [isAdmin, setIsAdmin]= useState(false);
+    useEffect(()=>{
+        dispatch(getAll());
+        var auth = JSON.parse(sessionStorage.getItem("auth"));
+        if(auth.admin){
+            setIsAdmin(true);
+        }
+    },[])
+    const faqsData = useSelector(selectFaq);
     return(
         <Container maxWidth="lg">
             <Box sx={{ bgcolor: '#fff', height: '100%',width:'100%', marginTop:'30px', marginBottom:'30px', boxShadow:'0px 0px 30px 0px rgb(82 63 105 / 5%)'}}>
@@ -66,14 +72,19 @@ const Content = () =>{
                         <Box sx={{ marginTop:'25px', marginLeft:'27px', fontSize: '1.275rem' }}>Help Desk (FAQ)</Box>
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'row'}}>
-                        <ColorButton > Add FAQ</ColorButton>
+                        {isAdmin?<ColorButton onClick={(evt)=>setOpen(true)}> Add FAQ</ColorButton>:""}
+                        
                     </Box>
                 </Box>
                 <Box sx={{padding:'2rem'}}>
-                    <Faq/>
+                    {faqsData.map((faq, index)=>{
+                        if(faq){
+                            return(<Faq isAdmin = {isAdmin} key={index} faqData = {faq}/>);
+                        }
+                    })}
                 </Box>
             </Box>
-            {/* <FaqDialog /> */}
+            <FaqDialog open = {open} faqData = {faqData}  setOpen = {setOpen}/>
         </Container>
     );
 }

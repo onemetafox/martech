@@ -12,107 +12,58 @@ import { toast, ToastContainer } from "react-toastify";
 
 import {useDispatch } from 'react-redux';
 import {
-  addContact
-} from '../../actions/contactAction';
+  addFaq
+} from '../../actions/faqAction';
 
-export default function ContactDialog(props) {
+export default function FaqDialog(props) {
 
   const dispatch = useDispatch();
 
-  const [formData, setFormData] = useState(props.data);
+  const [formData, setFormData] = useState(props.faqData);
 
   useEffect(()=>{
-    setFormData(props.data)
+    setFormData(props.faqData)
   }, [props])
   const handleSave=()=>{
-    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if(formData.name == ""){
-      toast.error("Name Required!");
-    }else if(formData.email == ""){
-      toast.error("Email Required!");
-    }else if(!formData.email.match(validRegex)) {
-      toast.error("Invalid email address!");
-    }else if(formData.ntid == ""){
-      toast.error("NTID Required!");
+    if(formData.title == ""){
+      toast.error("Title Required!");
+    }else if(formData.description == ""){
+      toast.error("Description Required!");
     }else{
-      dispatch(addContact(formData));
+      dispatch(addFaq(formData));
       props.setOpen(false);
     }
   }
   return (
     <div>
       <Dialog open={props.open} onClose={()=>{props.setOpen(false)}}>
-        <DialogTitle>Add Contact</DialogTitle>
+        <DialogTitle>Add Faq</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Add You contact. You can add the contact detail
+            Add You faq. You can add the faq detail
           </DialogContentText>
           <TextField
             autoFocus
             required
             margin="dense"
-            id="name"
-            label="User Name"
+            id="title"
+            label="Title Name"
             type="text"
             fullWidth
             variant="standard"
-            value={formData.name}
-            onChange={evt => { setFormData(f => ({ ...f, name: evt.target.value})) }}
+            value={formData.title}
+            onChange={evt => { setFormData(f => ({ ...f, title: evt.target.value})) }}
           />
           <TextField
             required
             margin="dense"
-            id="email"
-            label="Email"
-            type="email"
-            fullWidth
-            variant="standard"
-            value={formData.email}
-            onChange={evt => { setFormData(f => ({ ...f, email: evt.target.value})) }}
-          />
-          <TextField
-            required
-            margin="dense"
-            id="ntid"
-            label="NTID"
+            id="description"
+            label="Description"
             type="text"
             fullWidth
             variant="standard"
-            value={formData.ntid}
-            onChange={evt => { setFormData(f => ({ ...f, ntid: evt.target.value})) }}
-          />
-          <TextField
-            required
-            margin="dense"
-            id="phone"
-            label="Phone Number"
-            type="number"
-            fullWidth
-            variant="standard"
-            value={formData.phone}
-            onChange={evt => { setFormData(f => ({ ...f, phone: evt.target.value})) }}
-          />
-          <TextField
-            required
-            margin="dense"
-            id="timezone"
-            label="Time Zone"
-            type="text"
-            fullWidth
-            variant="standard"
-            value={formData.timezone}
-            onChange={evt => { setFormData(f => ({ ...f, timezone: evt.target.value})) }}
-          />
-          <TextField
-            required
-            margin="dense"
-            id="localhost"
-            label="Location"
-            type="location"
-            fullWidth
-            variant="standard"
-            value={formData.location}
-            onChange={evt => { setFormData(f => ({ ...f, location: evt.target.value})) }}
+            value={formData.description}
+            onChange={evt => { setFormData(f => ({ ...f, description: evt.target.value})) }}
           />
         </DialogContent>
         <DialogActions>

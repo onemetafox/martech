@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Header from '../header';
 import Content from './content';
 import Footer from '../footer';
-import Box from '@mui/material/Box';
 
 const Contact = () =>{
 
