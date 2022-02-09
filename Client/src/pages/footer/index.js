@@ -41,7 +41,8 @@ const Footer = () =>{
             borderBlockEnd:'solid 1px #ddd',
             justifyContent:"space-between",
             alignItems:"stretch",
-            
+            position: "fixed",
+            width: "100%"
             }}>
             <Box>
                 <ColorButton
