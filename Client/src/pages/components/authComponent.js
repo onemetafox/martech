@@ -56,7 +56,7 @@ const AuthComponent = (props) =>{
     }
     return(
         <div>
-            <Box sx={{marginTop:'20px', marginRight:'20px'}}>
+            <Box sx={{marginTop:'25px', marginRight:'20px'}}>
                 { isLoggedin ?  <Link
                     component="button"
                     variant="body3"

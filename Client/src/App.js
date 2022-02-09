@@ -10,6 +10,7 @@ import Summary from './pages/platform/summary'
 import Contact from './pages/contact';
 import About from './pages/about';
 import Calls from './pages/calls';
+import Help from './pages/help'
 
 import PrivateRoute from "./auth";
 import './style/App.css';
@@ -36,6 +37,7 @@ function App() {
           <Route exact path='/calendar' element={<PrivateRoute path='/calendar'> <Calendar/></PrivateRoute>}/>
           <Route exact path='/calls' element={<PrivateRoute path='/calls'> <Calls/></PrivateRoute>}/>
           <Route path="/about" element={<About/> } />
+          <Route path="/help" element={<Help/> } />
         </Routes>
       </Router>
     </HelmetProvider>

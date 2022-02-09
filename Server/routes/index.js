@@ -9,7 +9,8 @@ import ec2countRoutes from './ec2count.route';
 import ec2instanceRoutes from './ec2instance.route';
 import m2dRoutes from './m2d.route';
 import y2dRoutes from './y2date.route';
-import serviceRoutes from './service.route'
+import serviceRoutes from './service.route';
+import faqRoutes from './faq.route';
 
 // router.use('/auth', authRoutes);
 
@@ -27,5 +28,7 @@ router.use('/event', eventRoutes);
 router.use('/contact', contactRoutes);
 
 router.use('/call', callRoutes);
+
+router.use('/faq', faqRoutes);
 
 export default router;

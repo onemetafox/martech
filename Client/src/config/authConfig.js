@@ -2,8 +2,9 @@
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
  */
-
+import queryString from 'query-string'
 import { LogLevel } from "@azure/msal-browser";
+import { CODE_CHALLENGE_METHOD, CODE_CHALLENGE } from './PCKEConfigs';
 /*
 clientId : 152227d5-8abe-4f73-a068-efbfeeb0e723
 secret : fJw7Q~odQS2vShaTeAbM30X59pvmHVlZs~r6W
@@ -13,7 +14,29 @@ secret : fJw7Q~odQS2vShaTeAbM30X59pvmHVlZs~r6W
  * For a full list of MSAL.js configuration parameters, visit:
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/configuration.md 
  */
+//  export const auth = () => {
+//     return queryString.stringifyUrl({
+//         url: `https://login.microsoftonline.com/906aefe9-76a7-4f65-b82d-5ec20775d5aa/oauth2/v2.0/authorize`,
+//         query: {
+//             client_id: "152227d5-8abe-4f73-a068-efbfeeb0e723",
+//             redirect_uri: "http://localhost:3000/calendar",
+//             response_type: 'code',
+//             response_mode: 'query',
+//             scope: [
+//                 'openid',
+//                 'offline_access',
+//                 'email',
+//                 'profile',
+//                 'user.read',
+//             ].join(" "),
+//             state: JSON.stringify({ provider: 'Microsoft' }),
+//             code_challenge: CODE_CHALLENGE,
+//             code_challenge_method: CODE_CHALLENGE_METHOD
+//         }
+//     });
+// }
 export const msalConfig = {
+    
     auth: {
         clientId: "152227d5-8abe-4f73-a068-efbfeeb0e723",
         authority: "https://login.microsoftonline.com/906aefe9-76a7-4f65-b82d-5ec20775d5aa",

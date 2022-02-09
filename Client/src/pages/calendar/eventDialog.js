@@ -67,13 +67,11 @@ export default function EventDialog(props) {
               getOptionLabel={(option) => option.name ? option.name : ""}
               disableClearable
               onChange={(event, newValue) => {
-                console.log(newValue._id);
                 setFormData(f => ({ ...f, contact: newValue._id}))
                 setValue(newValue);
               }}
               inputValue={inputValue}
               onInputChange={(event, newInputValue) => {
-                console.log(newInputValue);
                 setInputValue(newInputValue);
               }}
               
