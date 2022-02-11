@@ -41,9 +41,9 @@ export default function EventDialog(props) {
 
   
   const handleSave=()=>{
-    if(formData.contact == ""){
+    if(formData.contact === ""){
       toast.error("Contact User Required!");
-    }else if(formData.team == ""){
+    }else if(formData.team === ""){
       toast.error("Team Required!");
     }else{
       dispatch(addEvent(formData));
@@ -73,7 +73,7 @@ export default function EventDialog(props) {
                 setInputValue(newInputValue);
               }}
               
-              isOptionEqualToValue={(option, value) => option.id == value._id}
+              isOptionEqualToValue={(option, value) => option.id = value._id}
               
               id="combo-box-demo"
               options={contacts}

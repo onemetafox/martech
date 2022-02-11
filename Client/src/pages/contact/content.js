@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Container from '@mui/material/Container';
 import MUIDataTable from 'mui-datatables';
 import { ThemeProvider } from '@mui/styles';
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core/styles';
 import { styled } from '@mui/material/styles';
 import { 
     Box, 
@@ -45,7 +45,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
     boxShadow: 'none'
 }));
 
-const theme = createMuiTheme({
+const theme = createTheme({
     Overrides: {
         MUIDataTable: {
             root: {

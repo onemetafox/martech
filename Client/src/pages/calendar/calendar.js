@@ -15,7 +15,7 @@ import EventDialog from "./eventDialog";
 
 import {eventStructure} from '../../config/const';
 
-import "../../style/calendar.css";
+// import "../../style/calendar.css";
 import "react-toastify/dist/ReactToastify.css";
 
 import {
@@ -56,14 +56,14 @@ export default function ReactBigCalendar() {
   }));
   const eventStyleGetter = (event, start, end, isSelected) => {
     var backgroundColor;
-    if (event.type == "Holiday"){
-      backgroundColor= '#F64E60';
-    }else if(event.type == "Vacation"){
+    if (event.type === "Holiday"){
+      backgroundColor = '#F64E60';
+    }else if(event.type === "Vacation"){
       backgroundColor= '#3699FF';
-    }else if(event.type == "Weekend"){
-      backgroundColor= '#FFA800';
+    }else if(event.type === "Weekend"){
+      backgroundColor = '#FFA800';
     }else{
-      backgroundColor= '#1BC5BD';
+      backgroundColor = '#1BC5BD';
     }
     
     var style = {

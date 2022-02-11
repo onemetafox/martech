@@ -28,7 +28,7 @@ export default function CallDialog(props) {
 
   const dispatch = useDispatch();
   useEffect(()=>{
-    setFormData({...formData, 
+    setFormData({ 
       contact: props.callData.contact,
       description:props.callData.description, 
       start: props.callData.start, 
@@ -43,9 +43,9 @@ export default function CallDialog(props) {
   const [inputValue, setInputValue] = useState('');
   const [value, setValue] = useState(props.callData.contact);
   const handleSave=()=>{
-    if(formData.contact == ""){
+    if(formData.contact === ""){
       toast.error("Contact User Required!");
-    }else if(formData.type == ""){
+    }else if(formData.type === ""){
       toast.error("Type Required!");
     }else{
       dispatch(addCall(formData));

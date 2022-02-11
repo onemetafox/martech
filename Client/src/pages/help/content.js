@@ -5,22 +5,14 @@ import Container from '@mui/material/Container';
 import { styled } from '@mui/material/styles';
 import { 
     Box, 
-    Button,
-    Dialog,
-    DialogContent,
-    DialogActions,
-    DialogContentText,
-    DialogTitle,
-    Slide,
-    Typography
+    Button
 } from '@mui/material';
-import BorderColorSharpIcon from '@mui/icons-material/BorderColorSharp';
 
 import FaqDialog from './faqDialog';
 
-import { contactStructure, faqStructure } from '../../config/const';
+import { faqStructure } from '../../config/const';
 
-import {getAll, delFaq, selectFaq} from '../../actions/faqAction';
+import {getAll, selectFaq} from '../../actions/faqAction';
 
 import Faq from './faq';
 

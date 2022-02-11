@@ -23,9 +23,9 @@ import {BudgetDataContext} from './content';
 
 const getOnlyDate = (param) =>{
     var today = new Date();
-    var dd = String(today. getDate() - param). padStart(2, '0');
-    var mm = String(today. getMonth() + 1). padStart(2, '0'); //January is 0!
-    var yyyy = today. getFullYear();
+    var dd = String(today.getDate() - param).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
     return today = mm + '/' + dd + '/' + yyyy;
 }
 
@@ -56,11 +56,7 @@ const columns = [
   { id: 'total',    label: 'Total',       minWidth: 170,  align: 'center'},
 ];
 
-function createData(service, third, second, first) {
-  const total = third+second+first;
-  return { service, third, second, first, total };
-}
-var rows = [];
+
 
 export default function Lts3days() {
   const [page, setPage] = React.useState(0);
@@ -81,7 +77,6 @@ export default function Lts3days() {
   React.useEffect( () => {
     var data = budgetData.ltsData;
     setTableData(data);
-    rows = data;
   },[budgetData]);
   
   return (

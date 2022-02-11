@@ -22,7 +22,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
 const Footer = () =>{
     const navigate = useNavigate();
     const handle = (e) =>{
-        if(e.target.name == 'about'){
+        if(e.target.name === 'about'){
             navigate('/about');
         }else if(e.target.name === 'team'){
             navigate('/team');

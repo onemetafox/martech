@@ -21,11 +21,10 @@ export default function FaqDialog(props) {
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState(props.faqData);
-  const [expanded, setExpanded] = useState(props.expanded)
   const [editorState, setEditorState] = useState();
   useEffect(()=>{
     setFormData(props.faqData)
-    if(props.faqData.description != ""){
+    if(props.faqData.description !== ""){
       setEditorState(EditorState.createWithContent(convertFromRaw(JSON.parse(props.faqData.description))));
     }else{
       setEditorState(EditorState.createEmpty());
@@ -33,9 +32,9 @@ export default function FaqDialog(props) {
     
   }, [props])
   const handleSave=()=>{
-    if(formData.title == ""){
+    if(formData.title === ""){
       toast.error("Title Required!");
-    }else if(formData.description == ""){
+    }else if(formData.description === ""){
       toast.error("Description Required!");
     }else{
       dispatch(addFaq(formData));

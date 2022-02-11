@@ -8,14 +8,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import {stateToHTML} from 'draft-js-export-html'; 
 import { convertFromRaw } from 'draft-js';
-import {getAll, delFaq, selectFaq} from '../../actions/faqAction';
+import { delFaq } from '../../actions/faqAction';
 import { 
   CardHeader,
   CardContent,
   CardActions,
   Collapse,
   IconButton,
-  Typography,
   Button,
   Dialog,
   DialogContent,

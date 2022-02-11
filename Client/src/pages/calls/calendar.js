@@ -55,9 +55,9 @@ export default function ReactBigCalendar() {
   }));
   const callStyleGetter = (call, start, end, isSelected) => {
     var backgroundColor;
-    if (call.type == "on-site"){
+    if (call.type === "on-site"){
       backgroundColor= '#F64E60';
-    }else if(call.type == "on-shore"){
+    }else if(call.type === "on-shore"){
       backgroundColor= '#3699FF';
     }
     var style = {

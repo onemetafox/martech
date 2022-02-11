@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {Box, AppBar, CssBaseline, useScrollTrigger, Slide} from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import PropTypes  from 'prop-types';
 import AuthComponent from '../components/authComponent';
 import MenuComponent from '../components/menuComponent';
@@ -27,7 +26,6 @@ HideOnScroll.propTypes = {
   };
 
 const Header = (props) =>{
-    const navigate = useNavigate();
 
     return(
         <div>

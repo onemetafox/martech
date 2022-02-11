@@ -40,10 +40,10 @@ const origindata = {
 const Y2mchart = (props) =>{
     
     const[chatdata, setChartData] = useState(origindata);
-    const [value, setValue] = React.useState([20, 100]);
+    const [value, setValue] = useState([20, 100]);
     const [max, setMax] = useState(0);
     const budgetData = useContext(BudgetDataContext);
-    const [year, setYear] = useState(props.year);
+    const year = useState(props.year);
     const handleIncreaseYear = () => {
       props.setYear(props.year+1);
     }

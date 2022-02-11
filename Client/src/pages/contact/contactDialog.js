@@ -26,13 +26,13 @@ export default function ContactDialog(props) {
   }, [props])
   const handleSave=()=>{
     var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if(formData.name == ""){
+    if(formData.name === ""){
       toast.error("Name Required!");
-    }else if(formData.email == ""){
+    }else if(formData.email === ""){
       toast.error("Email Required!");
     }else if(!formData.email.match(validRegex)) {
       toast.error("Invalid email address!");
-    }else if(formData.ntid == ""){
+    }else if(formData.ntid === ""){
       toast.error("NTID Required!");
     }else{
       dispatch(addContact(formData));
