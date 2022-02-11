@@ -45,7 +45,7 @@ const ExpandMore = styled((props) => {
 const Faq = (props) => {
   const dispatch = useDispatch();
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
   const [open, setOpen] = useState(false);
   const [faq, setFaq] = useState(props.faqData);
   const [admin, setAdmin] = useState(props.isAdmin);
