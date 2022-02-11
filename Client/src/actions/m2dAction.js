@@ -1,10 +1,6 @@
 import axios from 'axios';
-import { browserHistory } from 'react-router';
 import {ROOT_URL} from '../config/const';
 
-const jwt_decode = require('jwt-decode');
-
-// const ROOT_URL = 'http://localhost:3090';
 export function getM2dData(res, month){
     const d = new Date();
 

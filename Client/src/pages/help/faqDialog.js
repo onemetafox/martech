@@ -9,7 +9,6 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { EditorState, convertFromRaw, convertToRaw  } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-import {stateToHTML} from 'draft-js-export-html'; 
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { toast, ToastContainer } from "react-toastify";
 import {useDispatch } from 'react-redux';

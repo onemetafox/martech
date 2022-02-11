@@ -1,10 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { toast } from "react-toastify";
-import axios, { Axios } from 'axios';
+import axios from 'axios';
 import { ROOT_URL} from '../config/const';
 import jwt_decode from 'jwt-decode';
 import * as configs from '../config/config';
-import {headerConf} from '../config/const';
 export const slice = createSlice({
   name: 'eventData',
   initialState: {

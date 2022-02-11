@@ -9,24 +9,7 @@ import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 
 export default function Pagemenu() {
   const navigate = useNavigate();
-
-  const [platformState, setplatformState] = React.useState(Boolean);
-  const [supportState, setsupportState] = React.useState(Boolean);
-  const handlePlatformClick = (event) => {
-    setplatformState(true);
-  };
-
-  const handlePlatformClose = (event) => {
-    setplatformState(false);
-  };
-
-  const handleSupportClick = (event) => {
-    setsupportState(true);
-  };
-
-  const handleSupportClose = (event) => {
-    setsupportState(false);
-  };
+  
   const ColorButton = styled(Button)(({ theme }) => ({
     backgroundColor: 'rgba(77, 89, 149, 0.06)',
     fontSize: '13px',

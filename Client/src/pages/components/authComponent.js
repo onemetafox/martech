@@ -3,7 +3,7 @@ import {Box, Link} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useMsal } from "@azure/msal-react";
 import { toast } from "react-toastify";
-import { callMsGraph, callMsGroup } from "../../config/graph";
+import { callMsGroup } from "../../config/graph";
 
 import { loginRequest } from "../../config/authConfig";
 const AuthComponent = (props) =>{

@@ -7,7 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Box, display } from '@mui/system';
+import { Box } from '@mui/system';
 import { MenuItem, FormControl, InputLabel, Select } from '@mui/material';
 
 import Autocomplete from '@mui/material/Autocomplete';

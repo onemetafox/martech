@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { toast } from "react-toastify";
-
 // import jwt from 'jwt-simple'
-import { SECRET_KEY } from '../config/const';
-
 export const slice = createSlice({
     name: 'authData',
     initialState: {
@@ -15,9 +11,6 @@ export const slice = createSlice({
         setAuth: (state, action) => {
             state = action.payload;
         },
-        delAuth: (state, action) => {
-
-        }
     },
 });
 

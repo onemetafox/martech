@@ -2,8 +2,8 @@ import {React, useEffect} from 'react';
 import Container from '@mui/material/Container';
 import {Box, Button} from '@mui/material';
 import Calendar from './calendar';
-import { useSelector, useDispatch } from 'react-redux';
-import { getAll, selectContact } from '../../actions/contactAction';
+import { useDispatch } from 'react-redux';
+import { getAll } from '../../actions/contactAction';
 const Content = () =>{
     const dispatch = useDispatch();
     useEffect(()=>{
