@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Container from '@mui/material/Container';
 import MUIDataTable from 'mui-datatables';
 import { ThemeProvider } from '@mui/styles';
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
 import { 
     Box, 
