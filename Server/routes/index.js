@@ -11,6 +11,7 @@ import m2dRoutes from './m2d.route';
 import y2dRoutes from './y2date.route';
 import serviceRoutes from './service.route';
 import faqRoutes from './faq.route';
+import ticketRoutes from './ticket.route';
 
 // router.use('/auth', authRoutes);
 
@@ -31,5 +32,5 @@ router.use('/call', callRoutes);
 
 router.use('/faq', faqRoutes);
 
-
+router.use('/ticket', ticketRoutes);
 export default router;
