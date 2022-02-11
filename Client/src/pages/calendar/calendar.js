@@ -15,7 +15,7 @@ import EventDialog from "./eventDialog";
 
 import {eventStructure} from '../../config/const';
 
-// import "../../style/calendar.css";
+import "../../style/calendar.css";
 import "react-toastify/dist/ReactToastify.css";
 
 import {
