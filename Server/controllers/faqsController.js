@@ -17,7 +17,7 @@ function getAll(req, res){
     .then((data)=>{
         res.json(Response.success(jwt.encode(data, timeSetting.secret)));
     }).catch((e)=>{
-        res,json(Response.failure(e));
+        res.json(Response.failure(e));
     })
 }
 

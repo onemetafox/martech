@@ -27,11 +27,9 @@ export const { getAllData, setFaqData} = slice.actions;
 // code can then be executed and other actions can be dispatched
 export const getAll = () => dispatch =>{
 
-    // axios.get(`${ROOT_URL}/getCSRFToken`)
+    // axios.get(`${ROOT_URL}/getCsrfToken`)
     // .then((res)=>{
-    //     console.log(res.data.CSRFToken);
-    //     axios.defaults.headers.post['CSRF-Token'] = res.data.CSRFToken;
-    //     axios.defaults.headers.post['X-CSRF-Token'] = res.data.CSRFToken;
+    //     axios.defaults.headers.post['CSRF-Token'] = res.data.csrfToken;
         axios.post(`${ROOT_URL}/faq/getAll`)
             .then(response => {
                 var data = jwt_decode(response.data.data, configs.secret);

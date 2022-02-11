@@ -1,4 +1,3 @@
-// Main starting point of the application
 import express from 'express';
 import session from 'cookie-session';
 import http from 'http';
@@ -39,9 +38,13 @@ app.use(bodyParser.json({ type: '*/*' }));
 
 // Allow cross-origin resource sharing
 app.use(cors());
-app.get('/getCSRFToken', (req, res) => {
-    res.json({ CSRFToken: req.csrfToken() });
-});
+// app.get('/getCSRFToken', (req, res) => {
+//     res.json({ CSRFToken: req.csrfToken() });
+// });
+// app.use((req, res, next)=>{
+//     console.log("This is the test");
+//     next();
+// }, router);
 app.use(router);
 
 app.options('*', cors());
