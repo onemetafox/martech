@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 const ticketsSchema = new mongoose.Schema({
     name                : String,
-    year                : Number,
-    month               : Number,
+    year                : String,
+    month               : String,
     value               : Number,
     priority            : String,
     createdAt           : {

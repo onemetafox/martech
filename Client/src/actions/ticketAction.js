@@ -42,17 +42,19 @@ export const getStatistic = (year) => dispatch => {
     axios.post(`${ROOT_URL}/ticket/getStatistic`,{year: year})
         .then(response => {
             var data = jwt_decode(response.data.data, configs.secret);
+            console.log(data);
             dispatch(setStatistic(data));
         })
         .catch(() => {
     });
 }
 
-export const delTicket= (id) => dispatch=> {
+export const delTicket= (id, year) => dispatch=> {
     axios.post(`${ROOT_URL}/ticket/delTicket`, {id : id})
         .then(response => {
             if(response.data.status === "Success"){
                 dispatch(getAll());
+                dispatch(getStatistic(year));
                 toast.success("success");
             }else{
                 toast.warn("Error");
@@ -67,7 +69,7 @@ export const addTicket = (params) => dispatch => {
     .then(response => {
         if(response.data.status === "Success"){
             dispatch(getAll());
-            dispatch(getStatistic())
+            dispatch(getStatistic(params.year));
             toast.success("success");
         }else{
             toast.warn("Error");

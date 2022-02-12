@@ -19,10 +19,11 @@ function getAll(req, res){
     })
 }
 function getStatistic(req, res){
-    var year = req.body.year;
+    var year = req.body.year.toString();
     if(year == "")
         year = '2022';
     Tickets.aggregate([
+        {"$match": {"year": year}},
         { "$group": {
             "_id": {
                 "priority": "$priority",

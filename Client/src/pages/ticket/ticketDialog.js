@@ -96,7 +96,7 @@ export default function TicketDialog(props) {
               >
                 <MenuItem value={'1'}>January</MenuItem>
                 <MenuItem value={'2'}>February</MenuItem>
-                <MenuItem value={'3'}>February</MenuItem>
+                <MenuItem value={'3'}>March</MenuItem>
                 <MenuItem value={'4'}>April</MenuItem>
                 <MenuItem value={'5'}>May</MenuItem>
                 <MenuItem value={'6'}>June</MenuItem>
