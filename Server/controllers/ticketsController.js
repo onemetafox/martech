@@ -14,7 +14,6 @@ function delTicket(req, res){
 
 function getAll(req, res){
     Tickets.find()
-    .populate('contact')
     .then((data)=>{
         res.json(Response.success(jwt.encode(data, timeSetting.secret)));
     })
@@ -31,12 +30,11 @@ function addTicket(req, res){
         })
     }else{
         const ticketData = new Tickets({
-            contact: req.body.contact,
-            description: req.body.description,
-            start: req.body.start,
-            end: req.body.end,
-            type: req.body.type,
-            status: req.body.status,
+            name: req.body.name,
+            month: req.body.month,
+            year: req.body.year,
+            value: req.body.value,
+            priority: req.body.priority
         });
         ticketData.save()
         .then((result)=>{

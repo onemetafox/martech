@@ -115,14 +115,14 @@ const TicketChart = (props) =>{
     return (
         
         <Card sx={{ boxShadow:'0px 0px 30px 10px rgb(82 63 105 / 15%)'}}>
-            <CardActions sx={{ justifyContent:"right"}}>
+            {/* <CardActions sx={{ justifyContent:"right"}}>
               <Button size="nomoral" color="primary" onClick={handleDecreaseYear}>
                 BACK
               </Button>
               <Button size="nomoral" color="primary"  onClick={handleIncreaseYear}>
                 NEXT
               </Button>
-            </CardActions>
+            </CardActions> */}
             <CardHeader
                 avatar={
                 <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -138,8 +138,9 @@ const TicketChart = (props) =>{
                     direction={"column"} 
                     justifyContent={'flex-start'} 
                     alignItems={'center'}
+                    
                     >
-                    <Grid item lg={3} style={{width:'inherit'}}>
+                    <Grid item lg={3} style={{width:'inherit', maxWidth:'900px'}}>
                         <Bar
                         data={chatdata}
                         />

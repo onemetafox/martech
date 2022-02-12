@@ -11,6 +11,6 @@ export default configureStore({
         contactsData:ContactReducer,
         callsData: CallReducer,
         faqsData: FaqReducer,
-        ticketData : TicketReducer
+        ticketsData : TicketReducer
     },
 });

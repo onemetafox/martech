@@ -1,4 +1,3 @@
-import { secret } from "./config";
 export const ROOT_URL = 'http://localhost:3090';
 export const eventStructure = {
     contact : {
@@ -43,4 +42,13 @@ export const faqStructure = {
     createdAt: "",
     description: "",
     _id: ""
+}
+
+export const ticketStructure = {
+    _id : "",
+    priority: "",
+    name: "",
+    year: "",
+    month: "",
+    value:""
 }

@@ -192,7 +192,7 @@ const Content = () =>{
         },
       };
     return(
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" sx={{padding: "0px !important"}}>
             <Box sx={{ bgcolor: '#fff', height: '100%',width:'100%', marginTop:'30px',marginBottom:'30px', boxShadow:'0px 0px 30px 0px rgb(82 63 105 / 5%)'}}>
                 <ThemeProvider theme={theme}>
                     <MUIDataTable sx={{bgcolor: '#fff'}}

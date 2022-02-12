@@ -77,31 +77,10 @@ export default function FaqDialog(props) {
               textAlign: { inDropdown: true },
               link: { inDropdown: true },
               history: { inDropdown: true },
-              // image: { uploadCallback: uploadImageCallBack, alt: { present: true, mandatory: true } },
             }}
             onEditorStateChange={onEditContent}
           />
-          {/* <TextareaAutosize
-            aria-label="empty textarea"
-            placeholder="Empty"
-            id="description"
-            minRows={5}
-            style={{ width: '100%' }}
-            variant="standard"
-            onChange={evt => { setFormData(f => ({ ...f, description: evt.target.value})) }}
-            value={formData.description}
-          /> */}
-          {/* <TextField
-            required
-            margin="dense"
-            id="description"
-            label="Description"
-            type="text"
-            fullWidth
-            variant="standard"
-            value={formData.description}
-            onChange={evt => { setFormData(f => ({ ...f, description: evt.target.value})) }}
-          /> */}
+          
         </DialogContent>
         <DialogActions>
           <Button onClick={handleSave}>Save</Button>

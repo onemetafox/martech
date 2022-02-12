@@ -1,19 +1,14 @@
 import { React, useEffect } from 'react';
 import { useState } from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import { Box, FormControl, InputLabel, Select, MenuItem, Button, TextField, Dialog, 
+  DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 
 import { toast, ToastContainer } from "react-toastify";
 
 import {useDispatch } from 'react-redux';
 import {
-  addContact
-} from '../../actions/contactAction';
+  addTicket
+} from '../../actions/ticketAction';
 
 export default function TicketDialog(props) {
 
@@ -25,94 +20,107 @@ export default function TicketDialog(props) {
     setFormData(props.data)
   }, [props])
   const handleSave=()=>{
-    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if(formData.name === ""){
       toast.error("Name Required!");
-    }else if(formData.email === ""){
-      toast.error("Email Required!");
-    }else if(!formData.email.match(validRegex)) {
-      toast.error("Invalid email address!");
-    }else if(formData.ntid === ""){
-      toast.error("NTID Required!");
+    }else if(formData.priority === ""){
+      toast.error("Priority Required!");
+    }else if(!formData.year === "") {
+      toast.error("Year Required!");
+    }else if(formData.month === ""){
+      toast.error("Month Required!");
     }else{
-      dispatch(addContact(formData));
+      dispatch(addTicket(formData));
       props.setOpen(false);
     }
   }
   return (
     <div>
-      <Dialog open={props.open} onClose={()=>{props.setOpen(false)}}>
-        <DialogTitle>Add Contact</DialogTitle>
+      <Dialog fullWidth open={props.open} onClose={()=>{props.setOpen(false)}}>
+        <DialogTitle>Add Ticket</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Add You contact. You can add the contact detail
+            Add You ticket. You can add the ticket detail
           </DialogContentText>
           <TextField
             autoFocus
             required
             margin="dense"
             id="name"
-            label="User Name"
+            label="Name"
             type="text"
             fullWidth
             variant="standard"
             value={formData.name}
             onChange={evt => { setFormData(f => ({ ...f, name: evt.target.value})) }}
           />
+          <FormControl variant="standard" sx={{width: '100%'  }}>
+            <InputLabel id="type-standard-label">Priority</InputLabel>
+            <Select
+              required
+              labelId="type-standard-label"
+              id="type-standard"
+              value={formData.priority}
+              onChange={evt => { setFormData(f => ({ ...f, priority: evt.target.value})) }}
+              label="Priority"
+              variant="standard"
+            >
+              <MenuItem value={'Low'}>Low</MenuItem>
+              <MenuItem value={'Medium'}>Medium</MenuItem>
+              <MenuItem value={'High'}>Hight</MenuItem>
+            </Select>
+          </FormControl>
+          <Box sx={{display: 'flex', justifyContent: 'between'}}>
+            <FormControl variant="standard" sx={{ width: '50%' }}>
+              <TextField
+                required
+                margin="dense"
+                id="year"
+                label="Year"
+                type="number"
+                fullWidth
+                variant="standard"
+                value={formData.year}
+                onChange={evt => { setFormData(f => ({ ...f, year: evt.target.value})) }}
+              />
+            </FormControl>
+            <FormControl variant="standard" sx={{ m: 1, width: '50%' }}>
+              <InputLabel id="demo-simple-select-standard-label">Month</InputLabel>
+              <Select
+                required
+                labelId="demo-simple-select-standard-label"
+                id="demo-simple-select-standard"
+                value={formData.month}
+                onChange={evt => { setFormData(f => ({ ...f, month: evt.target.value})) }}
+                label="Status"
+                variant="standard"
+              >
+                <MenuItem value={'1'}>January</MenuItem>
+                <MenuItem value={'2'}>February</MenuItem>
+                <MenuItem value={'3'}>February</MenuItem>
+                <MenuItem value={'4'}>April</MenuItem>
+                <MenuItem value={'5'}>May</MenuItem>
+                <MenuItem value={'6'}>June</MenuItem>
+                <MenuItem value={'7'}>July</MenuItem>
+                <MenuItem value={'8'}>August</MenuItem>
+                <MenuItem value={'9'}>September</MenuItem>
+                <MenuItem value={'10'}>October</MenuItem>
+                <MenuItem value={'11'}>November</MenuItem>
+                <MenuItem value={'12'}>December</MenuItem>
+
+              </Select>
+            </FormControl>
+          </Box>
+          
           <TextField
             required
             margin="dense"
-            id="email"
-            label="Email"
-            type="email"
-            fullWidth
-            variant="standard"
-            value={formData.email}
-            onChange={evt => { setFormData(f => ({ ...f, email: evt.target.value})) }}
-          />
-          <TextField
-            required
-            margin="dense"
-            id="ntid"
-            label="NTID"
-            type="text"
-            fullWidth
-            variant="standard"
-            value={formData.ntid}
-            onChange={evt => { setFormData(f => ({ ...f, ntid: evt.target.value})) }}
-          />
-          <TextField
-            required
-            margin="dense"
-            id="phone"
-            label="Phone Number"
+            id="value"
+            label="Value"
             type="number"
             fullWidth
             variant="standard"
-            value={formData.phone}
-            onChange={evt => { setFormData(f => ({ ...f, phone: evt.target.value})) }}
-          />
-          <TextField
-            required
-            margin="dense"
-            id="timezone"
-            label="Time Zone"
-            type="text"
-            fullWidth
-            variant="standard"
-            value={formData.timezone}
-            onChange={evt => { setFormData(f => ({ ...f, timezone: evt.target.value})) }}
-          />
-          <TextField
-            required
-            margin="dense"
-            id="localhost"
-            label="Location"
-            type="location"
-            fullWidth
-            variant="standard"
-            value={formData.location}
-            onChange={evt => { setFormData(f => ({ ...f, location: evt.target.value})) }}
+            value={formData.value}
+            onChange={evt => { setFormData(f => ({ ...f, value: evt.target.value})) }}
           />
         </DialogContent>
         <DialogActions>

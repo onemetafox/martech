@@ -5,28 +5,28 @@ import { ROOT_URL} from '../config/const';
 import jwt_decode from 'jwt-decode';
 import * as configs from '../config/config';
 export const slice = createSlice({
-  name: 'callData',
+  name: 'ticketData',
   initialState: {
-      calls: []
+      tickets: []
   },
   reducers: {
     getAllData: (state, action) => {
-      state.calls = action.payload;
+      state.tickets = action.payload;
     },
-    setCallData: (state, action) => {
-        state.calls = [...state.calls, action.payload];
+    setTicketData: (state, action) => {
+        state.tickets = [...state.tickets, action.payload];
     }
   },
 });
 
-export const { getAllData, setCallData} = slice.actions;
+export const { getAllData, setTicketData} = slice.actions;
 
-// The function below is called a thunk and allows us to perform async logic. It
+// The function below is ticketed a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
-// will call the thunk with the `dispatch` function as the first argument. Async
+// will ticket the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched
 export const getAll = () => dispatch =>{
-    axios.post(`${ROOT_URL}/call/getAll`)
+    axios.post(`${ROOT_URL}/ticket/getAll`)
         .then(response => {
             var data = jwt_decode(response.data.data, configs.secret);
             dispatch(getAllData(data));
@@ -35,8 +35,8 @@ export const getAll = () => dispatch =>{
     });
 }
 
-export const delCall= (id) => dispatch=> {
-    axios.post(`${ROOT_URL}/call/delCall`, {id : id})
+export const delTicket= (id) => dispatch=> {
+    axios.post(`${ROOT_URL}/ticket/delTicket`, {id : id})
         .then(response => {
             if(response.data.status === "Success"){
                 dispatch(getAll());
@@ -49,8 +49,8 @@ export const delCall= (id) => dispatch=> {
     });
 }
 
-export const addCall = (params) => dispatch => {
-    axios.post(`${ROOT_URL}/call/addCall`,params)
+export const addTicket = (params) => dispatch => {
+    axios.post(`${ROOT_URL}/ticket/addTicket`,params)
     .then(response => {
         if(response.data.status === "Success"){
             dispatch(getAll());
@@ -64,10 +64,10 @@ export const addCall = (params) => dispatch => {
     })
 }
 
-// The function below is called a selector and allows us to select a value from
+// The function below is ticketed a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const selectCall = state => state.callsData.calls;
+export const selectTicket = state => state.ticketsData.tickets;
 
 
 export default slice.reducer;

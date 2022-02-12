@@ -1,15 +1,10 @@
 import mongoose from 'mongoose';
 const ticketsSchema = new mongoose.Schema({
-    contact : {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Contacts',
-      required: true
-    },
-    description         : String,
-    type                : String,
-    start               : String,
-    end                 : String,
-    status              : String,
+    name                : String,
+    year                : Number,
+    month               : Number,
+    value               : Number,
+    priority            : String,
     createdAt           : {
       type: Date,
       default: Date.now,

@@ -21,11 +21,11 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorSharpIcon from '@mui/icons-material/BorderColorSharp';
 
-import ContactDialog from './ticketDialog';
+import TicketDialog from './ticketDialog';
 
-import { contactStructure } from '../../config/const';
+import { ticketStructure } from '../../config/const';
 
-import {getAll, delContact, selectContact} from '../../actions/contactAction';
+import {getAll, delTicket, selectTicket} from '../../actions/ticketAction';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -89,37 +89,35 @@ const TicketTable = () =>{
     useEffect(()=>{
         dispatch(getAll());
     }, [])
-    const contactsList = useSelector(selectContact);
+    const ticketsList = useSelector(selectTicket);
     const [open, setOpen] = useState(false);
-    const [contactData, setContactData] = useState(contactStructure);
+    const [ticketData, setTicketData] = useState(ticketStructure);
     const [dialogOpen, setDialogOpen] = useState(false);
-    const editContactData=(value)=>{
+    const editTicketData=(value)=>{
         var data = value.rowData;
-        setContactData({...contactData, 
+        setTicketData({...ticketData, 
             _id: data[0],
             name: data[1],
-            ntid: data[2],
-            email: data[3],
-            phone: data[4],
-            timezone: data[5],
-            location: data[6]
+            priority: data[2],
+            year: data[3],
+            month: data[4],
+            value: data[5]
         })
         setOpen(true)
     }
-    const deleteContact =(value) =>{
+    const deleteTicket =(value) =>{
         var data = value.rowData;
-        setContactData({...contactData, 
+        setTicketData({...ticketData, 
             _id: data[0],
             name: data[1],
-            ntid: data[2],
-            email: data[3],
-            phone: data[4],
-            timezone: data[5],
-            location: data[6]
+            priority: data[2],
+            year: data[3],
+            month: data[4],
+            value: data[5]
         })
         setDialogOpen(true);
     }
-    const contactColumn = [
+    const ticketColumn = [
         { 
             name: '_id',
             options: {
@@ -133,27 +131,22 @@ const TicketTable = () =>{
             label: 'NAME',
             align: 'center',},
         { 
-            name: 'ntid',
-            label: 'NTID',
+            name: 'priority',
+            label: 'Priority',
             align: 'center',},
         {
-            name: 'email',
-            label: 'EMAIL',
+            name: 'year',
+            label: 'Year',
             align: 'center',
         },
         {
-            name: 'phone',
-            label: 'PHONE NUMBER',
+            name: 'month',
+            label: 'Month',
             align: 'center',
         },
         {
-            name: 'timezone',
-            label: 'TIME ZONE',
-            align: 'center',
-        },
-        {
-            name: 'location',
-            label: 'LOCATION',
+            name: 'value',
+            label: 'Value',
             align: 'center',
         },
         {
@@ -164,8 +157,8 @@ const TicketTable = () =>{
                 customBodyRender: (value, tableMeta, updateValue)  => {
                     return (
                         <Box sx={{display:'flex', justifyContent:'left'}}>
-                            <IconButton onClick = {()=>{editContactData(tableMeta); setOpen(true)}} color="primary"><BorderColorSharpIcon/></IconButton>
-                            <IconButton onClick = {()=>{deleteContact(tableMeta)}} color="primary"><DeleteIcon/></IconButton>
+                            <IconButton onClick = {()=>{editTicketData(tableMeta); setOpen(true)}} color="primary"><BorderColorSharpIcon/></IconButton>
+                            <IconButton onClick = {()=>{deleteTicket(tableMeta)}} color="primary"><DeleteIcon/></IconButton>
                         </Box>
                     );
                 },
@@ -185,25 +178,25 @@ const TicketTable = () =>{
         download:false,
         customToolbar: () => {
             return (
-                <ColorButton onClick={()=>{setContactData(contactStructure); setOpen(true)}}>
-                    Add Contact
+                <ColorButton onClick={()=>{setTicketData(ticketStructure); setOpen(true)}}>
+                    Add Ticket
                 </ColorButton>
             );
         },
       };
     return(
-        <Container maxWidth="lg">
-            <Box sx={{ bgcolor: '#fff', height: '100%',width:'100%', marginTop:'30px',marginBottom:'30px', boxShadow:'0px 0px 30px 0px rgb(82 63 105 / 5%)'}}>
+        <Container maxWidth="lg" sx={{padding: "0px !important"}}>
+            <Box sx={{ bgcolor: '#fff', height: '100%',width:'100%', boxShadow:'0px 0px 30px 0px rgb(82 63 105 / 5%)'}}>
                 <ThemeProvider theme={theme}>
                     <MUIDataTable sx={{bgcolor: '#fff'}}
-                        data={contactsList}
-                        columns={contactColumn}
+                        data={ticketsList}
+                        columns={ticketColumn}
                         options={options}
-                        title={"Team Contact"}
+                        title={"Team Ticket"}
                     />
                 </ThemeProvider>
             </Box>
-            <ContactDialog open={open} setOpen={setOpen} data = {contactData}/>
+            <TicketDialog open={open} setOpen={setOpen} data = {ticketData}/>
             <Dialog
                 open={dialogOpen}
                 TransitionComponent={Transition}
@@ -218,7 +211,7 @@ const TicketTable = () =>{
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button  sx={{background: "#F64E60", color: "#ffff", marginRight:"20px",'&:hover': { background: "#F64E60",}}} onClick={()=>{dispatch(delContact(contactData._id)); setDialogOpen(false)}}>Agree</Button>
+                    <Button  sx={{background: "#F64E60", color: "#ffff", marginRight:"20px",'&:hover': { background: "#F64E60",}}} onClick={()=>{dispatch(delTicket(ticketData._id)); setDialogOpen(false)}}>Agree</Button>
                     <Button onClick={()=>{setDialogOpen(false)}}>Disagree</Button>
                     
                 </DialogActions>
