@@ -36,7 +36,9 @@ table{
 .App-link {
   color: #61dafb;
 }
-
+.c3-bars path {
+  shape-rendering: auto;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

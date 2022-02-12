@@ -7,7 +7,8 @@ import * as configs from '../config/config';
 export const slice = createSlice({
   name: 'ticketData',
   initialState: {
-      tickets: []
+      tickets: [],
+      statistic: []
   },
   reducers: {
     getAllData: (state, action) => {
@@ -15,11 +16,14 @@ export const slice = createSlice({
     },
     setTicketData: (state, action) => {
         state.tickets = [...state.tickets, action.payload];
+    },
+    setStatistic: (state, action) => {
+        state.statistic = action.payload;
     }
   },
 });
 
-export const { getAllData, setTicketData} = slice.actions;
+export const { getAllData, setTicketData, setStatistic} = slice.actions;
 
 // The function below is ticketed a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
@@ -30,6 +34,15 @@ export const getAll = () => dispatch =>{
         .then(response => {
             var data = jwt_decode(response.data.data, configs.secret);
             dispatch(getAllData(data));
+        })
+        .catch(() => {
+    });
+}
+export const getStatistic = (year) => dispatch => {
+    axios.post(`${ROOT_URL}/ticket/getStatistic`,{year: year})
+        .then(response => {
+            var data = jwt_decode(response.data.data, configs.secret);
+            dispatch(setStatistic(data));
         })
         .catch(() => {
     });
@@ -54,6 +67,7 @@ export const addTicket = (params) => dispatch => {
     .then(response => {
         if(response.data.status === "Success"){
             dispatch(getAll());
+            dispatch(getStatistic())
             toast.success("success");
         }else{
             toast.warn("Error");
@@ -68,6 +82,7 @@ export const addTicket = (params) => dispatch => {
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const selectTicket = state => state.ticketsData.tickets;
+export const selectStatistic = state => state.ticketsData.statistic;
 
 
 export default slice.reducer;

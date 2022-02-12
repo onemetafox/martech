@@ -18,4 +18,6 @@ router.route('/getAll')
 router.route('/delticket')
   .post(ticketCtrl.delTicket);
   
+router.route('/getStatistic')
+  .post(ticketCtrl.getStatistic);
 export default router;

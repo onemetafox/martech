@@ -18,6 +18,48 @@ function getAll(req, res){
         res.json(Response.success(jwt.encode(data, timeSetting.secret)));
     })
 }
+function getStatistic(req, res){
+    var year = req.body.year;
+    if(year == "")
+        year = '2022';
+    Tickets.aggregate([
+        { "$group": {
+            "_id": {
+                "priority": "$priority",
+                "month": "$month"
+            },
+            "monthCount": { "$sum": "$value" }
+        }},
+        { "$sort": { "month": -1 } },
+    ]).then((data) => {
+        // res.json(Response.success(data));
+        var low = Array(13);
+        var medium = Array(13)
+        var high = Array(13)
+        data.forEach((item)=> {
+            if(item._id.priority == "Low"){
+                low[item._id.month] = item.monthCount;
+            }
+            if(item._id.priority == "High"){
+                high[item._id.month] = item.monthCount;
+            }
+            if(item._id.priority == "Medium"){
+                medium[item._id.month] = item.monthCount;
+            }
+        });
+        low[0] = "Low";
+        medium[0]="Medium";
+        high[0] = "High";
+        var result = [];
+        result.push(low);
+        result.push(medium);
+        result.push(high);
+        res.json(Response.success(jwt.encode(result, timeSetting.secret)));
+    }).catch((err) => {
+        console.log(err);
+    })
+
+}
 
 function addTicket(req, res){
     if(req.body._id){
@@ -50,6 +92,7 @@ function addTicket(req, res){
 export default {
     delTicket,
     addTicket,
-    getAll
+    getAll,
+    getStatistic
 }
 

@@ -213,7 +213,6 @@ const TicketTable = () =>{
                 <DialogActions>
                     <Button  sx={{background: "#F64E60", color: "#ffff", marginRight:"20px",'&:hover': { background: "#F64E60",}}} onClick={()=>{dispatch(delTicket(ticketData._id)); setDialogOpen(false)}}>Agree</Button>
                     <Button onClick={()=>{setDialogOpen(false)}}>Disagree</Button>
-                    
                 </DialogActions>
             </Dialog>
         </Container>
