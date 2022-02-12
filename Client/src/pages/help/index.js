@@ -19,7 +19,7 @@ const Contact = () =>{
                 <Content />
             </div>
             <div style={{flex: 1}}>
-                <Footer />
+                {/* <Footer /> */}
             </div>
         </div>
 

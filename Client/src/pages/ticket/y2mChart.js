@@ -114,7 +114,7 @@ const Y2mchart = (props) =>{
     }, [budgetData]);
     return (
         
-        <Card sx={{ marginBottom: '70px', boxShadow:'0px 0px 30px 10px rgb(82 63 105 / 15%)'}}>
+        <Card sx={{ boxShadow:'0px 0px 30px 10px rgb(82 63 105 / 15%)'}}>
             <CardActions sx={{ justifyContent:"right"}}>
               <Button size="nomoral" color="primary" onClick={handleDecreaseYear}>
                 BACK

@@ -12,15 +12,13 @@ const Contact = () =>{
         setHeight(document.body.scrollHeight - 48);
     }, [])
     return(
-        <div
-            style={{flexDirection: 'column', justifyContent:'space-between', alignItems:"stretch", flex: 1}}
-        >
+        <div style={{flexDirection: 'column', justifyContent:'space-between', alignItems:"stretch", flex: 1}}>
             <div style={{flex: 1, height: winheight+'px'}}>
                 <Header title={'Team Contact'}/>
                 <Content />
             </div>
             <div style={{flex: 1}}>
-                <Footer />
+                {/* <Footer /> */}
             </div>
         </div>
 
