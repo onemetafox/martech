@@ -28,7 +28,18 @@ export default function Pagemenu() {
     }));
   return (
     <div>
-        <ColorButton id="basic-button"> Knowledge base </ColorButton>
+        <PopupState variant="popover" popupId="support-button">
+          {(popupState) => (
+            <React.Fragment>
+              <ColorButton variant="contained" {...bindTrigger(popupState)}>
+              Knowledge base
+              </ColorButton>
+              <Menu open={true} {...bindMenu(popupState)}>
+                <MenuItem onClick={() => { navigate('/ticket'); popupState.close();}}>Ticket Summary</MenuItem>
+              </Menu>
+            </React.Fragment>
+          )}
+        </PopupState>
         <PopupState variant="popover" popupId="support-button">
           {(popupState) => (
             <React.Fragment>

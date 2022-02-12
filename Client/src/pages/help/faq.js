@@ -58,7 +58,7 @@ const Faq = (props) => {
     setAdmin(props.isAdmin);
   },[props])
   return (
-    <Card sx={{ width: "100%", marginTop: "15px"}}>
+    <Card sx={{ width: "100%", marginBottom: '70px', marginTop: "15px"}}>
       <CardHeader
         title={faq.title}
       />

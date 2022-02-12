@@ -1,9 +1,9 @@
-import { React, useEffect, useState} from 'react';
+import { React, useEffect, useState } from 'react';
 import Header from '../header';
 import Footer from '../footer';
 import Content from './content';
 
-const Calendar = () =>{
+const Budget = () =>{
     const [winheight, setHeight] = useState(0);
     
     useEffect(() => {
@@ -14,13 +14,14 @@ const Calendar = () =>{
             style={{flexDirection: 'column', justifyContent:'space-between', alignItems:"stretch", flex: 1}}
         >
             <div style={{flex: 1, height: winheight+'px'}}>
-                <Header title={'On-Call Support'}/>
+                <Header title={'Ticket Summary'}/>
                 <Content />
             </div>
             <div style={{flex: 1}}>
                 <Footer />
             </div>
         </div>
+
     );
 }
-export default Calendar;
+export default Budget;

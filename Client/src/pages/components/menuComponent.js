@@ -32,9 +32,19 @@ const MenuComponent = (props) =>{
     return(
         <div>
             <Box component="img" onClick={() => { navigate('/about'); }} sx={{ height: '88px', width: '128px', paddingLeft: '29px', }} src="/static/img/favicon.svg" />
-            <Link component="button" variant="body3" underline='none' color={props.color} sx={{ paddingLeft:"35px" }}>
-                Knowledge base
-            </Link>
+            <PopupState variant="popover" popupId="support-button">
+            {(popupState) => (
+                <React.Fragment>
+                <Link component="button" variant="body3" underline='none' 
+                    onClick={() => { navigate('/ticket'); }} color={props.color}  sx={{ paddingLeft:"35px" }}
+                    variant="contained" {...bindTrigger(popupState)}
+                >Knowledge base</Link>
+                <Menu open={true} {...bindMenu(popupState)}>
+                    <MenuItem onClick={() => { navigate('/ticket'); popupState.close();}}>Ticket Summary</MenuItem>
+                </Menu>
+                </React.Fragment>
+            )}
+            </PopupState>
             <PopupState variant="popover" popupId="support-button">
                 {(popupState) => (
                     <React.Fragment>

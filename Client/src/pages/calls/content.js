@@ -37,7 +37,6 @@ const Content = () =>{
                 </Box>
             </Box>
         </Container>
-        
     );
 }
 export default Content;
