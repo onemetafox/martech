@@ -37,7 +37,7 @@ const origindata = {
     return `$${value}`;
   }
 
-const Y2mchart = (props) =>{
+const TicketChart = (props) =>{
     
     const[chatdata, setChartData] = useState(origindata);
     const [value, setValue] = useState([20, 100]);
@@ -137,7 +137,8 @@ const Y2mchart = (props) =>{
                     spacing={1} 
                     direction={"column"} 
                     justifyContent={'flex-start'} 
-                    alignItems={'center'}>
+                    alignItems={'center'}
+                    >
                     <Grid item lg={3} style={{width:'inherit'}}>
                         <Bar
                         data={chatdata}
@@ -159,4 +160,4 @@ const Y2mchart = (props) =>{
     );
   }
 
-export default Y2mchart;
+export default TicketChart;

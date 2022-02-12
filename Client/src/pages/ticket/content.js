@@ -3,7 +3,8 @@ import {
     Grid, Container, Box
 } from '@mui/material';
 
-import Y2mchart from "./y2mChart";
+import TicketChart from "./ticketChart";
+import TicketTable from './ticketTable';
 import { getY2mData } from '../../actions/y2dAction';
 import jwt_decode from 'jwt-decode';
 import * as configs from '../../config/config';
@@ -30,7 +31,10 @@ const Content = () =>{
           <Box>
             <Grid container spacing={12}>
               <Grid item xs={12} lg={12}>
-                <Y2mchart year = {year} setYear={setYear}/>
+                <TicketChart year = {year} setYear={setYear}/>
+              </Grid>
+              <Grid item xs={12} lg={12}>
+                <TicketTable />
               </Grid>
             </Grid>
           </Box>

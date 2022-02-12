@@ -41,9 +41,9 @@ const Content = () =>{
               <Grid item xs={12} lg={12}>
                 <Ec2Table />
               </Grid>
-              <Grid item xs={12} lg={12}>
-              <Ec2Detail prop = {ec2instancedata} />
-              </Grid>
+                <Grid item xs={12} lg={12}>
+                  <Ec2Detail prop = {ec2instancedata} />
+                </Grid>
             </Grid>
           </Box>
         </Container>
