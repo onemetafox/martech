@@ -18,7 +18,7 @@ const PrivateRoute = (props) =>{
         path = true;
         dispatch(setPath(props.path));
       }else{
-        toast.error("You are not Admin or Developer!");
+        toast.error("Un-Authorized to Access!");
       }
     }else if(props.path === "/platform/budget"){
       if(account.admin){
@@ -27,7 +27,7 @@ const PrivateRoute = (props) =>{
       }else{
         auth =false;
         path = true;
-        toast.error("You are not Admin!");
+        toast.error("Un-Authorized to Access!");
       }
     }else{
       auth = false;
