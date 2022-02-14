@@ -5,16 +5,20 @@ export const slice = createSlice({
     initialState: {
             user: [],
             date: {},
-            isLoggedin: false
+            isLoggedin: false,
+            prePath : '/'
     },
     reducers: {
         setAuth: (state, action) => {
             state = action.payload;
         },
+        setPrePath: (state, action) => {
+            state.prePath = action.payload;
+        }
     },
 });
 
-export const { setAuth, delAuth} = slice.actions;
+export const { setAuth, delAuth, setPrePath} = slice.actions;
 
 export const signin = (user) => dispatch =>{
     var data = {};
@@ -42,11 +46,17 @@ export const isAuth = () =>{
     }
 }
 
+export const setPath = (path) => dispatch => {
+    dispatch(setPrePath(path));
+}
+
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const selectAuth = state => state.authData;
 export const checkAuth = state => state.authData.lsLoggedin;
+
+export const selectPrePath =  state => state.authData.prePath;
 
 export default slice.reducer;

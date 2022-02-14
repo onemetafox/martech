@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { HelmetProvider, Helmet } from "react-helmet-async";
 
 import Landingpage from "./pages/landingpage";
