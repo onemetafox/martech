@@ -11,15 +11,19 @@ const PrivateRoute = (props) =>{
       if(account.admin || account.developer){
         console.log("admin and developer");
         auth = true;
+      }else{
+        toast.error("You are not Admin or Developer!");
       }
     }else if(props.path === "/platform/budget"){
       if(account.admin){
         console.log("admin");
         auth = true;
+        toast.error("You are not Admin!");
+      }else{
+
       }
     }else{
       auth = false;
-      console.log("nothing");
       toast.error("Authentication Failed!");
     }
   }else{
