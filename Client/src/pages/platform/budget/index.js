@@ -12,7 +12,7 @@ const Budget = () =>{
     return(
         <div style={{flexDirection: 'column', justifyContent:'space-between', alignItems:"stretch", flex: 1}} >
             <div style={{flex: 1, height: winheight+'px'}}>
-                <Header title={'Budget'}/>
+                <Header subTitle={'Budget'} title={'Platform'}/>
                 <Content />
             </div>
             <div style={{flex: 1}}>

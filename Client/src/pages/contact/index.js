@@ -14,7 +14,7 @@ const Contact = () =>{
     return(
         <div style={{flexDirection: 'column', justifyContent:'space-between', alignItems:"stretch", flex: 1}}>
             <div style={{flex: 1, height: winheight+'px'}}>
-                <Header title={'Team Contact'}/>
+                <Header subTitle={'Team Contact'} title={'Support'}/>
                 <Content />
             </div>
             <div style={{flex: 1}}>

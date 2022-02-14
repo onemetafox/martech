@@ -14,7 +14,7 @@ const Calendar = () =>{
             style={{flexDirection: 'column', justifyContent:'space-between', alignItems:"stretch", flex: 1}}
         >
             <div style={{flex: 1, height: winheight+'px'}}>
-                <Header title={'On-Call Support'}/>
+                <Header subTitle={'On-Call Support'} title={'Support'}/>
                 <Content />
             </div>
             <div style={{flex: 1}}>

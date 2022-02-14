@@ -12,7 +12,7 @@ const Summary = () =>{
     return(
         <div style={{flexDirection: 'column', justifyContent:'space-between', alignItems:"stretch", flex: 1}} >
             <div style={{flex: 1, height: winheight+'px'}}>
-                <Header title={'EC2 Instances'}/>
+                <Header subTitle={'EC2 Instances'} title={"Platform"}/>
                 <Content />
             </div>
             <div style={{flex: 1}}>

@@ -61,9 +61,9 @@ const Header = (props) =>{
                 >
                     <Breadcrumbs aria-label="breadcrumb" sx={{fontSize: "17px"}}>
                         <Link underline="hover" color="black" href="/" sx={{fontSize: "17px"}}>
-                            Support
+                            {props.title}
                         </Link>
-                        <Typography color="text.primary" sx={{fontSize: "17px"}}>{props.title}</Typography>
+                        <Typography color="text.primary" sx={{fontSize: "17px"}}>{props.subTitle}</Typography>
                     </Breadcrumbs>
                 </Box>
             </Stack>
