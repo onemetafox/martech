@@ -89,7 +89,7 @@ const TicketChart =(props) =>{
               <BarChartIcon/>
           </Avatar>
           }
-          title={<Typography variant='h5'>Ticket Summary</Typography>}
+          title={<Typography variant='h5'>Ticket Summary({year})</Typography>}
       />
       <CardContent>
         <div id="chart1"></div>

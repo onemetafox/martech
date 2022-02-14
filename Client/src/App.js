@@ -11,8 +11,8 @@ import About from './pages/about';
 import Calls from './pages/calls';
 import Help from './pages/help';
 import Ticket from './pages/ticket';
-
 import PrivateRoute from "./auth";
+import { ToastContainer } from "react-toastify";
 import './style/App.css';
 
 function App() {
@@ -35,6 +35,7 @@ function App() {
           <Route path="/help" element={<Help/> } />
         </Routes>
       </Router>
+      <ToastContainer autoClose={2000} />
     </HelmetProvider>
   )
 }

@@ -42,7 +42,7 @@ const Content = () =>{
     useEffect(()=>{
         dispatch(getAll());
         var auth = JSON.parse(sessionStorage.getItem("auth"));
-        if(auth.admin){
+        if(auth && auth.admin){
             setIsAdmin(true);
         }
     },[])
