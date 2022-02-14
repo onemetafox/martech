@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   Navigate, 
 } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 const PrivateRoute = (props) =>{
   var auth = false;
   const account = JSON.parse(sessionStorage.getItem('auth'));
