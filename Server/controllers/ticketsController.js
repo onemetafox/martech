@@ -34,23 +34,20 @@ function getStatistic(req, res){
         { "$sort": { "month": -1 } },
     ]).then((data) => {
         // res.json(Response.success(data));
-        var low = Array(13);
-        var medium = Array(13)
-        var high = Array(13)
+        var low = Array(12);
+        var medium = Array(12)
+        var high = Array(12)
         data.forEach((item)=> {
             if(item._id.priority == "Low"){
-                low[item._id.month] = item.monthCount;
+                low[item._id.month-1] = item.monthCount;
             }
             if(item._id.priority == "High"){
-                high[item._id.month] = item.monthCount;
+                high[item._id.month-1] = item.monthCount;
             }
             if(item._id.priority == "Medium"){
-                medium[item._id.month] = item.monthCount;
+                medium[item._id.month-1] = item.monthCount;
             }
         });
-        low[0] = "Low";
-        medium[0]="Medium";
-        high[0] = "High";
         var result = [];
         result.push(low);
         result.push(medium);
