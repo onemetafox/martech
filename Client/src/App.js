@@ -19,8 +19,8 @@ function App() {
   return (
     <HelmetProvider>
       <Helmet
-        titleTemplate="%s | Material App"
-        defaultTitle="Material App - React Admin & Dashboard Template"
+        titleTemplate=""
+        defaultTitle="Martech"
       />
       <Router>
         <Routes>

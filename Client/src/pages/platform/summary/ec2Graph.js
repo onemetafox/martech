@@ -42,9 +42,9 @@ const origindata = {
     }
   ]
 };
-  function valuetext(value) {
+function valuetext(value) {
     return `${value}°C`;
-  }
+}
 
 const Ec2Graph = () =>{
     
