@@ -42,7 +42,6 @@ export const getStatistic = (year) => dispatch => {
     axios.post(`${ROOT_URL}/ticket/getStatistic`,{year: year})
         .then(response => {
             var data = jwt_decode(response.data.data, configs.secret);
-            console.log(data);
             dispatch(setStatistic(data));
         })
         .catch(() => {
