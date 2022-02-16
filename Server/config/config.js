@@ -7,7 +7,10 @@ export const timeSetting = {
   sessionScreteKey: jwt.encode("session", '123456789qwertyuiop')
 };
 export const dbConf = {
-  mongo_host: process.env.mongo_host,
-  mongo_port: process.env.mongo_port,
+  host: process.env.MONGO_HOST,
+  port: process.env.MONGO_PORT,
+  user: process.env.MONGO_USER,
+  pwd: process.env.MONGO_PWD,
+  db: process.env.MONGO_DB,
   mongooseDebug: process.env.MONGOOSE_DEBUG
 }  

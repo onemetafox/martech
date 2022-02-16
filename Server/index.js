@@ -35,7 +35,12 @@ app.use(cookieParser());
 // plugin bluebird promise in mongoose
 
 // connect to mongo db
-const mongoUri = dbConf.mongo_host;
+let mongoUri = "";
+if(dbConf.user){
+    mongoUri = "mongodb://"+dbConf.user + ":" + dbConf.pwd+"@"+dbConf.host+":"+dbConf.port+"/"+dbConf.db;
+}else{
+    mongoUri = "mongodb://"+dbConf.host + ":" + dbConf.port + "/" + dbConf.db
+}
 mongoose.connect(mongoUri);
 mongoose.connection.on('error', () => {
   throw new Error(`unable to connect to database: ${mongoUri}`);
