@@ -20,7 +20,7 @@ function App() {
     <HelmetProvider>
       <Helmet
         titleTemplate=""
-        defaultTitle="Martech"
+        defaultTitle="EDP"
       />
       <Router>
         <Routes>
