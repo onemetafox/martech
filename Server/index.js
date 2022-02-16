@@ -10,7 +10,7 @@ import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import csrf from 'csurf';
 import hpp from 'hpp';
-import {timeSetting} from './config/config';
+import { dbConf } from './config/config';
 const app = express();
 app.use(helmet());
 app.use(hpp());
@@ -30,7 +30,23 @@ app.use(cookieParser());
 //   cookie: true
 // }));
 // DB Setup
-mongoose.connect('mongodb://127.0.0.1:27017/marchtech');
+// mongoose.connect('mongodb://127.0.0.1:27017/marchtech');
+
+// plugin bluebird promise in mongoose
+
+// connect to mongo db
+const mongoUri = dbConf.mongo_host;
+mongoose.connect(mongoUri);
+mongoose.connection.on('error', () => {
+  throw new Error(`unable to connect to database: ${mongoUri}`);
+});
+
+// print mongoose logs in dev env
+if (dbConf.MONGOOSE_DEBUG) {
+  mongoose.set('debug', (collectionName, method, query, doc) => {
+    debug(`${collectionName}.${method}`, util.inspect(query, false, 20), doc);
+  });
+}
 
 // App Setup
 app.use(morgan('combined'));
