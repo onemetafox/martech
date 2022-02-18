@@ -44,6 +44,13 @@ export const faqStructure = {
     _id: ""
 }
 
+export const edpdatasetStructure = {
+    title : "",
+    createdAt: "",
+    description: "",
+    _id: ""
+}
+
 export const ticketStructure = {
     _id : "",
     priority: "",

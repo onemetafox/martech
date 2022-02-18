@@ -161,7 +161,7 @@ const Ec2Graph = () =>{
                     <MoreVertIcon />
                 </IconButton>
                 }
-                title={<Typography variant='h5'>Ec2 Count Graph</Typography>}
+                title={<Typography variant='h5'>EC2 Summary</Typography>}
                 
             />
             <CardContent>

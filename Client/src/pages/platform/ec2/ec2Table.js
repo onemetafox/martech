@@ -1,4 +1,5 @@
-import {React, useState, useEffect, useContext} from 'react';
+import * as React from 'react';
+import {useState, useContext, useEffect} from 'react';
 import {
     CardHeader,
     Avatar,
@@ -15,7 +16,7 @@ import {
     Grid,
 } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import StorageIcon from '@mui/icons-material/Storage';
+import DnsIcon from '@mui/icons-material/Dns';
 import {red,} from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 import { tableCellClasses  } from "@mui/material/TableCell";
@@ -42,49 +43,65 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   }));
   
 const columns = [
-  { id: 'instanceId', label: 'Instance ID', minWidth: 170 },
-  { id: 'instanceType', label: 'Instance Type', minWidth: 100 },
-  { id: 'ipAddress', label: 'IP Address', minWidth: 100 },
-  { id: 'keyName', label: 'Key Name', minWidth: 100 },
-  { id: 'iamInstanceProfile', label: 'Iam Instance Profile', minWidth: 170 },
-  { id: 'availability_Zone', label: 'Availability Zone', minWidth: 100 },
+  { id: 'region', label: 'Region', minWidth: 170 },
+  { id: 'runningIns', label: 'Running Instance', minWidth: 100 },
+  { id: 'stopIns', label: 'Stopping Instance', minWidth: 100 },
 ];
 
-function createData(instanceId, instanceType, ipAddress, keyName, iamInstanceProfile, availability_Zone) {
-  return {instanceId, instanceType, ipAddress, keyName, iamInstanceProfile, availability_Zone};
-}
+// function createData(_id, region, runningIns, stopIns) {
+//   return {_id, region, runningIns, stopIns};
+// }
 
-
-export default function Ec2Detail(prop) {
-  const instanceData = useContext(Ec2CountDataContext);
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [ec2data, setEc2Data] = useState([]);
+export default function Ec2Table(props) {
+  const countData = useContext(Ec2CountDataContext);
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [tableRows, setTableRows] = useState([]);
   var rows = [];
-
-  useEffect( () => {
-    var data = instanceData.ec2instancedata;
-    for(var i = 0; i < data.length; i++){
-      rows.push(createData(data[i].instanceId, data[i].instance_type, data[i].ipv4, data[i].keyName, data[i].iamInstanceProfile, data[i].availability_Zone));
-    }
-    setEc2Data(rows);
-  },[instanceData.ec2instancedata]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
+  const createData = (_id, region, runningIns, stopIns) =>{
+    return {_id, region, runningIns, stopIns};
+  }
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
 
+  useEffect(() => {
+    var data = countData.ec2countdata;
+    for(var i = 0; i < data.length; i++){
+      rows.push(createData(data[i].doc._id, data[i].doc.Region, data[i].doc.Running, data[i].doc.Stopped));
+    }
+    setTableRows(rows);
+  },[countData.ec2countdata]);
+
+  const renderData = () => {
+    return tableRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row,index) => {
+        return (
+        <StyledTableRow hover role="checkbox" tabIndex={-1} key={index}>
+            {columns.map((column) => {
+            const value = row[column.id];
+            return (
+                <StyledTableCell key={column.id} align={column.align}>
+                {column.format && typeof value === 'number'
+                    ? column.format(value)
+                    : value}
+                </StyledTableCell>
+            );
+            })}
+        </StyledTableRow>
+        );
+    });
+  }
   return (
-        <Card sx={{maxHeight:500, marginBottom:'100px', boxShadow:'0px 0px 30px 10px rgb(82 63 105 / 15%)'}}>
+        <Card sx={{maxHeight:500, boxShadow:'0px 0px 30px 10px rgb(82 63 105 / 15%)'}}>
             <CardHeader
                 avatar={
                 <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                    <StorageIcon/>
+                    <DnsIcon/>
                 </Avatar>
                 }
                 action={
@@ -92,7 +109,7 @@ export default function Ec2Detail(prop) {
                     <MoreVertIcon />
                 </IconButton>
                 }
-                title={<Typography variant='h5'>Ec2 Count Detail</Typography>}
+                title={<Typography variant='h5'>EC2 Summary Detail</Typography>}
             />
             <CardContent>
                 <Grid 
@@ -106,9 +123,9 @@ export default function Ec2Detail(prop) {
                             <Table stickyHeader aria-label="sticky table">
                             <TableHead>
                                 <StyledTableRow>
-                                {columns.map((column) => (
+                                {columns.map((column,index) => (
                                     <StyledTableCell
-                                    key={column.id}
+                                    key={index}
                                     align={column.align}
                                     style={{ minWidth: column.minWidth }}
                                     >
@@ -118,31 +135,14 @@ export default function Ec2Detail(prop) {
                                 </StyledTableRow>
                             </TableHead>
                             <TableBody>
-                                {ec2data
-                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                .map((row,index) => {
-                                    return (
-                                    <StyledTableRow hover role="checkbox" tabIndex={-1} key={index}>
-                                        {columns.map((column) => {
-                                        const value = row[column.id];
-                                        return (
-                                            <StyledTableCell key={column.id} align={column.align}>
-                                            {column.format && typeof value === 'number'
-                                                ? column.format(value)
-                                                : value}
-                                            </StyledTableCell>
-                                        );
-                                        })}
-                                    </StyledTableRow>
-                                    );
-                                })}
+                                {renderData()}
                             </TableBody>
                             </Table>
                         </TableContainer>
                         <TablePagination
                             rowsPerPageOptions={[10, 25, 100]}
                             component="div"
-                            count={ec2data.length}
+                            count={tableRows.length}
                             rowsPerPage={rowsPerPage}
                             page={page}
                             onPageChange={handleChangePage}

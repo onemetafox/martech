@@ -1,18 +1,21 @@
-import { React, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../header';
-import Footer from '../footer';
 import Content from './content';
+import Footer from '../footer';
 
-const Budget = () =>{
+const Contact = () =>{
+
     const [winheight, setHeight] = useState(0);
     
     useEffect(() => {
         setHeight(document.body.scrollHeight - 48);
     }, [])
     return(
-        <div style={{flexDirection: 'column', justifyContent:'space-between', alignItems:"stretch", flex: 1}} >
+        <div
+            style={{flexDirection: 'column', justifyContent:'space-between', alignItems:"stretch", flex: 1}}
+        >
             <div style={{flex: 1, height: winheight+'px'}}>
-                <Header title={'Support'} subTitle = {'OPS Summary'}/>
+                <Header subTitle={'EDP Datasets'} title={"Knowledge base"}/>
                 <Content />
             </div>
             <div style={{flex: 1}}>
@@ -22,4 +25,4 @@ const Budget = () =>{
 
     );
 }
-export default Budget;
+export default Contact;

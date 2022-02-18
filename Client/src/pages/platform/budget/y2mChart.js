@@ -129,7 +129,7 @@ const Y2mchart = (props) =>{
                     <BarChartIcon/>
                 </Avatar>
                 }
-                title={<Typography variant='h5'>Year to Month Spend by Service</Typography>}
+                title={<Typography variant='h5'>Year to Month Spend</Typography>}
             />
             <CardContent>
                 <Grid 

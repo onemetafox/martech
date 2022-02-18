@@ -25,7 +25,7 @@ const Header = () =>{
                             fontWeight={'900'}
                             variant={'h2'}
                         >
-                            We're a community of designers and developers creating tools for the web.
+                            Engagement Data Platform
                         </Typography>
                     </Container>
             </Box>

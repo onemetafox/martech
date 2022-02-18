@@ -68,7 +68,7 @@ const Footer = () =>{
                 <ColorButton
                 onClick={handle}
                 >
-                    2021© Keenthemes
+                    Comcast
                 </ColorButton>
             </Box>
         </Box>

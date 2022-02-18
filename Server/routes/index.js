@@ -12,6 +12,7 @@ import y2dRoutes from './y2date.route';
 import serviceRoutes from './service.route';
 import faqRoutes from './faq.route';
 import ticketRoutes from './ticket.route';
+import edpdatasetsRoutes from './edpdatasets.route';
 
 // router.use('/auth', authRoutes);
 
@@ -33,4 +34,6 @@ router.use('/call', callRoutes);
 router.use('/faq', faqRoutes);
 
 router.use('/ticket', ticketRoutes);
+
+router.use('/edpdatasets', edpdatasetsRoutes);
 export default router;

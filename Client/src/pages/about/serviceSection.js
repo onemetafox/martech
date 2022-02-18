@@ -22,13 +22,13 @@ const ServiceSection = () =>{
                         <Typography fontFamily={'PT Serif, Georgia, serif'} variant='h6'>
                             The journey of EDP was started with vision of centralized marketing data platform that provides, data availability via single source, common infrastructure, & Platform Integrations for customer (customer & potential-customer). With a set of capabilities for E2E Residential Marketing needs to help enable omni-channel 1:1                        </Typography>
                         <Typography fontFamily={'PT Serif, Georgia, serif'} variant='h6'>
-                            Add content
+                            
                         </Typography>
                         <Typography fontFamily={'PT Serif, Georgia, serif'} variant='h6'>
-                            Add content
+                            
                         </Typography>
                         <Typography fontFamily={'PT Serif, Georgia, serif'} variant='h6'>
-                            Add content
+                            
                         </Typography>
                     </Box>
                     <Box display={'grid'} sx={{justifyContent:'center'}}>
@@ -41,7 +41,7 @@ const ServiceSection = () =>{
                         />
                     </Box>
                     <Typography fontFamily={'PT Serif, Georgia, serif'} variant='h6' paddingTop={'50px'}>
-                        Add content
+                        
                     </Typography>
                     <Box 
                     sx={{
