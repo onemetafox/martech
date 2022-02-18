@@ -5,6 +5,7 @@ import CallReducer from './actions/callAction';
 import FaqReducer from './actions/faqAction';
 import TicketReducer from './actions/ticketAction';
 import AuthReducer from './actions/authAction';
+import EdpdatasetReducer from './actions/edpdatasetAction';
 
 export default configureStore({
     reducer: {
@@ -13,6 +14,7 @@ export default configureStore({
         callsData: CallReducer,
         faqsData: FaqReducer,
         ticketsData : TicketReducer,
+        edpdatasetsData: EdpdatasetReducer,
         authData: AuthReducer
     },
 });

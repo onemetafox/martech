@@ -5,8 +5,8 @@ const menu = [
       url   :'#'
     },
     {
-        id    : 'plateform',
-        title : 'Plateform',
+        id    : 'platform',
+        title : 'Platform',
         url   :'#'
       },
       {

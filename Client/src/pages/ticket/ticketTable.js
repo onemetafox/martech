@@ -192,7 +192,7 @@ const TicketTable = () =>{
                         data={ticketsList}
                         columns={ticketColumn}
                         options={options}
-                        title={"Team Ticket"}
+                        title={"Tickets by Catagory"}
                     />
                 </ThemeProvider>
             </Box>

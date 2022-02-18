@@ -12,7 +12,7 @@ const PrivateRoute = (props) =>{
   const dispatch = useDispatch();
   const account = JSON.parse(sessionStorage.getItem('auth'));
   if(account) {
-    if(props.path === "/platform/ec2summary" || props.path === "/contact" || props.path === "/calendar" || props.path === "/calls" || props.path === "/ticket"){
+    if(props.path === "/platform/ec2" || props.path === "/contact" || props.path === "/calendar" || props.path === "/calls" || props.path === "/ticket"){
       if(account.admin || account.developer){
         auth = true;
         path = true;

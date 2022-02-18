@@ -36,11 +36,11 @@ const MenuComponent = (props) =>{
             {(popupState) => (
                 <React.Fragment>
                 <Link component="button" variant="body3" underline='none' 
-                    onClick={() => { navigate('/ticket'); }} color={props.color}  sx={{ paddingLeft:"35px" }}
+                    onClick={() => { navigate('/knowledgebase'); }} color={props.color}  sx={{ paddingLeft:"35px" }}
                     variant="contained" {...bindTrigger(popupState)}
                 >Knowledge base</Link>
                 <Menu open={true} {...bindMenu(popupState)}>
-                    <MenuItem onClick={() => { navigate('/ticket'); popupState.close();}}>Ticket Summary</MenuItem>
+                    <MenuItem onClick={() => { navigate('/knowledgebase/edpdatasets'); popupState.close();}}>EDP Datasets</MenuItem>
                 </Menu>
                 </React.Fragment>
             )}
@@ -57,6 +57,7 @@ const MenuComponent = (props) =>{
                             <MenuItem onClick={() => { navigate('/contact'); popupState.close();}}>Team Contacts </MenuItem>
                             <MenuItem onClick={() => { navigate('/calendar'); popupState.close();}}>Team Calendar</MenuItem>
                             <MenuItem onClick={() => { navigate('/calls'); popupState.close();}}>On-Call Support</MenuItem>
+                            <MenuItem onClick={() => { navigate('/ticket'); popupState.close();}}>OPS Summary</MenuItem>
                         </Menu>
                     </React.Fragment>
                 )}
@@ -70,7 +71,7 @@ const MenuComponent = (props) =>{
                         >Platform</Link>
                         <Menu open={true} {...bindMenu(popupState)}>
                             <MenuItem onClick={() => { navigate('/platform/budget'); popupState.close();}}>Budget</MenuItem>
-                            <MenuItem onClick={() => { navigate('/platform/ec2summary'); popupState.close();}}>EC2 Instance</MenuItem>
+                            <MenuItem onClick={() => { navigate('/platform/ec2'); popupState.close();}}>EC2 Dashboard</MenuItem>
                         </Menu>
                     </React.Fragment>
                 )}
