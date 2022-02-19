@@ -54,6 +54,7 @@ const Edpdataset = (props) => {
   };
  
   useEffect(()=>{
+    console.log(props.edpdatasetData);
     setEdpdataset(props.edpdatasetData);
     setAdmin(props.isAdmin);
   },[props])
@@ -84,7 +85,7 @@ const Edpdataset = (props) => {
           <div dangerouslySetInnerHTML={{ __html: convertCommentFromJSONToHTML(edpdataset.description) }} />
         </CardContent>
       </Collapse>
-      <EdpdatasetDialog expanded = {expanded} setExpanded={setExpanded} open = {open} edpdatsetData = {edpdataset}  setOpen = {setOpen}/>
+      <EdpdatasetDialog expanded = {expanded} setExpanded={setExpanded} open = {open} edpdatasetData = {edpdataset}  setOpen = {setOpen}/>
       <Dialog
           open={dialogOpen}
           TransitionComponent={Transition}

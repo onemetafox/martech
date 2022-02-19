@@ -23,6 +23,7 @@ export default function EdpdatasetDialog(props) {
   const [formData, setFormData] = useState(props.edpdatasetData);
   const [editorState, setEditorState] = useState();
   useEffect(()=>{
+    // console.log(props);
     setFormData(props.edpdatasetData)
     if(props.edpdatasetData.description !== ""){
       setEditorState(EditorState.createWithContent(convertFromRaw(JSON.parse(props.edpdatasetData.description))));
@@ -30,7 +31,7 @@ export default function EdpdatasetDialog(props) {
       setEditorState(EditorState.createEmpty());
     }
     
-  }, [props.open])
+  }, [props])
   const handleSave=()=>{
     if(formData.title === ""){
       toast.error("Title Required!");
@@ -64,7 +65,7 @@ export default function EdpdatasetDialog(props) {
             type="text"
             fullWidth
             variant="standard"
-            value={formData.title}
+            // value={formData.title}
             onChange={evt => { setFormData(f => ({ ...f, title: evt.target.value})) }}
           />
           <Editor
