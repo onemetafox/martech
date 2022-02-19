@@ -30,7 +30,7 @@ export default function EdpdatasetDialog(props) {
       setEditorState(EditorState.createEmpty());
     }
     
-  }, [props])
+  }, [props.open])
   const handleSave=()=>{
     if(formData.title === ""){
       toast.error("Title Required!");

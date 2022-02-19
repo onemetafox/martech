@@ -35,5 +35,5 @@ router.use('/faq', faqRoutes);
 
 router.use('/ticket', ticketRoutes);
 
-router.use('/edpdatasets', edpdatasetsRoutes);
+router.use('/edpdataset', edpdatasetsRoutes);
 export default router;

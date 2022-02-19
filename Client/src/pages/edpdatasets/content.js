@@ -33,12 +33,10 @@ const ColorButton = styled(Button)(({ theme }) => ({
 }));
 
 const Content = () =>{
-    const [expanded, setExpanded] = useState(false);
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     const [edpdatasetData, setEdpdatasetData] = useState(edpdatasetStructure);
     const [isAdmin, setIsAdmin]= useState(false);
-    
     useEffect(()=>{
         dispatch(getAll());
         var auth = JSON.parse(sessionStorage.getItem("auth"));
@@ -78,7 +76,7 @@ const Content = () =>{
                     })}
                 </Box>
             </Box>
-            <EdpdatasetDialog expanded = {expanded} setExpanded={setExpanded}  open = {open} edpdatasetData = {edpdatasetData}  setOpen = {setOpen}/>
+            <EdpdatasetDialog  open = {open} edpdatasetData = {edpdatasetData}  setOpen = {setOpen}/>
         </Container>
     );
 }

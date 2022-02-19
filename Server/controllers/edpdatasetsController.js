@@ -31,7 +31,7 @@ function addEdpdataset(req, res){
             res.json(Response.failure(err));
         })
     }else{
-        const edpdatasettData = new Content({
+        const edpdatasettData = new Edpdatasets({
             title: req.body.title,
             description: req.body.description,
         });
