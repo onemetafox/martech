@@ -1,11 +1,15 @@
 import jwt from 'jwt-simple';
-import 'dotenv/config'
+import pkg from 'dotenv'
+import path from 'path'
 export const timeSetting = {
   secret       : '123456789qwertyuiop',
   timeZone     : "EST",
   momentFormat : 'YYYY-MM-DDTHH:mm:ss.SSS[Z]',
   sessionScreteKey: jwt.encode("session", '123456789qwertyuiop')
 };
+pkg.config({
+  path: path.resolve(`${process.env.NODE_ENV}.env`)
+});
 export const dbConf = {
   host: process.env.MONGO_HOST,
   port: process.env.MONGO_PORT,
@@ -14,3 +18,4 @@ export const dbConf = {
   db: process.env.MONGO_DB,
   mongooseDebug: process.env.MONGOOSE_DEBUG
 }  
+console.log(process.env.MONGO_HOST);

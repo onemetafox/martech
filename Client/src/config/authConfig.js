@@ -39,7 +39,7 @@ secret : fJw7Q~odQS2vShaTeAbM30X59pvmHVlZs~r6W
 export const msalConfig = {
     
     auth: {
-        clientId: "152227d5-8abe-4f73-a068-efbfeeb0e723",
+        clientId: conf.client_id,
         authority: "https://login.microsoftonline.com/906aefe9-76a7-4f65-b82d-5ec20775d5aa",
         redirectUri: "http://"+ conf.host +conf.redirect,
     },
