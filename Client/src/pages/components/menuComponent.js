@@ -40,7 +40,7 @@ const MenuComponent = (props) =>{
                     variant="contained" {...bindTrigger(popupState)}
                 >Knowledge base</Link>
                 <Menu open={true} {...bindMenu(popupState)}>
-                    <MenuItem onClick={() => { navigate('/knowledgebase/edpdatasets'); popupState.close();}}>EDP Datasets</MenuItem>
+                    <MenuItem onClick={() => { navigate('/edpdatasets'); popupState.close();}}>EDP Datasets</MenuItem>
                 </Menu>
                 </React.Fragment>
             )}
