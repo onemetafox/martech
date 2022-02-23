@@ -1,5 +1,5 @@
 import jwt from 'jwt-simple';
-import pkg from 'dotenv'
+import dotenv from 'dotenv'
 import path from 'path'
 export const timeSetting = {
   secret       : '123456789qwertyuiop',
@@ -7,7 +7,7 @@ export const timeSetting = {
   momentFormat : 'YYYY-MM-DDTHH:mm:ss.SSS[Z]',
   sessionScreteKey: jwt.encode("session", '123456789qwertyuiop')
 };
-pkg.config({
+dotenv.config({
   path: path.resolve(`${process.env.NODE_ENV}.env`)
 });
 export const dbConf = {
@@ -18,4 +18,3 @@ export const dbConf = {
   db: process.env.MONGO_DB,
   mongooseDebug: process.env.MONGOOSE_DEBUG
 }  
-console.log(process.env.MONGO_HOST);
