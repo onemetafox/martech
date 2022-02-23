@@ -1,9 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { toast } from "react-toastify";
 import axios from 'axios';
-import { ROOT_URL} from '../config/const';
 import jwt_decode from 'jwt-decode';
-import * as configs from '../config/config';
+import {setting, conf} from '../config/config';
 export const slice = createSlice({
   name: 'faqData',
   initialState: {
@@ -30,9 +29,9 @@ export const getAll = () => dispatch =>{
     // axios.get(`${ROOT_URL}/getCsrfToken`)
     // .then((res)=>{
     //     axios.defaults.headers.post['CSRF-Token'] = res.data.csrfToken;
-        axios.post(`${ROOT_URL}/faq/getAll`)
+        axios.post(`${conf.api_url}/faq/getAll`)
             .then(response => {
-                var data = jwt_decode(response.data.data, configs.secret);
+                var data = jwt_decode(response.data.data, setting.secret);
                 dispatch(getAllData(data));
             })
             .catch(() => {
@@ -41,7 +40,7 @@ export const getAll = () => dispatch =>{
 }
 
 export const delFaq= (id) => dispatch=> {
-    axios.post(`${ROOT_URL}/faq/delFaq`, {id : id})
+    axios.post(`${conf.api_url}/faq/delFaq`, {id : id})
         .then(response => {
             if(response.data.status === "Success"){
                 dispatch(getAll());
@@ -55,7 +54,7 @@ export const delFaq= (id) => dispatch=> {
 }
 
 export const addFaq = (params) => dispatch => {
-    axios.post(`${ROOT_URL}/faq/addFaq`,params)
+    axios.post(`${conf.api_url}/faq/addFaq`,params)
     .then(response => {
         if(response.data.status === "Success"){
             dispatch(getAll());

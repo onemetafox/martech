@@ -10,7 +10,7 @@ import { getM2dData} from '../../../actions/m2dAction';
 import { getY2mData } from '../../../actions/y2dAction';
 import { getLtsData} from '../../../actions/serviceAction';
 import jwt_decode from 'jwt-decode';
-import * as configs from '../../../config/config';
+import {setting} from '../../../config/config';
 
 export const BudgetDataContext = createContext();
 
@@ -22,19 +22,19 @@ const Content = () =>{
   const [year, setYear] = useState(new Date().getFullYear());
   useEffect(()=>{
     getM2dData( (res) => {
-      var data = jwt_decode(res.data.data, configs.secret);
+      var data = jwt_decode(res.data.data, setting.secret);
       setm2dChartData(data);
     });
   },[]);
   useEffect(()=>{
     getY2mData( (res) => {
-      var data = jwt_decode(res.data.data, configs.secret);
+      var data = jwt_decode(res.data.data, setting.secret);
       sety2mChartData(data);
     }, year);
   },[year]);
   useEffect(()=>{
     getLtsData( (res) => {
-      var data = jwt_decode(res.data.data, configs.secret);
+      var data = jwt_decode(res.data.data, setting.secret);
       setLtsData(data);
     })
   },[]);

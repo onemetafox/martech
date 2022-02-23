@@ -1,9 +1,8 @@
 import axios from 'axios';
-import {ROOT_URL} from '../config/const';
-
+import {conf} from '../config/config';
 export function getEc2Count(res) {
     var data;
-    axios.post(`${ROOT_URL}/ec2count/getAllEc2Count`)
+    axios.post(`${conf.api_url}/ec2count/getAllEc2Count`)
         .then(response => {
             res({data: response});
         })

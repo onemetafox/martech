@@ -8,7 +8,7 @@ import Ec2Table from './ec2Table';
 import { getEc2Count } from '../../../actions/ec2countAction';
 import { getEc2instance } from '../../../actions/ec2instanceAction';
 import jwt_decode from 'jwt-decode';
-import * as configs from '../../../config/config';
+import {setting} from '../../../config/config';
 
 
 
@@ -20,11 +20,11 @@ const Content = () =>{
 
   useEffect(()=>{
     getEc2Count( res => {
-      var data = jwt_decode(res.data.data, configs.secret);
+      var data = jwt_decode(res.data.data, setting.secret);
       setEc2countdata(data);
     });
     getEc2instance( res => {
-      var data = jwt_decode(res.data.data, configs.secret);
+      var data = jwt_decode(res.data.data, setting.secret);
       setEc2instancedata(data);
     });
 

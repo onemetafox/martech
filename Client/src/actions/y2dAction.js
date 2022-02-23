@@ -1,12 +1,11 @@
 import axios from 'axios';
-import {ROOT_URL} from '../config/const';
-
+import { conf } from '../config/config';
 export function getY2mData(res, year){
     const d = new Date();
     if(!year){
         year = d.getFullYear();
     }
-    axios.post(`${ROOT_URL}/y2data/getY2mGetData`,{year: year})
+    axios.post(`${conf.api_url}/y2data/getY2mGetData`,{year: year})
     .then(response => {
         res({data: response});
     })

@@ -2,6 +2,7 @@
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
  */
+import { conf } from './config';
 import queryString from 'query-string'
 import { LogLevel } from "@azure/msal-browser";
 // import { CODE_CHALLENGE_METHOD, CODE_CHALLENGE } from './PCKEConfigs';
@@ -40,7 +41,7 @@ export const msalConfig = {
     auth: {
         clientId: "152227d5-8abe-4f73-a068-efbfeeb0e723",
         authority: "https://login.microsoftonline.com/906aefe9-76a7-4f65-b82d-5ec20775d5aa",
-        redirectUri: "http://localhost:3000/calendar",
+        redirectUri: "http://"+ conf.host +conf.redirect,
     },
     cache: {
         cacheLocation: "sessionStorage", // This configures where your cache will be stored

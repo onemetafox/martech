@@ -1,9 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { toast } from "react-toastify";
 import axios from 'axios';
-import { ROOT_URL} from '../config/const';
 import jwt_decode from 'jwt-decode';
-import * as configs from '../config/config';
+import {setting, conf} from '../config/config';
 export const slice = createSlice({
   name: 'callData',
   initialState: {
@@ -26,9 +25,9 @@ export const { getAllData, setCallData} = slice.actions;
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched
 export const getAll = () => dispatch =>{
-    axios.post(`${ROOT_URL}/call/getAll`)
+    axios.post(`${conf.api_url}/call/getAll`)
         .then(response => {
-            var data = jwt_decode(response.data.data, configs.secret);
+            var data = jwt_decode(response.data.data, setting.secret);
             dispatch(getAllData(data));
         })
         .catch(() => {
@@ -36,7 +35,7 @@ export const getAll = () => dispatch =>{
 }
 
 export const delCall= (id) => dispatch=> {
-    axios.post(`${ROOT_URL}/call/delCall`, {id : id})
+    axios.post(`${conf.api_url}/call/delCall`, {id : id})
         .then(response => {
             if(response.data.status === "Success"){
                 dispatch(getAll());
@@ -50,7 +49,7 @@ export const delCall= (id) => dispatch=> {
 }
 
 export const addCall = (params) => dispatch => {
-    axios.post(`${ROOT_URL}/call/addCall`,params)
+    axios.post(`${conf.api_url}/call/addCall`,params)
     .then(response => {
         if(response.data.status === "Success"){
             dispatch(getAll());

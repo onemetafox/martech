@@ -1,9 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { toast } from "react-toastify";
 import axios from 'axios';
-import { ROOT_URL} from '../config/const';
 import jwt_decode from 'jwt-decode';
-import * as configs from '../config/config';
+import {setting, conf} from '../config/config';
 export const slice = createSlice({
   name: 'ticketData',
   initialState: {
@@ -30,18 +29,18 @@ export const { getAllData, setTicketData, setStatistic} = slice.actions;
 // will ticket the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched
 export const getAll = () => dispatch =>{
-    axios.post(`${ROOT_URL}/ticket/getAll`)
+    axios.post(`${conf.api_url}/ticket/getAll`)
         .then(response => {
-            var data = jwt_decode(response.data.data, configs.secret);
+            var data = jwt_decode(response.data.data, setting.secret);
             dispatch(getAllData(data));
         })
         .catch(() => {
     });
 }
 export const getStatistic = (year) => dispatch => {
-    axios.post(`${ROOT_URL}/ticket/getStatistic`,{year: year})
+    axios.post(`${conf.api_url}/ticket/getStatistic`,{year: year})
         .then(response => {
-            var data = jwt_decode(response.data.data, configs.secret);
+            var data = jwt_decode(response.data.data, setting.secret);
             dispatch(setStatistic(data));
         })
         .catch(() => {
@@ -49,7 +48,7 @@ export const getStatistic = (year) => dispatch => {
 }
 
 export const delTicket= (id, year) => dispatch=> {
-    axios.post(`${ROOT_URL}/ticket/delTicket`, {id : id})
+    axios.post(`${conf.api_url}/ticket/delTicket`, {id : id})
         .then(response => {
             if(response.data.status === "Success"){
                 dispatch(getAll());
@@ -64,7 +63,7 @@ export const delTicket= (id, year) => dispatch=> {
 }
 
 export const addTicket = (params) => dispatch => {
-    axios.post(`${ROOT_URL}/ticket/addTicket`,params)
+    axios.post(`${conf.api_url}/ticket/addTicket`,params)
     .then(response => {
         if(response.data.status === "Success"){
             dispatch(getAll());

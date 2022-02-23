@@ -1,9 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { toast } from "react-toastify";
 import axios from 'axios';
-import { ROOT_URL} from '../config/const';
 import jwt_decode from 'jwt-decode';
-import * as configs from '../config/config';
+import {setting, conf} from '../config/config';
 export const slice = createSlice({
   name: 'EdpdatasetData',
   initialState: {
@@ -30,9 +29,9 @@ export const getAll = () => dispatch =>{
     // axios.get(`${ROOT_URL}/getCsrfToken`)
     // .then((res)=>{
     //     axios.defaults.headers.post['CSRF-Token'] = res.data.csrfToken;
-        axios.post(`${ROOT_URL}/edpdataset/getAll`)
+        axios.post(`${conf.api_url}/edpdataset/getAll`)
             .then(response => {
-                var data = jwt_decode(response.data.data, configs.secret);
+                var data = jwt_decode(response.data.data, setting.secret);
                 dispatch(getAllData(data));
             })
             .catch(() => {
@@ -41,7 +40,7 @@ export const getAll = () => dispatch =>{
 }
 
 export const delEdpdataset= (id) => dispatch=> {
-    axios.post(`${ROOT_URL}/edpdataset/delEdpdataset`, {id : id})
+    axios.post(`${conf.api_url}/edpdataset/delEdpdataset`, {id : id})
         .then(response => {
             if(response.data.status === "Success"){
                 dispatch(getAll());
@@ -55,7 +54,7 @@ export const delEdpdataset= (id) => dispatch=> {
 }
 
 export const addEdpdataset = (params) => dispatch => {
-    axios.post(`${ROOT_URL}/edpdataset/addEdpdataset`,params)
+    axios.post(`${conf.api_url}/edpdataset/addEdpdataset`,params)
     .then(response => {
         if(response.data.status === "Success"){
             dispatch(getAll());
