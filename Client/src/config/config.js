@@ -10,3 +10,4 @@ export const conf = {
     redirect: process.env.REACT_APP_REDIRECT_URL,
     client_id : process.env.REACT_APP_CLIENT_ID
 }
+console.log(conf);

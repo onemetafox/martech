@@ -1,6 +1,6 @@
 import {React, useEffect, useState } from 'react';
 import Header from '../../header';
-import Footer from '../../footer';
+// import Footer from '../../footer';
 import Content from './content';
 
 const Budget = () =>{

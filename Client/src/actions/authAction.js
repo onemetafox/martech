@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import jwt from 'jwt-simple'
 export const slice = createSlice({
     name: 'authData',
     initialState: {
@@ -25,7 +24,6 @@ export const signin = (user) => dispatch =>{
     data.date = new Date();
     data.user = user;
     data.isLoggedin = true;
-    // sessionStorage.setItem("auth", jwt.encode(data, SECRET_KEY));
     sessionStorage.setItem("auth", data);
 
     dispatch(setAuth(data));
@@ -37,7 +35,6 @@ export const signout= (id) => dispatch=> {
 }
 
 export const isAuth = () =>{
-    // var data = jwt.decode(sessionStorage.getItem("auth"), SECRET_KEY);
     var data = sessionStorage.getItem("auth");
 
     var date = new Date();
@@ -51,9 +48,6 @@ export const setPath = (path) => dispatch => {
 }
 
 
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const selectAuth = state => state.authData;
 export const checkAuth = state => state.authData.lsLoggedin;
 

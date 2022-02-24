@@ -3,7 +3,7 @@
  * Licensed under the MIT License.
  */
 import { conf } from './config';
-import queryString from 'query-string'
+// import queryString from 'query-string'
 import { LogLevel } from "@azure/msal-browser";
 // import { CODE_CHALLENGE_METHOD, CODE_CHALLENGE } from './PCKEConfigs';
 /*

@@ -20,23 +20,14 @@ export const slice = createSlice({
 
 export const { getAllData, setFaqData} = slice.actions;
 
-// The function below is faqed a thunk and allows us to perform async logic. It
-// can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
-// will faq the thunk with the `dispatch` function as the first argument. Async
-// code can then be executed and other actions can be dispatched
 export const getAll = () => dispatch =>{
-
-    // axios.get(`${ROOT_URL}/getCsrfToken`)
-    // .then((res)=>{
-    //     axios.defaults.headers.post['CSRF-Token'] = res.data.csrfToken;
-        axios.post(`${conf.api_url}/faq/getAll`)
-            .then(response => {
-                var data = jwt_decode(response.data.data, setting.secret);
-                dispatch(getAllData(data));
-            })
-            .catch(() => {
-        });
-    // })
+    axios.post(`${conf.api_url}/faq/getAll`)
+        .then(response => {
+            var data = jwt_decode(response.data.data, setting.secret);
+            dispatch(getAllData(data));
+        })
+        .catch(() => {
+    });
 }
 
 export const delFaq= (id) => dispatch=> {
@@ -67,10 +58,6 @@ export const addFaq = (params) => dispatch => {
         console.log("error");
     })
 }
-
-// The function below is faqed a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const selectFaq = state => state.faqsData.faqs;
 
 
