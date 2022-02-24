@@ -48,9 +48,6 @@ const PrivateRoute = (props) =>{
       return <Navigate to="/" />
     }
   }
-  
-
-  // return auth ? props.children : (<div> <ToastContainer autoClose={2000}  /> <Navigate to="/" /></div>) ;
 };
 
 export default PrivateRoute;

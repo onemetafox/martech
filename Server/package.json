@@ -6,8 +6,8 @@
   "main": "node -r esm index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "set NODE_ENV=development&& nodemon --experimental-specifier-resolution=node index.js",
-    "pro": "set NODE_ENV=production&& nodemon --experimental-specifier-resolution=node index.js"
+    "dev": "NODE_ENV=development&& nodemon --experimental-specifier-resolution=node index.js",
+    "pro": "NODE_ENV=production&& nodemon --experimental-specifier-resolution=node index.js"
   },
   "author": "Dushyanth Vaddi",
   "license": "ISC",
