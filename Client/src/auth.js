@@ -44,9 +44,8 @@ const PrivateRoute = (props) =>{
     if(path)
     {
       return <Navigate to={prePath} />
-      // return location.state && location.state.referer
     }else{
-      <Navigate to="/" />
+      return <Navigate to="/" />
     }
   }
   
