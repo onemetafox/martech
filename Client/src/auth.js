@@ -34,7 +34,7 @@ const PrivateRoute = (props) =>{
       toast.error("Authentication Failed!");
     }
   }else{
-    toast.error("Authentication Failed!");
+    toast.error("You have to signin first!");
   }
   if(auth){
     return (<div>
