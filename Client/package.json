@@ -47,7 +47,7 @@
     "prod": "env-cmd -f production.env react-scripts start --environment=production",
     "local": "env-cmd -f local.env react-scripts start --environment=local",
     "build": "react-scripts build",
-    "build:pro": "env-cmd -f production.env react-scripts build --environment=production",
+    "build:prod": "env-cmd -f production.env react-scripts build --environment=production",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
