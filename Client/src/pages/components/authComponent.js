@@ -39,7 +39,6 @@ const AuthComponent = (props) =>{
                 toast.success("SignIn Successed!");
             });
         }).catch(e => {
-            console.log(e);
             toast.error("SignIn Failed!");
         });
     }

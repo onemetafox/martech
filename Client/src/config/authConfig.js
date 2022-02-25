@@ -37,7 +37,6 @@ secret : fJw7Q~odQS2vShaTeAbM30X59pvmHVlZs~r6W
 //     });
 // }
 export const msalConfig = {
-    
     auth: {
         clientId: conf.client_id,
         authority: "https://login.microsoftonline.com/906aefe9-76a7-4f65-b82d-5ec20775d5aa",
@@ -79,7 +78,7 @@ export const msalConfig = {
  * https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
 export const loginRequest = {
-    scopes: ["User.Read"]
+    scopes: [`api://<API CLIENT ID>/.default`]
 };
 
 /**
