@@ -17,6 +17,14 @@ export const contactStructure = {
     location:'',
     _id: ''
 }
+
+export const edpdqStructure = {
+    table_name: '',
+    rule_name: '',
+    custom_query_check: '',
+    _id: ''
+}
+
 export const callStructure = {
     contact : {
         _id : ''

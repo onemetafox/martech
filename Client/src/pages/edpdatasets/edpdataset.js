@@ -54,7 +54,6 @@ const Edpdataset = (props) => {
   };
  
   useEffect(()=>{
-    console.log(props.edpdatasetData);
     setEdpdataset(props.edpdatasetData);
     setAdmin(props.isAdmin);
   },[props])

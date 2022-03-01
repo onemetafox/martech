@@ -11,19 +11,25 @@ import Calls from './pages/calls';
 import Help from './pages/help';
 import Ticket from './pages/ticket';
 import Edpdatasets from './pages/edpdatasets';
+import Edpdq from './pages/edpdq';
 import PrivateRoute from "./auth";
 import { ToastContainer } from "react-toastify";
 import { useMsalAuthentication, AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
 import { InteractionType } from '@azure/msal-browser';
 import RequestInterceptor from './interceptor';
+import { InteractionType } from '@azure/msal-browser';
 import './style/App.css';
 
 function App() {
+<<<<<<< HEAD
   useMsalAuthentication(InteractionType.Redirect);
+=======
+  //useMsalAuthentication(InteractionType.Popup);
+>>>>>>> 0c1212eac13213c47eb80a907a5fec06e52e402c
   return (
     <HelmetProvider>
       <Helmet
-        titleTemplate=""
+        titleTemplate="EDP"
         defaultTitle="EDP"
       />
       <AuthenticatedTemplate>
@@ -40,6 +46,7 @@ function App() {
               <Route path="/about" element={<About/> } />
               <Route path="/help" element={<Help/> } />
               <Route path="/edpdatasets" element={<Edpdatasets/> } />
+              <Route path="/edpdq" element={<Edpdq/> } />
             </Routes>
           </Router>
           </RequestInterceptor>
@@ -57,6 +64,7 @@ function App() {
             <Route path="/about" element={<About/> } />
             <Route path="/help" element={<Help/> } />
             <Route path="/edpdatasets" element={<Edpdatasets/> } />
+            <Route path="/edpdq" element={<Edpdq/> } />
           </Routes>
         </Router>
       </UnauthenticatedTemplate>

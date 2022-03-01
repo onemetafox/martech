@@ -1,19 +1,16 @@
 import React from 'react';
 import { useMsal, useAccount } from '@azure/msal-react';
-import axios from 'axios';
-import { loginRequest } from './config/authConfig';
+import { request } from './config/authConfig';
 import { callMsGroup } from "./config/graph";
+import { Navigate } from 'react-router-dom';
 
 const RequestInterceptor = (props) => {
   const { instance, accounts } = useMsal();
   const account = useAccount(accounts[0]);
-
-  /* eslint-disable no-param-reassign */
-  axios.interceptors.request.use(async (config) => {
-    if (!account) {
-      throw Error('No active account! Verify a user has been signed in.');
-    }else{
-      callMsGroup(account.accessToken).then((response) => {
+  if(account){
+    request.account = account;
+    instance.acquireTokenSilent(request).then((response)=>{
+      callMsGroup(response.accessToken).then((response)=>{
         response.value.forEach(element => {
             if(element.displayName === "CHQ - martech-edp-developers"){
                 account.developer = true;
@@ -22,28 +19,15 @@ const RequestInterceptor = (props) => {
                 account.admin = true;
             }
         });
-        sessionStorage.setItem("auth", JSON.stringify(account));
-        // toast.success("SignIn Successed!");
-      });
-    }
-
-    const response = await instance.acquireTokenSilent({
-      ...loginRequest,
-      account,
+        sessionStorage.setItem("auth", JSON.stringify(account));})
     });
-
-    const bearer = `Bearer ${response.accessToken}`;
-    config.headers.Authorization = bearer;
-
-    return config;
-  });
-  /* eslint-enable no-param-reassign */
-
-  return (
-    <>
-      {props.children}
-    </>
-  );
+    return (
+      <>
+        {props.children}
+      </>
+    );
+  }
+  
 };
 
 export default RequestInterceptor;

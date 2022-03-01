@@ -36,6 +36,7 @@ export default function Pagemenu() {
               </ColorButton>
               <Menu open={true} {...bindMenu(popupState)}>
                 <MenuItem onClick={() => { navigate('/edpdatasets'); popupState.close();}}>EDP Datasets</MenuItem>
+                <MenuItem onClick={() => { navigate('/edpdq'); popupState.close();}}>EDP DQ Rules</MenuItem>
               </Menu>
             </React.Fragment>
           )}

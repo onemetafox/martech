@@ -13,6 +13,7 @@ import serviceRoutes from './service.route';
 import faqRoutes from './faq.route';
 import ticketRoutes from './ticket.route';
 import edpdatasetsRoutes from './edpdatasets.route';
+import edpdqRoutes from './edpdq.route';
 
 // router.use('/auth', authRoutes);
 
@@ -36,4 +37,7 @@ router.use('/faq', faqRoutes);
 router.use('/ticket', ticketRoutes);
 
 router.use('/edpdataset', edpdatasetsRoutes);
+
+router.use('/edpdq', edpdqRoutes);
+
 export default router;
