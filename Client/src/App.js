@@ -14,11 +14,12 @@ import Edpdatasets from './pages/edpdatasets';
 import PrivateRoute from "./auth";
 import { ToastContainer } from "react-toastify";
 import { useMsalAuthentication, AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
+import { InteractionType } from '@azure/msal-browser';
 import RequestInterceptor from './interceptor';
 import './style/App.css';
 
 function App() {
-  // useMsalAuthentication(InteractionType.Redirect);
+  useMsalAuthentication(InteractionType.Redirect);
   return (
     <HelmetProvider>
       <Helmet
@@ -29,7 +30,7 @@ function App() {
         <RequestInterceptor>
           <Router>
             <Routes>
-              <Route path="/" element={<Landingpage/>} />
+              <Route path="/" element={<About/>} />
               <Route exact path='/platform/budget' element={<PrivateRoute path='/platform/budget'> <BudgetDashboard/></PrivateRoute>}/>
               <Route exact path='/platform/ec2' element={<PrivateRoute path='/platform/ec2'> <Ec2/></PrivateRoute>}/>
               <Route exact path='/contact' element={<PrivateRoute path='/contact'> <Contact/></PrivateRoute>}/>
