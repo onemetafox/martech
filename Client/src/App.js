@@ -11,25 +11,27 @@ import Calls from './pages/calls';
 import Help from './pages/help';
 import Ticket from './pages/ticket';
 import Edpdatasets from './pages/edpdatasets';
+import Edpdq from './pages/edpdq';
 import PrivateRoute from "./auth";
 import { ToastContainer } from "react-toastify";
 import { useMsalAuthentication, AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
 import RequestInterceptor from './interceptor';
+import { InteractionType } from '@azure/msal-browser';
 import './style/App.css';
 
 function App() {
-  // useMsalAuthentication(InteractionType.Redirect);
+  //useMsalAuthentication(InteractionType.Popup);
   return (
     <HelmetProvider>
       <Helmet
-        titleTemplate=""
+        titleTemplate="EDP"
         defaultTitle="EDP"
       />
       <AuthenticatedTemplate>
         <RequestInterceptor>
           <Router>
             <Routes>
-              <Route path="/" element={<Landingpage/>} />
+              <Route path="/" element={<About/>} />
               <Route exact path='/platform/budget' element={<PrivateRoute path='/platform/budget'> <BudgetDashboard/></PrivateRoute>}/>
               <Route exact path='/platform/ec2' element={<PrivateRoute path='/platform/ec2'> <Ec2/></PrivateRoute>}/>
               <Route exact path='/contact' element={<PrivateRoute path='/contact'> <Contact/></PrivateRoute>}/>
@@ -39,6 +41,7 @@ function App() {
               <Route path="/about" element={<About/> } />
               <Route path="/help" element={<Help/> } />
               <Route path="/edpdatasets" element={<Edpdatasets/> } />
+              <Route path="/edpdq" element={<Edpdq/> } />
             </Routes>
           </Router>
           </RequestInterceptor>
@@ -56,6 +59,7 @@ function App() {
             <Route path="/about" element={<About/> } />
             <Route path="/help" element={<Help/> } />
             <Route path="/edpdatasets" element={<Edpdatasets/> } />
+            <Route path="/edpdq" element={<Edpdq/> } />
           </Routes>
         </Router>
       </UnauthenticatedTemplate>
