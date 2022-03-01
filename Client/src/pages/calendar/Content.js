@@ -25,7 +25,7 @@ const Content = () =>{
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'row'}}>
                         <Button className='detail-btn' sx={{background:'#F64E60' }}> Holiday</Button>
-                        <Button className='detail-btn' sx={{background:'#3699FF' }}> Vecation</Button>
+                        <Button className='detail-btn' sx={{background:'#3699FF' }}> Vacation</Button>
                         <Button className='detail-btn' sx={{background:'#FFA800' }}> Weekend</Button>
                         <Button className='detail-btn' sx={{background:'#1BC5BD' }}> Travel</Button>
                     </Box>

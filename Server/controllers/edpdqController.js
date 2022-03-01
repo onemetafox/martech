@@ -1,15 +1,14 @@
-import Contacts from '../models/contactsModel';
 import Response from '../services/response.service';
 // import Events from '../models/eventsModel';
-// import Calls from '../models/callsModel';
+import Edpdqs from '../models/edpdqsModel';
 import jwt from 'jwt-simple';
 import {timeSetting} from '../config/config';
-function delContact(req, res){
-    Contacts.remove({_id: req.body.id})
-    .then((contact)=>{
-        Events.remove({contact: req.body.id})
+function delEdpdq(req, res){
+    Edpdqs.remove({_id: req.body.id})
+    .then((edpdq)=>{
+        Events.remove({edpdq: req.body.id})
         .then((event)=>{
-            Calls.remove({contact: req.body.id})
+            Calls.remove({edpdq: req.body.id})
             .then((call)=>{
                 res.json(Response.success(jwt.encode(call, timeSetting.secret)));
             })
@@ -21,7 +20,7 @@ function delContact(req, res){
 }
 
 function getAll(req, res){
-    Contacts.find()
+    Edpdqs.find()
     .then((data)=>{
         res.json(Response.success(jwt.encode(data, timeSetting.secret)));
     }).catch((e)=>{
@@ -29,9 +28,9 @@ function getAll(req, res){
     })
 }
 
-function addContact(req, res){
+function addEdpdq(req, res){
     if(req.body._id){
-        Contacts.findOneAndUpdate({_id: req.body._id}, req.body)
+        Edpdqs.findOneAndUpdate({_id: req.body._id}, req.body)
         .then((result)=>{
             res.json(Response.success(jwt.encode(result, timeSetting.secret)));
         })
@@ -39,21 +38,19 @@ function addContact(req, res){
             res.json(Response.failure(err));
         })
     }else{
-        Contacts.find({email:req.body.email})
+        Edpdqs.find({rule_name:req.body.rule_name})
         .then((result) =>{
             console.log(result);
             if(result.length != 0){
-                res.json(Response.failure(jwt.encode("Contact already exist!", timeSetting.secret)));
+                res.json(Response.failure(jwt.encode("rule_name already exist!", timeSetting.secret)));
             }else{
-                const contactData = new Contacts({
-                    name: req.body.name,
-                    ntid: req.body.ntid,
-                    email: req.body.email.toLowerCase(),
-                    phone: req.body.phone,
-                    timezone: req.body.timezone,
-                    location: req.body.location
+                const edpdqData = new Edpdqs({
+                    table_name: req.body.table_name,
+                    rule_name: req.body.rule_name,
+                    custom_query_check: req.body.custom_query_check,
+                    description: req.body.description
                   });
-                contactData.save()
+                edpdqData.save()
                 .then((result)=>{
                     res.json(Response.success(jwt.encode(result, timeSetting.secret)));
                 })
@@ -71,8 +68,8 @@ function addContact(req, res){
 }
 
 export default {
-    delContact,
-    addContact,
+    delEdpdq,
+    addEdpdq,
     getAll
 }
 

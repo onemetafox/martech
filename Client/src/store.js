@@ -6,6 +6,7 @@ import FaqReducer from './actions/faqAction';
 import TicketReducer from './actions/ticketAction';
 import AuthReducer from './actions/authAction';
 import EdpdatasetReducer from './actions/edpdatasetAction';
+import EdpdqReducer from './actions/edpdqAction';
 
 export default configureStore({
     reducer: {
@@ -15,6 +16,7 @@ export default configureStore({
         faqsData: FaqReducer,
         ticketsData : TicketReducer,
         edpdatasetsData: EdpdatasetReducer,
+        edpdqsData: EdpdqReducer,
         authData: AuthReducer
     },
 });
