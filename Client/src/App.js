@@ -21,11 +21,7 @@ import { InteractionType } from '@azure/msal-browser';
 import './style/App.css';
 
 function App() {
-<<<<<<< HEAD
-  useMsalAuthentication(InteractionType.Redirect);
-=======
   //useMsalAuthentication(InteractionType.Popup);
->>>>>>> 0c1212eac13213c47eb80a907a5fec06e52e402c
   return (
     <HelmetProvider>
       <Helmet

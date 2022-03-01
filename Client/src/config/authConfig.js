@@ -48,11 +48,8 @@ export const msalConfig = {
  * https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
 export const loginRequest = {
-    scopes: [`api://<API CLIENT ID>/.default`]
-};
-export const request = {
     scopes: ["User.Read"]
-}
+};
 
 /**
  * Add here the scopes to request when obtaining an access token for MS Graph API. For more information, see:

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMsal, useAccount } from '@azure/msal-react';
-import { request } from './config/authConfig';
+import { loginRequest } from './config/authConfig';
 import { callMsGroup } from "./config/graph";
 import { Navigate } from 'react-router-dom';
 
@@ -8,8 +8,8 @@ const RequestInterceptor = (props) => {
   const { instance, accounts } = useMsal();
   const account = useAccount(accounts[0]);
   if(account){
-    request.account = account;
-    instance.acquireTokenSilent(request).then((response)=>{
+    loginRequest.account = account;
+    instance.acquireTokenSilent(loginRequest).then((response)=>{
       callMsGroup(response.accessToken).then((response)=>{
         response.value.forEach(element => {
             if(element.displayName === "CHQ - martech-edp-developers"){
