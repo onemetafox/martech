@@ -14,20 +14,15 @@ import Edpdatasets from './pages/edpdatasets';
 import Edpdq from './pages/edpdq';
 import PrivateRoute from "./auth";
 import { ToastContainer } from "react-toastify";
-import { useIsAuthenticated, AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
-import { InteractionStatus } from '@azure/msal-browser';
+import { useIsAuthenticated, AuthenticatedTemplate, UnauthenticatedTemplate, useMsalAuthentication } from '@azure/msal-react';
+import { InteractionStatus, InteractionType } from '@azure/msal-browser';
 import RequestInterceptor from './interceptor';
 import { useMsal } from "@azure/msal-react";
 import './style/App.css';
 import { loginRequest } from './config/authConfig';
 
 function App() {
-  const isAuthenticated = useIsAuthenticated();
-  const { instance, inProgress } = useMsal();
-
-  if (inProgress === InteractionStatus.None && !isAuthenticated) {
-    instance.loginPopup(loginRequest)
-  }
+  useMsalAuthentication(InteractionType.Popup)
   return (
     <HelmetProvider>
       <Helmet
