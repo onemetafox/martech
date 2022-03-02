@@ -6,7 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 const RequestInterceptor = (props) => {
   const { instance, accounts } = useMsal();
-  const { flag, setFlag } = useState(false);
+  const [flag, setFlag ] = useState(false);
   const account = useAccount(accounts[0]);
   if(account){
     loginRequest.account = account;
