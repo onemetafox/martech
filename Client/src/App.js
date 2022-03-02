@@ -20,7 +20,7 @@ import RequestInterceptor from './interceptor';
 import './style/App.css';
 
 function App() {
-  useMsalAuthentication(InteractionType.Popup);
+  useMsalAuthentication(InteractionType.Redirect);
   return (
     <HelmetProvider>
       <Helmet
