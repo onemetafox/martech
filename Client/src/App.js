@@ -17,7 +17,6 @@ import { ToastContainer } from "react-toastify";
 import { useMsalAuthentication, AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
 import { InteractionType } from '@azure/msal-browser';
 import RequestInterceptor from './interceptor';
-import { InteractionType } from '@azure/msal-browser';
 import './style/App.css';
 
 function App() {
