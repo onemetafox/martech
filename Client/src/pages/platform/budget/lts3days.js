@@ -23,10 +23,16 @@ import {BudgetDataContext} from './content';
 
 const getOnlyDate = (param) =>{
     var today = new Date();
-    var dd = String(today.getDate() - param).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-    return today = mm + '/' + dd + '/' + yyyy;
+    today.setDate(today.getDate()-param);
+    var month = '' + (today.getMonth() + 1),
+    day = '' + today.getDate(),
+    year = today.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+    return [month, day, year].join('/');
 }
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({

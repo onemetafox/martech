@@ -117,7 +117,6 @@ const M2dchart = () =>{
 
     const[chatdata, setChartData] = useState(origindata);
     const [value, setValue] = React.useState([0, 100]);
-    const [max, setMax] = useState(0);
     const [tabledata, setTableData] = useState(originrows);
     const budgetData = useContext(BudgetDataContext);
     
@@ -214,7 +213,6 @@ const M2dchart = () =>{
         var tempdata = statedata.datasets[0].data;
         var max = Math.max(...tempdata);
         setValue([0, max]);
-        setMax(max);
     }, [budgetData]);
     return (
         
@@ -243,16 +241,6 @@ const M2dchart = () =>{
                     <Grid item lg={3}>
                         <Doughnut data={chatdata} options={options} plugins={plugins}/>
                     </Grid>
-                    <Box style={{width:'inherit'}} sx={{ width: 300, paddingLeft:'20px', paddingRight:'20px' }}>
-                        <Slider
-                            getAriaLabel={() => 'cost range'}
-                            value={value}
-                            onChange={handleChange}
-                            valueLabelDisplay="auto"
-                            max={max}
-                            getAriaValueText={valuetext}
-                        />
-                    </Box>
                     <Grid item lg={9} style={{width:'inherit'}}>
                     <TableContainer sx={{backgroundColor:'#fff',maxHeight: 200,}}>
                         <Table stickyHeader sx={{ minWidth: 350 }} aria-label="simple table">

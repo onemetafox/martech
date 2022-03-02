@@ -8,9 +8,7 @@ import {
     Button,
     Typography,
     CardContent,
-    Grid,
-    Slider,
-    Box
+    Grid
 } from '@mui/material';
 import {red,} from '@mui/material/colors';
 import { ArcElement} from 'chart.js';
@@ -33,15 +31,10 @@ const origindata = {
     }
   ]
 };
-  function valuetext(value) {
-    return `$${value}`;
-  }
 
 const Y2mchart = (props) =>{
     
     const[chatdata, setChartData] = useState(origindata);
-    const [value, setValue] = useState([20, 100]);
-    const [max, setMax] = useState(0);
     const budgetData = useContext(BudgetDataContext);
     const year = useState(props.year);
     const handleIncreaseYear = () => {
@@ -50,36 +43,6 @@ const Y2mchart = (props) =>{
     const handleDecreaseYear=()=>{
       props.setYear(props.year-1);
     }
-    const handleChange = (event, newValue) => {
-        var filterdata = [];
-        origindata.datasets[0].data.forEach((value, index)=>{
-          var i = checkCondition(value)? value:0;
-          filterdata.push(i);
-        })
-        const statedata = {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug','Sep','Oct','Nov', 'Dec'],
-            datasets: [
-              {
-                data: filterdata,
-                label: year,
-                backgroundColor: '#EC932F',
-                borderColor: 'rgba(255,99,132,1)',
-                borderWidth: 1,
-                hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-                hoverBorderColor: 'rgba(255,99,132,1)',
-              }
-            ]
-          };
-        setChartData(statedata);
-        setValue(newValue);
-    };
-    const checkCondition = (each) =>{
-        var min = value[0];
-        var max = value[1];
-      return each >= min && each <= max;
-    }
-    
-
     useEffect(() => {
         var c_data = budgetData.y2mChartData;
         var rowData = [];
@@ -108,9 +71,6 @@ const Y2mchart = (props) =>{
         setChartData(stateData);
         origindata.datasets[0].data = rowData;
         origindata.datasets[0].label = year;
-        var max = Math.max(...rowData);
-        setValue([0,max]);
-        setMax(max);
     }, [budgetData]);
     return (
         
@@ -143,16 +103,6 @@ const Y2mchart = (props) =>{
                         data={chatdata}
                         />
                     </Grid>
-                    <Box style={{width:'inherit'}} sx={{ width: 300, paddingLeft:'20px', paddingRight:'20px', paddingTop:'20px'}}>
-                        <Slider
-                            getAriaLabel={() => 'Temperature range'}
-                            value={value}
-                            onChange={handleChange}
-                            valueLabelDisplay="auto"
-                            max={max}
-                            getAriaValueText={valuetext}
-                        />
-                    </Box>
                 </Grid>
             </CardContent>
         </Card>
