@@ -3,6 +3,7 @@ import { useMsal, useAccount } from '@azure/msal-react';
 import { loginRequest } from './config/authConfig';
 import { callMsGroup } from "./config/graph";
 import CircularProgress from '@mui/material/CircularProgress';
+import { Box } from '@mui/system';
 
 const RequestInterceptor = (props) => {
   const { instance, accounts } = useMsal();
@@ -26,7 +27,7 @@ const RequestInterceptor = (props) => {
     });
   }
   return (
-    flag?<>{props.children}</>:<CircularProgress/>
+    flag?<>{props.children}</>:<Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><CircularProgress/></Box>
   );
 };
 
