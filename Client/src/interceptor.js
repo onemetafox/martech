@@ -2,7 +2,6 @@ import React from 'react';
 import { useMsal, useAccount } from '@azure/msal-react';
 import { loginRequest } from './config/authConfig';
 import { callMsGroup } from "./config/graph";
-import { Navigate } from 'react-router-dom';
 
 const RequestInterceptor = (props) => {
   const { instance, accounts } = useMsal();

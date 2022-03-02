@@ -14,10 +14,8 @@ import Edpdatasets from './pages/edpdatasets';
 import Edpdq from './pages/edpdq';
 import PrivateRoute from "./auth";
 import { ToastContainer } from "react-toastify";
-import { useMsalAuthentication, AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
-import { InteractionType } from '@azure/msal-browser';
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
 import RequestInterceptor from './interceptor';
-import { InteractionType } from '@azure/msal-browser';
 import './style/App.css';
 
 function App() {
@@ -32,7 +30,7 @@ function App() {
         <RequestInterceptor>
           <Router>
             <Routes>
-              <Route path="/" element={<About/>} />
+              <Route path="/" element={<Landingpage/>} />
               <Route exact path='/platform/budget' element={<PrivateRoute path='/platform/budget'> <BudgetDashboard/></PrivateRoute>}/>
               <Route exact path='/platform/ec2' element={<PrivateRoute path='/platform/ec2'> <Ec2/></PrivateRoute>}/>
               <Route exact path='/contact' element={<PrivateRoute path='/contact'> <Contact/></PrivateRoute>}/>

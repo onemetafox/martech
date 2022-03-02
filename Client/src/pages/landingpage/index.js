@@ -1,14 +1,22 @@
-import React from 'react';
+import {React, useEffect} from 'react';
 
 import Header from './header';
 import Banner from './banner';
 import Present from './present';
 import Step from './step';
 import { ToastContainer } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
 
 
 
-function index(props) {
+const Index = (props) =>{
+  const navigate = useNavigate();
+  useEffect(()=>{
+    var data = JSON.parse(sessionStorage.getItem("auth"));
+    if(data){
+      navigate('/about');
+    }
+},[])
   return (
     <div>
       <Header />
@@ -20,4 +28,4 @@ function index(props) {
   );
 }
 
-export default index;
+export default Index;
