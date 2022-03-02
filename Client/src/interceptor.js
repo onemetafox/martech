@@ -6,27 +6,26 @@ import { callMsGroup } from "./config/graph";
 const RequestInterceptor = (props) => {
   const { instance, accounts } = useMsal();
   const account = useAccount(accounts[0]);
-  if(account){
-    loginRequest.account = account;
-    instance.acquireTokenSilent(loginRequest).then((response)=>{
-      callMsGroup(response.accessToken).then((response)=>{
-        response.value.forEach(element => {
-            if(element.displayName === "CHQ - martech-edp-developers"){
-                account.developer = true;
-            }
-            if(element.displayName === "CHQ - martech-edp-admins"){
-                account.admin = true;
-            }
-        });
-        sessionStorage.setItem("auth", JSON.stringify(account));})
+  loginRequest.account = account;
+  instance.acquireTokenSilent(loginRequest).then((response)=>{
+    callMsGroup(response.accessToken).then((response)=>{
+      response.value.forEach(element => {
+          if(element.displayName === "CHQ - martech-edp-developers"){
+              account.developer = true;
+          }
+          if(element.displayName === "CHQ - martech-edp-admins"){
+              account.admin = true;
+          }
+      });
+      sessionStorage.setItem("auth", JSON.stringify(account));
+      
     });
-    return (
-      <>
-        {props.children}
-      </>
-    );
-  }
-  
+  });
+  return (
+    <>
+      {props.children}
+    </>
+  );
 };
 
 export default RequestInterceptor;

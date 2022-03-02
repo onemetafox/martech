@@ -14,13 +14,20 @@ import Edpdatasets from './pages/edpdatasets';
 import Edpdq from './pages/edpdq';
 import PrivateRoute from "./auth";
 import { ToastContainer } from "react-toastify";
-import { useMsalAuthentication, AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
+import { useIsAuthenticated, AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
+import { InteractionStatus } from '@azure/msal-browser';
 import RequestInterceptor from './interceptor';
+import { useMsal } from "@azure/msal-react";
 import './style/App.css';
-import { InteractionType } from '@azure/msal-browser';
+import { loginRequest } from './config/authConfig';
 
 function App() {
-  useMsalAuthentication(InteractionType.Popup);
+  const isAuthenticated = useIsAuthenticated();
+  const { instance, inProgress } = useMsal();
+
+  if (inProgress === InteractionStatus.None && !isAuthenticated) {
+    instance.loginPopup(loginRequest)
+  }
   return (
     <HelmetProvider>
       <Helmet
@@ -31,7 +38,7 @@ function App() {
         <RequestInterceptor>
           <Router>
             <Routes>
-              <Route path="/" element={<Landingpage/>} />
+              <Route path="/" element={<About/>} />
               <Route exact path='/platform/budget' element={<PrivateRoute path='/platform/budget'> <BudgetDashboard/></PrivateRoute>}/>
               <Route exact path='/platform/ec2' element={<PrivateRoute path='/platform/ec2'> <Ec2/></PrivateRoute>}/>
               <Route exact path='/contact' element={<PrivateRoute path='/contact'> <Contact/></PrivateRoute>}/>
