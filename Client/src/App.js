@@ -14,12 +14,13 @@ import Edpdatasets from './pages/edpdatasets';
 import Edpdq from './pages/edpdq';
 import PrivateRoute from "./auth";
 import { ToastContainer } from "react-toastify";
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
+import { useMsalAuthentication, AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
 import RequestInterceptor from './interceptor';
 import './style/App.css';
+import { InteractionType } from '@azure/msal-browser';
 
 function App() {
-  //useMsalAuthentication(InteractionType.Popup);
+  useMsalAuthentication(InteractionType.Popup);
   return (
     <HelmetProvider>
       <Helmet
