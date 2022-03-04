@@ -2,10 +2,10 @@ import jwt from 'jwt-simple';
 import dotenv from 'dotenv'
 import path from 'path'
 export const timeSetting = {
-  secret       : '123456789qwertyuiop',
+  secret       : '',
   timeZone     : "EST",
   momentFormat : 'YYYY-MM-DDTHH:mm:ss.SSS[Z]',
-  sessionScreteKey: jwt.encode("session", '123456789qwertyuiop')
+  sessionScreteKey: jwt.encode("session", '')
 };
 dotenv.config({
   path: path.resolve(`${process.env.NODE_ENV}.env`)
