@@ -1,5 +1,5 @@
 export const setting = {
-    secret       : '123456789qwertyuiop',
+    secret       : '',
     timeZone     : "EST",
     momentFormat : 'YYYY-MM-DDTHH:mm:ss.SSS[Z]',
 };
